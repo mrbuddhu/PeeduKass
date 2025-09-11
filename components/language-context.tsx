@@ -13,7 +13,7 @@ interface LanguageContextType {
 const translations = {
   en: {
     // Footer
-    "footer.tagline": "Nordic jazz, roots and modern grooves",
+    "footer.tagline": "double bass, electric bass, composition, arrangements, artistic direction",
     "footer.navigation": "Navigation",
     "footer.contact": "Contact",
     "footer.location": "Tallinn, Estonia",
@@ -98,7 +98,7 @@ const translations = {
   },
   est: {
     // Footer
-    "footer.tagline": "Põhjamaine džäss, juured ja moodsad rütmid",
+    "footer.tagline": "kontrabass, elektribass, helilooming, seaded, kunstiline juhtimine",
     "footer.navigation": "Navigeerimine",
     "footer.contact": "Kontakt",
     "footer.location": "Tallinn, Eesti",
