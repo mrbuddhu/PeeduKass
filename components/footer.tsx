@@ -57,7 +57,7 @@ const Footer = () => {
             {t("footer.contact")}
           </h4>
           <div className="space-y-1.5">
-            <p className="font-vietnam text-sm text-gray-700">info@peedukass.ee</p>
+            <p className="font-vietnam text-sm text-gray-700">info@peedukass.com</p>
             <p className="font-vietnam text-sm text-gray-700">{t("footer.location")}</p>
           </div>
         </div>
