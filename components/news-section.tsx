@@ -76,7 +76,7 @@ const NewsSection = () => {
                       </span>
                     )}
                   </div>
-                  <h3 className="font-playfair text-2xl md:text-3xl font-bold text-black mb-4 leading-tight">
+                  <h3 className="font-playfair text-2xl md:text-3xl font-semibold text-black mb-4 leading-tight">
                     {item.title}
                   </h3>
                   <p className="font-vietnam text-gray-600 mb-6 leading-relaxed text-lg">{item.content}</p>
