@@ -32,7 +32,7 @@ const Navigation = () => {
             href="/"
             className="font-playfair text-2xl md:text-3xl font-bold text-black tracking-wide hover:text-gray-700 transition-colors"
           >
-            PEEDU KASS
+            Peedu Kass
           </Link>
 
           <div className="hidden lg:flex items-center space-x-12">
