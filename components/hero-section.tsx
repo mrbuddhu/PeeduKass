@@ -1,0 +1,65 @@
+"use client"
+
+import { useEffect, useRef } from "react"
+import { useLanguage } from "./language-context"
+
+const HeroSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const { t, language } = useLanguage()
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.log("Auto-play was prevented:", error)
+      })
+    }
+  }, [])
+
+  return (
+    <section className="relative h-screen w-full overflow-hidden bg-black">
+      {/* Hero Video - only loads if available */}
+      <div className="absolute inset-0">
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover opacity-90"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+
+      {/* Hero Content */}
+      <div className="relative z-10 flex items-center justify-center h-full">
+        <div className="text-center px-6 max-w-5xl mx-auto">
+          <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 text-balance tracking-wide drop-shadow-2xl">
+            {t("hero.name")}
+          </h1>
+          <div className="space-y-3 max-w-3xl mx-auto">
+            <p className="font-vietnam text-xl md:text-2xl lg:text-3xl text-white font-light text-balance leading-relaxed drop-shadow-lg">
+              {t("hero.intro")}
+            </p>
+            {language === "est" && (
+              <p className="font-vietnam text-lg md:text-xl lg:text-2xl text-white/90 font-light text-balance leading-relaxed italic drop-shadow-lg">
+                {t("hero.intro.est")}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="w-6 h-12 border border-white/60 rounded-full flex justify-center backdrop-blur-sm bg-black/20">
+          <div className="w-1 h-4 bg-white/80 rounded-full mt-3 animate-bounce" />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default HeroSection
