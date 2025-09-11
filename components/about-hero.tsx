@@ -40,18 +40,21 @@ const AboutHero = () => {
       setTimeout(() => {
         setIndex((i) => (i + 1) % quotes.length)
         setVisible(true)
-      }, 400)
-    }, 6000)
+      }, 600)
+    }, 8000)
     return () => clearInterval(interval)
   }, [quotes.length])
   return (
     <section className="relative py-32 px-6 bg-gradient-to-br from-[#0b1226] via-[#0a1a3a] to-black text-white overflow-hidden">
       <div className="relative z-10 max-w-5xl mx-auto text-center">
-        <div className="max-w-4xl mx-auto transition-opacity duration-500" style={{ opacity: visible ? 1 : 0 }}>
-          <blockquote className="font-vietnam italic text-xl md:text-2xl lg:text-3xl text-white/90 leading-relaxed text-balance">
+        <div
+          className="max-w-4xl mx-auto transition-opacity duration-700 h-[180px] md:h-[220px] lg:h-[260px] flex flex-col items-center justify-center"
+          style={{ opacity: visible ? 1 : 0 }}
+        >
+          <blockquote className="font-vietnam italic font-light text-xl md:text-2xl lg:text-3xl text-white/90 leading-relaxed text-balance">
             “{quotes[index].text}”
           </blockquote>
-          <div className="mt-4 text-white/70 font-vietnam">{quotes[index].author}</div>
+          <div className="mt-3 text-white/60 font-vietnam text-sm md:text-base">{quotes[index].author}</div>
         </div>
       </div>
     </section>

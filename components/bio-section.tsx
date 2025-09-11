@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 
 const BioSection = () => {
   const [language, setLanguage] = useState<"en" | "est">("en")
@@ -48,24 +48,27 @@ const BioSection = () => {
                 <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-black tracking-wide">
                   {bioContent[language].title}
                 </h2>
-                <div className="flex gap-2">
-                  <Button
-                    variant={language === "en" ? "default" : "outline"}
-                    size="lg"
-                    onClick={() => setLanguage("en")}
-                    className="bg-black text-white hover:bg-gray-800 border-black font-vietnam uppercase tracking-wide"
+                <ToggleGroup
+                  type="single"
+                  value={language}
+                  onValueChange={(v) => v && setLanguage(v as "en" | "est")}
+                  className="rounded-full border border-black/20 overflow-hidden"
+                >
+                  <ToggleGroupItem
+                    value="en"
+                    aria-label="English"
+                    className="px-4 py-2 font-vietnam text-sm data-[state=on]:bg-black data-[state=on]:text-white"
                   >
                     EN
-                  </Button>
-                  <Button
-                    variant={language === "est" ? "default" : "outline"}
-                    size="lg"
-                    onClick={() => setLanguage("est")}
-                    className="bg-black text-white hover:bg-gray-800 border-black font-vietnam uppercase tracking-wide"
+                  </ToggleGroupItem>
+                  <ToggleGroupItem
+                    value="est"
+                    aria-label="Estonian"
+                    className="px-4 py-2 font-vietnam text-sm data-[state=on]:bg-black data-[state=on]:text-white"
                   >
                     EST
-                  </Button>
-                </div>
+                  </ToggleGroupItem>
+                </ToggleGroup>
               </div>
 
               <div className="w-24 h-px bg-black mb-12"></div>
