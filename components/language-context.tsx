@@ -13,7 +13,7 @@ interface LanguageContextType {
 const translations = {
   en: {
     // Footer
-    "footer.tagline": "double bass, electric bass, composition, arrangements, artistic direction",
+    "footer.tagline": "double bass, electric bass, composition, arrangements, artistic director, educator",
     "footer.navigation": "Navigation",
     "footer.contact": "Contact",
     "footer.location": "Tallinn, Estonia",
@@ -98,7 +98,7 @@ const translations = {
   },
   est: {
     // Footer
-    "footer.tagline": "kontrabass, elektribass, helilooming, seaded, kunstiline juhtimine",
+    "footer.tagline": "kontrabass, elektribass, helilooming, seaded, kunstiline juhtimine, pedagoog",
     "footer.navigation": "Navigeerimine",
     "footer.contact": "Kontakt",
     "footer.location": "Tallinn, Eesti",
