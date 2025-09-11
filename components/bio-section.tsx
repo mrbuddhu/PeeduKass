@@ -46,7 +46,7 @@ const BioSection = () => {
             <div className="lg:col-span-3 order-1 lg:order-2">
               <div className="flex items-center gap-6 mb-12">
                 <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-black tracking-wide">
-                  {bioContent[language].title.toUpperCase()}
+                  {bioContent[language].title}
                 </h2>
                 <div className="flex gap-2">
                   <Button
