@@ -7,27 +7,31 @@ import { useLanguage } from "./language-context"
 
 const ContactInfo = () => {
   const { t } = useLanguage()
+  const user = "info"
+  const domain = "peedukass"
+  const tld = "com"
+  const obfuscated = `${user} [at] ${domain} [dot] ${tld}`
   const contactMethods = [
     {
       icon: <Mail className="h-6 w-6" />,
       label: "Email",
-      value: "info@peedukass.com",
-      href: "mailto:info@peedukass.com",
-      description: t("contact.info.emailDesc") || "Best for booking inquiries and collaborations",
+      value: obfuscated,
+      href: null,
+      description: undefined,
     },
     {
       icon: <Phone className="h-6 w-6" />,
       label: "Phone",
       value: "+372 520 4970",
       href: "tel:+3725204970",
-      description: t("contact.info.phoneDesc") || "Available during business hours (EST)",
+      description: undefined,
     },
     {
       icon: <MapPin className="h-6 w-6" />,
       label: "Location",
       value: t("footer.location"),
       href: null,
-      description: t("contact.info.locationDesc") || "Available for performances across Europe",
+      description: undefined,
     },
   ]
 
@@ -59,14 +63,21 @@ const ContactInfo = () => {
                   <div className="p-3 bg-gray-100 rounded-lg">{method.icon}</div>
                   <div className="flex-1">
                     <h3 className="font-vietnam font-semibold text-black mb-1">{method.label}</h3>
-                    {method.href ? (
+                    {method.label === "Email" ? (
+                      <button
+                        onClick={() => (window.location.href = `mailto:${user}@${domain}.${tld}`)}
+                        className="font-vietnam text-lg text-black hover:underline block mb-2 text-left"
+                        aria-label="Send email"
+                      >
+                        {method.value}
+                      </button>
+                    ) : method.href ? (
                       <a href={method.href} className="font-vietnam text-lg text-black hover:underline block mb-2">
                         {method.value}
                       </a>
                     ) : (
                       <p className="font-vietnam text-lg text-black mb-2">{method.value}</p>
                     )}
-                    <p className="font-vietnam text-sm text-gray-600">{method.description}</p>
                   </div>
                 </div>
               </CardContent>
