@@ -1,6 +1,4 @@
-import ContactHero from "@/components/contact-hero"
-import ContactForm from "@/components/contact-form"
-import ContactInfo from "@/components/contact-info"
+import ContactMinimal from "@/components/contact-minimal"
 
 export const metadata = {
   title: "Contact - Peedu Kass",
@@ -8,13 +6,5 @@ export const metadata = {
 }
 
 export default function ContactPage() {
-  return (
-    <div className="min-h-screen">
-      <ContactHero />
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-        <ContactForm />
-        <ContactInfo />
-      </div>
-    </div>
-  )
+  return <ContactMinimal />
 }

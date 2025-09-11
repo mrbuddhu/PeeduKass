@@ -45,16 +45,18 @@ const AboutHero = () => {
     return () => clearInterval(interval)
   }, [quotes.length])
   return (
-    <section className="relative py-32 px-6 bg-gradient-to-br from-[#0b1226] via-[#0a1a3a] to-black text-white overflow-hidden">
+    <section className="relative py-20 px-6 bg-gradient-to-br from-[#0b1226] via-[#0a1a3a] to-black text-white overflow-hidden">
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <div
-          className="max-w-4xl mx-auto transition-opacity duration-700 h-[180px] md:h-[220px] lg:h-[260px] flex flex-col items-center justify-center"
+          className="max-w-3xl mx-auto transition-opacity duration-700 h-[120px] md:h-[150px] lg:h-[180px] grid grid-rows-[4fr_auto_auto_1fr]"
           style={{ opacity: visible ? 1 : 0 }}
         >
-          <blockquote className="font-vietnam italic font-light text-xl md:text-2xl lg:text-3xl text-white/90 leading-relaxed text-balance">
+          <div></div>
+          <blockquote className="justify-self-center font-vietnam italic font-light text-lg md:text-xl lg:text-2xl text-white/90 leading-relaxed text-balance text-center">
             “{quotes[index].text}”
           </blockquote>
-          <div className="mt-3 text-white/60 font-vietnam text-sm md:text-base">{quotes[index].author}</div>
+          <div className="justify-self-center text-white/60 font-vietnam text-xs md:text-sm mt-2 md:mt-3">{quotes[index].author}</div>
+          <div></div>
         </div>
       </div>
     </section>
