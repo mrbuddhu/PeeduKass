@@ -33,7 +33,7 @@ const BandsSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-8 tracking-wide">
-            MUSICAL COLLABORATORS
+            Bands and Projects
           </h2>
           <div className="w-32 h-px bg-white mx-auto mb-8"></div>
           <p className="font-vietnam text-white/80 text-xl max-w-3xl mx-auto leading-relaxed">
