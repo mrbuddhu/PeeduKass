@@ -34,20 +34,12 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
 
       {/* Hero Content */}
-      <div className="relative z-10 flex items-center justify-center h-full">
+      <div className="relative z-10 flex items-end justify-center h-full pb-24">
         <div className="text-center px-6 max-w-5xl mx-auto">
-          <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 text-balance tracking-wide drop-shadow-2xl">
-            {t("hero.name")}
-          </h1>
           <div className="space-y-3 max-w-3xl mx-auto">
             <p className="font-vietnam text-xl md:text-2xl lg:text-3xl text-white font-light text-balance leading-relaxed drop-shadow-lg">
               {t("hero.intro")}
             </p>
-            {language === "est" && (
-              <p className="font-vietnam text-lg md:text-xl lg:text-2xl text-white/90 font-light text-balance leading-relaxed italic drop-shadow-lg">
-                {t("hero.intro.est")}
-              </p>
-            )}
           </div>
         </div>
       </div>

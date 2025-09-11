@@ -21,8 +21,8 @@ const translations = {
     // Navigation
     "nav.home": "Home",
     "nav.about": "About",
-    "nav.calendar": "Calendar",
-    "nav.gallery": "Gallery",
+    "nav.calendar": "Concerts",
+    "nav.gallery": "Media",
     "nav.audio": "Audio",
     "nav.press": "Press Kit",
     "nav.contact": "Contact",
@@ -65,7 +65,7 @@ const translations = {
     "calendar.gigs.title": "Concert Calendar",
 
     // Gallery Page
-    "gallery.hero.title": "Photos & Videos",
+    "gallery.hero.title": "Media",
     "gallery.hero.subtitle": "Moments from the Stage",
     "gallery.photos.title": "Photo Gallery",
     "gallery.videos.title": "Video Gallery",
@@ -106,8 +106,8 @@ const translations = {
     // Navigation
     "nav.home": "Avaleht",
     "nav.about": "Meist",
-    "nav.calendar": "Kalender",
-    "nav.gallery": "Galerii",
+    "nav.calendar": "Kontserdid",
+    "nav.gallery": "Meedia",
     "nav.audio": "Audio",
     "nav.press": "Pressikomplekt",
     "nav.contact": "Kontakt",
@@ -150,7 +150,7 @@ const translations = {
     "calendar.gigs.title": "Kontserdikalender",
 
     // Gallery Page
-    "gallery.hero.title": "Fotod ja Videod",
+    "gallery.hero.title": "Meedia",
     "gallery.hero.subtitle": "Hetked Lavalt",
     "gallery.photos.title": "Fotogalerii",
     "gallery.videos.title": "Videogalerii",
