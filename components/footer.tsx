@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className="border-t border-black/10 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10 lg:py-12 grid grid-cols-1 lg:grid-cols-4 gap-10">
         <div className="col-span-1 lg:col-span-1">
-          <h3 className="font-playfair text-2xl lg:text-3xl font-bold text-black mb-3 tracking-wide">PEEDU KASS</h3>
+          <h3 className="font-playfair text-2xl lg:text-3xl font-bold text-black mb-3 tracking-wide">Peedu Kass</h3>
           <p className="font-vietnam text-sm text-gray-600 leading-relaxed max-w-sm">
             {t("footer.tagline")}
           </p>
