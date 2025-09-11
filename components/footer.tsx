@@ -4,7 +4,10 @@ import Link from "next/link"
 import { useLanguage } from "./language-context"
 
 const Footer = () => {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+
+  const tagline = t("footer.tagline")
+  const artisticIdx = language === "en" ? tagline.toLowerCase().indexOf("artistic director") : -1
 
   return (
     <footer className="border-t border-black/10 bg-white">
@@ -12,7 +15,16 @@ const Footer = () => {
         <div className="col-span-1 lg:col-span-1">
           <h3 className="font-playfair text-2xl lg:text-3xl font-bold text-black mb-3 tracking-wide">Peedu Kass</h3>
           <p className="font-vietnam text-sm text-gray-600 leading-relaxed max-w-md md:max-w-lg lg:max-w-xl">
-            {t("footer.tagline")}
+            {language === "en" && artisticIdx > -1 ? (
+              <>
+                {tagline.slice(0, artisticIdx).trim()}
+                <br className="hidden lg:block" />
+                {" "}
+                {tagline.slice(artisticIdx).trim()}
+              </>
+            ) : (
+              tagline
+            )}
           </p>
         </div>
         <div className="col-span-1">
