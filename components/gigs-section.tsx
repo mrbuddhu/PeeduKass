@@ -1,5 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Calendar, MapPin, Clock, ExternalLink } from "lucide-react"
 
 const GigsSection = () => {
@@ -77,89 +75,56 @@ const GigsSection = () => {
 
   return (
     <section className="py-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Upcoming Events */}
-        <div className="mb-16">
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8">Upcoming Events</h2>
-          <div className="space-y-6">
-            {upcomingEvents.map((gig) => (
-              <Card key={gig.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-center">
-                    {/* Date & Time */}
-                    <div className="lg:col-span-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Calendar className="h-4 w-4 text-gray-500" />
-                        <span className="font-vietnam text-sm font-medium text-gray-600">{formatDate(gig.date)}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4 text-gray-500" />
-                        <span className="font-vietnam text-sm text-gray-600">{gig.time}</span>
-                      </div>
-                    </div>
+      <div className="max-w-4xl mx-auto">
+        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8">Upcoming Concerts</h2>
 
-                    {/* Event Details */}
-                    <div className="lg:col-span-2">
-                      <h3 className="font-playfair text-xl font-semibold text-black mb-2">{gig.title}</h3>
-                      <div className="flex items-center gap-2 mb-3">
-                        <MapPin className="h-4 w-4 text-gray-500" />
-                        <span className="font-vietnam text-sm font-medium text-gray-600">
-                          {gig.venue}, {gig.city}
-                        </span>
-                      </div>
-                      <p className="font-vietnam text-gray-600 leading-relaxed">{gig.description}</p>
-                    </div>
-
-                    {/* Action */}
-                    <div className="lg:col-span-1 flex justify-end">
-                      <Button className="flex items-center gap-2">
-                        <span>Get Tickets</span>
-                        <ExternalLink className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <div className="divide-y divide-gray-200">
+          {upcomingEvents.map((gig) => (
+            <div key={gig.id} className="py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+              <div className="flex items-center gap-3 text-gray-700">
+                <Calendar className="h-4 w-4 text-gray-500" />
+                <span className="font-vietnam text-sm">{formatDate(gig.date)}</span>
+                <Clock className="h-4 w-4 text-gray-400 hidden md:inline" />
+                <span className="font-vietnam text-sm hidden md:inline">{gig.time}</span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-800">
+                <MapPin className="h-4 w-4 text-gray-500" />
+                <span className="font-vietnam text-sm">
+                  {gig.city} — {gig.venue}
+                </span>
+              </div>
+              {gig.ticketLink && (
+                <a
+                  href={gig.ticketLink}
+                  className="ml-auto inline-flex items-center gap-2 text-sm font-medium underline hover:no-underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Tickets <ExternalLink className="h-3 w-3" />
+                </a>
+              )}
+            </div>
+          ))}
         </div>
 
-        {/* Past Events */}
-        <div>
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8">Recent Performances</h2>
-          <div className="space-y-4">
-            {pastEvents.map((gig) => (
-              <Card key={gig.id} className="overflow-hidden opacity-75">
-                <CardContent className="p-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
-                    {/* Date & Time */}
-                    <div className="lg:col-span-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Calendar className="h-4 w-4 text-gray-400" />
-                        <span className="font-vietnam text-sm font-medium text-gray-500">{formatDate(gig.date)}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4 text-gray-400" />
-                        <span className="font-vietnam text-sm text-gray-500">{gig.time}</span>
-                      </div>
-                    </div>
-
-                    {/* Event Details */}
-                    <div className="lg:col-span-2">
-                      <h3 className="font-playfair text-xl font-semibold text-gray-700 mb-2">{gig.title}</h3>
-                      <div className="flex items-center gap-2 mb-3">
-                        <MapPin className="h-4 w-4 text-gray-400" />
-                        <span className="font-vietnam text-sm font-medium text-gray-500">
-                          {gig.venue}, {gig.city}
-                        </span>
-                      </div>
-                      <p className="font-vietnam text-gray-500 leading-relaxed">{gig.description}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <h3 className="font-playfair text-2xl font-semibold text-black mt-12 mb-6">Past Concerts</h3>
+        <div className="divide-y divide-gray-100 opacity-80">
+          {pastEvents.map((gig) => (
+            <div key={gig.id} className="py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+              <div className="flex items-center gap-3 text-gray-600">
+                <Calendar className="h-4 w-4 text-gray-400" />
+                <span className="font-vietnam text-sm">{formatDate(gig.date)}</span>
+                <Clock className="h-4 w-4 text-gray-300 hidden md:inline" />
+                <span className="font-vietnam text-sm hidden md:inline">{gig.time}</span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-700">
+                <MapPin className="h-4 w-4 text-gray-400" />
+                <span className="font-vietnam text-sm">
+                  {gig.city} — {gig.venue}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

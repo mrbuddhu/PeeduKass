@@ -52,7 +52,7 @@ const AboutHero = () => {
           style={{ opacity: visible ? 1 : 0 }}
         >
           <div></div>
-          <blockquote className="justify-self-center font-vietnam italic font-light text-lg md:text-xl lg:text-2xl text-white/90 leading-relaxed text-balance text-center">
+          <blockquote className="justify-self-center font-vietnam italic font-light text-base md:text-lg lg:text-xl text-white/90 leading-relaxed text-balance text-center">
             “{quotes[index].text}”
           </blockquote>
           <div className="justify-self-center text-white/60 font-vietnam text-xs md:text-sm mt-2 md:mt-3">{quotes[index].author}</div>

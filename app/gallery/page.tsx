@@ -1,6 +1,5 @@
-import GalleryHero from "@/components/gallery-hero"
-import PhotoGallery from "@/components/photo-gallery"
 import VideoGallery from "@/components/video-gallery"
+import PhotoGallery from "@/components/photo-gallery"
 
 export const metadata = {
   title: "Gallery - Peedu Kass",
@@ -10,9 +9,8 @@ export const metadata = {
 export default function GalleryPage() {
   return (
     <div className="min-h-screen">
-      <GalleryHero />
-      <PhotoGallery />
       <VideoGallery />
+      <PhotoGallery />
     </div>
   )
 }
