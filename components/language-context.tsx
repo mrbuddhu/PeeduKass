@@ -60,9 +60,9 @@ const translations = {
     "about.bands.past": "Past Collaborations",
 
     // Calendar Page
-    "calendar.hero.title": "Upcoming Shows",
-    "calendar.hero.subtitle": "Live Performances & Events",
-    "calendar.gigs.title": "Concert Calendar",
+    "calendar.hero.title": "Upcoming Events",
+    "calendar.hero.subtitle": "",
+    "calendar.gigs.title": "Concerts",
 
     // Gallery Page
     "gallery.hero.title": "Media",
@@ -148,9 +148,9 @@ const translations = {
     "about.bands.past": "Varasemad Koostööd",
 
     // Calendar Page
-    "calendar.hero.title": "Tulevased Esinemised",
-    "calendar.hero.subtitle": "Otseülekanded ja Üritused",
-    "calendar.gigs.title": "Kontserdikalender",
+    "calendar.hero.title": "Kontserdid",
+    "calendar.hero.subtitle": "",
+    "calendar.gigs.title": "Kontserdid",
 
     // Gallery Page
     "gallery.hero.title": "Meedia",

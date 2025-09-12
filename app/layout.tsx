@@ -38,7 +38,7 @@ export default function RootLayout({
         <LanguageProvider>
           <Suspense fallback={<div>Loading...</div>}>
             <Navigation />
-            <main>{children}</main>
+            <main className="pt-24">{children}</main>
             <Footer />
             <Analytics />
           </Suspense>
