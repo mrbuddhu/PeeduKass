@@ -16,12 +16,12 @@ const HeroSection = () => {
   }, [])
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
+    <section className="relative h-screen w-full overflow-hidden bg-black md:-mt-20">
       {/* Hero Video - only loads if available */}
       <div className="absolute inset-0">
         <video
           ref={videoRef}
-          className="w-full h-full object-cover opacity-90"
+          className="w-full h-full object-cover md:object-[50%_30%] lg:object-[50%_22%] opacity-90 md:scale-[1.12] lg:scale-[1.2] transform-gpu"
           autoPlay
           muted
           loop
@@ -45,7 +45,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 z-10 bottom-8 md:bottom-20" style={{ bottom: `calc(2rem + env(safe-area-inset-bottom, 0px))` }}>
+      <div className="absolute left-1/2 transform -translate-x-1/2 z-10 bottom-8 md:bottom-12" style={{ bottom: `calc(2rem + env(safe-area-inset-bottom, 0px))` }}>
         <div className="w-6 h-12 border border-white/60 rounded-full flex justify-center backdrop-blur-sm bg-black/20">
           <div className="w-1 h-4 bg-white/80 rounded-full mt-3 animate-bounce" />
         </div>
