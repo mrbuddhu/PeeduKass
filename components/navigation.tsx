@@ -25,14 +25,19 @@ const Navigation = () => {
   }
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-black/10">
+    <nav className="fixed top-0 w-full z-50 bg-white border-b border-black/10 shadow-sm">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center h-20">
           <Link
             href="/"
-            className="font-playfair text-2xl md:text-3xl font-bold text-black tracking-wide hover:text-gray-700 transition-colors"
+            className="flex items-center"
+            aria-label="Go to homepage"
           >
-            Peedu Kass
+            <img
+              src="/logo.png"
+              alt="Peedu Kass logo"
+              className="h-8 w-auto md:h-10 object-contain"
+            />
           </Link>
 
           <div className="hidden lg:flex items-center space-x-12">
