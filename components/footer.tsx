@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10 lg:py-12 grid grid-cols-1 lg:grid-cols-4 gap-10">
         <div className="col-span-1 lg:col-span-1">
           <div className="mb-3">
-            <span className="font-playfair text-2xl font-bold text-black tracking-wide">
+            <span className="font-playfair text-4xl font-bold text-black tracking-wide" style={{fontFamily: 'Playfair Display, serif'}}>
               Peedu Kass
             </span>
           </div>
