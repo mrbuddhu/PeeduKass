@@ -14,7 +14,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10 lg:py-12 grid grid-cols-1 lg:grid-cols-4 gap-10">
         <div className="col-span-1 lg:col-span-1">
           <div className="mb-3">
-            <img src="/logo.png" alt="Peedu Kass logo" className="h-10 w-auto object-contain" />
+            <span className="font-playfair text-2xl font-bold text-black tracking-wide">
+              Peedu Kass
+            </span>
           </div>
           <p className="font-vietnam text-sm text-gray-600 leading-relaxed max-w-md md:max-w-lg lg:max-w-xl">
             {language === "en" && artisticIdx > -1 ? (
