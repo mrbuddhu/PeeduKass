@@ -33,9 +33,11 @@ const Navigation = () => {
             className="flex items-center"
             aria-label="Go to homepage"
           >
-            <span className="font-vietnam text-2xl md:text-3xl font-bold text-black tracking-wide">
-              Peedu Kass
-            </span>
+            <div className="mb-3">
+              <span className="font-playfair text-4xl font-bold text-black tracking-wide" style={{fontFamily: 'Playfair Display, serif'}}>
+                Peedu Kass
+              </span>
+            </div>
           </Link>
 
           <div className="hidden lg:flex items-center space-x-12">
