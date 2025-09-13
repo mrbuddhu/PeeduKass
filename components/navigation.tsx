@@ -33,11 +33,9 @@ const Navigation = () => {
             className="flex items-center"
             aria-label="Go to homepage"
           >
-            <img
-              src="/logo.png"
-              alt="Peedu Kass logo"
-              className="h-8 w-auto md:h-10 object-contain"
-            />
+            <span className="font-vietnam text-2xl md:text-3xl font-bold text-black tracking-wide">
+              Peedu Kass
+            </span>
           </Link>
 
           <div className="hidden lg:flex items-center space-x-12">
