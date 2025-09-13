@@ -37,9 +37,6 @@ const PressPhotos = () => {
     <section className="py-16 px-4 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 text-center">Press Photos</h2>
-        <p className="font-vietnam text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          High-resolution photos available for download. All images are print-ready at 300 DPI.
-        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {pressPhotos.map((photo) => (

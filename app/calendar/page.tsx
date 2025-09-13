@@ -1,4 +1,3 @@
-import CalendarHero from "@/components/calendar-hero"
 import GigsSection from "@/components/gigs-section"
 
 export const metadata = {
@@ -9,7 +8,6 @@ export const metadata = {
 export default function CalendarPage() {
   return (
     <div className="min-h-screen">
-      <CalendarHero />
       <GigsSection />
     </div>
   )

@@ -42,15 +42,6 @@ const NewsSection = () => {
     <section className="py-24 px-6">
       <div className="bg-gray-50">
         <div className="max-w-7xl mx-auto py-16">
-          <div className="text-center mb-16">
-            <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 tracking-wide">
-              {t("news.title")}
-            </h2>
-            <div className="w-24 h-px bg-black mx-auto mb-8"></div>
-            <p className="font-vietnam text-gray-700 text-xl max-w-3xl mx-auto leading-relaxed">
-              {t("news.subtitle")}
-            </p>
-          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {newsItems.map((item, index) => (

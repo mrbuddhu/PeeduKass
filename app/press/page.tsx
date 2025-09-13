@@ -1,4 +1,3 @@
-import PressHero from "@/components/press-hero"
 import PressKit from "@/components/press-kit"
 import PressPhotos from "@/components/press-photos"
 
@@ -10,7 +9,6 @@ export const metadata = {
 export default function PressPage() {
   return (
     <div className="min-h-screen">
-      <PressHero />
       <PressKit />
       <PressPhotos />
     </div>

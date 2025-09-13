@@ -41,8 +41,6 @@ const PressKit = () => {
   return (
     <section className="py-16 px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 text-center">Download Materials</h2>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {pressItems.map((item, index) => (
             <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
