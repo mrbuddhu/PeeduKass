@@ -30,59 +30,140 @@ const BioSection = () => {
     <section className="py-24 px-6">
       <div className="bg-white">
         <div className="max-w-7xl mx-auto py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
-            <div className="lg:col-span-2 order-2 lg:order-1">
-              <div className="aspect-[4/5] relative overflow-hidden shadow-2xl">
-                <img
-                  src="/placeholder.svg?height=800&width=640&text=Peedu+Kass+Portrait"
-                  alt="Peedu Kass Portrait"
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                />
-                <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-300" />
-              </div>
-            </div>
+          {/* Header with title and language toggle */}
+          <div className="flex items-center gap-6 mb-16">
+            <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-black tracking-wide">
+              {bioContent[language].title}
+            </h2>
+            <ToggleGroup
+              type="single"
+              value={language}
+              onValueChange={(v) => v && setLanguage(v as "en" | "est")}
+              className="rounded-full border border-black/20 overflow-hidden"
+            >
+              <ToggleGroupItem
+                value="en"
+                aria-label="English"
+                className="px-4 py-2 font-vietnam text-sm data-[state=on]:bg-black data-[state=on]:text-white"
+              >
+                EN
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value="est"
+                aria-label="Estonian"
+                className="px-4 py-2 font-vietnam text-sm data-[state=on]:bg-black data-[state=on]:text-white"
+              >
+                EST
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
 
-            <div className="lg:col-span-3 order-1 lg:order-2">
-              <div className="flex items-center gap-6 mb-12">
-                <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-black tracking-wide">
-                  {bioContent[language].title}
-                </h2>
-                <ToggleGroup
-                  type="single"
-                  value={language}
-                  onValueChange={(v) => v && setLanguage(v as "en" | "est")}
-                  className="rounded-full border border-black/20 overflow-hidden"
+          <div className="w-24 h-px bg-black mb-16"></div>
+
+          {/* Alternating layout - only first 3 paragraphs with photos */}
+          <div className="space-y-24">
+            {language === "en" ? (
+              // English layout: para 1 with photo 1, para 2+3 with photo 2, para 4 with photo 3
+              <>
+                {/* Paragraph 1 with Photo 1 */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-fade-in-up" style={{ animationDelay: "0s" }}>
+                  <div className="animate-fade-in-left" style={{ animationDelay: "0.1s" }}>
+                    <div className="relative overflow-hidden shadow-3xl max-w-md mx-auto rounded-2xl transform hover:scale-105 hover:shadow-4xl transition-all duration-500 group">
+                      <img
+                        src="/bio/1_photo_by_Martin_Heinmets.jpg"
+                        alt="Photo by Martin Heinmets"
+                        className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                      />
+                      <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-300" />
+                    </div>
+                  </div>
+                  <div className="animate-fade-in-right" style={{ animationDelay: "0.2s" }}>
+                    <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
+                      {bioContent[language].paragraphs[0]}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Paragraphs 2+3 with Photo 2 */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:grid-flow-col-dense animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+                  <div className="lg:col-start-2 animate-fade-in-left" style={{ animationDelay: "0.4s" }}>
+                    <div className="relative overflow-hidden shadow-3xl max-w-md mx-auto rounded-2xl transform hover:scale-105 hover:shadow-4xl transition-all duration-500 group">
+                      <img
+                        src="/bio/2_photo_by_Harri_Rospu.JPG"
+                        alt="Photo by Harri Rospu"
+                        className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                      />
+                      <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-300" />
+                    </div>
+                  </div>
+                  <div className="lg:col-start-1 animate-fade-in-right" style={{ animationDelay: "0.5s" }}>
+                    <div className="space-y-8">
+                      <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
+                        {bioContent[language].paragraphs[1]}
+                      </p>
+                      <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
+                        {bioContent[language].paragraphs[2]}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Paragraph 4 with Photo 3 */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+                  <div className="animate-fade-in-left" style={{ animationDelay: "0.7s" }}>
+                    <div className="relative overflow-hidden shadow-3xl max-w-md mx-auto rounded-2xl transform hover:scale-105 hover:shadow-4xl transition-all duration-500 group">
+                      <img
+                        src="/bio/3_photo_by_Martin_Heinmets.jpg"
+                        alt="Photo by Martin Heinmets"
+                        className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                      />
+                      <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-300" />
+                    </div>
+                  </div>
+                  <div className="animate-fade-in-right" style={{ animationDelay: "0.8s" }}>
+                    <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
+                      {bioContent[language].paragraphs[3]}
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              // Estonian layout: original alternating pattern
+              bioContent[language].paragraphs.slice(0, 3).map((paragraph, index) => (
+                <div 
+                  key={index} 
+                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''} animate-fade-in-up`}
+                  style={{ animationDelay: `${index * 0.3}s` }}
                 >
-                  <ToggleGroupItem
-                    value="en"
-                    aria-label="English"
-                    className="px-4 py-2 font-vietnam text-sm data-[state=on]:bg-black data-[state=on]:text-white"
-                  >
-                    EN
-                  </ToggleGroupItem>
-                  <ToggleGroupItem
-                    value="est"
-                    aria-label="Estonian"
-                    className="px-4 py-2 font-vietnam text-sm data-[state=on]:bg-black data-[state=on]:text-white"
-                  >
-                    EST
-                  </ToggleGroupItem>
-                </ToggleGroup>
-              </div>
+                  {/* Photo */}
+                  <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''} animate-fade-in-left`} style={{ animationDelay: `${index * 0.3 + 0.1}s` }}>
+                    <div className="relative overflow-hidden shadow-3xl max-w-md mx-auto rounded-2xl transform hover:scale-105 hover:shadow-4xl transition-all duration-500 group">
+                      <img
+                        src={
+                          index === 0 ? "/bio/1_photo_by_Martin_Heinmets.jpg" :
+                          index === 1 ? "/bio/2_photo_by_Harri_Rospu.JPG" :
+                          "/bio/3_photo_by_Martin_Heinmets.jpg"
+                        }
+                        alt={
+                          index === 0 ? "Photo by Martin Heinmets" :
+                          index === 1 ? "Photo by Harri Rospu" :
+                          "Photo by Martin Heinmets"
+                        }
+                        className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                      />
+                      <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-300" />
+                    </div>
+                  </div>
 
-              <div className="w-24 h-px bg-black mb-12"></div>
-
-              <div className="space-y-8">
-                {bioContent[language].paragraphs.map((paragraph, index) => (
-                  <p
-                    key={index}
-                    className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </div>
+                  {/* Text */}
+                  <div className={`${index % 2 === 1 ? 'lg:col-start-1' : ''} animate-fade-in-right`} style={{ animationDelay: `${index * 0.3 + 0.2}s` }}>
+                    <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
+                      {paragraph}
+                    </p>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>

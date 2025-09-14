@@ -79,11 +79,15 @@ const GigsSection = () => {
   return (
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8">{t("calendar.gigs.upcoming")}</h2>
+        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 animate-fade-in-up">{t("calendar.gigs.upcoming")}</h2>
 
         <div className="divide-y divide-gray-200">
-          {upcomingEvents.map((gig) => (
-            <div key={gig.id} className="py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+          {upcomingEvents.map((gig, index) => (
+            <div 
+              key={gig.id} 
+              className="py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 animate-fade-in-up"
+              style={{ animationDelay: `${(index + 1) * 0.1}s` }}
+            >
               <div className="flex items-center gap-3 text-gray-700">
                 <Calendar className="h-4 w-4 text-gray-500" />
                 <span className="font-vietnam text-sm">{formatDate(gig.date)}</span>
@@ -110,10 +114,14 @@ const GigsSection = () => {
           ))}
         </div>
 
-        <h3 className="font-playfair text-2xl font-semibold text-black mt-12 mb-6">{t("calendar.gigs.past")}</h3>
+        <h3 className="font-playfair text-2xl font-semibold text-black mt-12 mb-6 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>{t("calendar.gigs.past")}</h3>
         <div className="divide-y divide-gray-100 opacity-80">
-          {pastEvents.map((gig) => (
-            <div key={gig.id} className="py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+          {pastEvents.map((gig, index) => (
+            <div 
+              key={gig.id} 
+              className="py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-2 animate-fade-in-up"
+              style={{ animationDelay: `${0.6 + (index * 0.1)}s` }}
+            >
               <div className="flex items-center gap-3 text-gray-600">
                 <Calendar className="h-4 w-4 text-gray-400" />
                 <span className="font-vietnam text-sm">{formatDate(gig.date)}</span>
