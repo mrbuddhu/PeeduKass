@@ -50,21 +50,22 @@ const StreamingLinks = () => {
   return (
     <section className="py-16 px-4 bg-gray-50">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-6">
+        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-6 animate-fade-in-up">
           {t("audio.streaming.title")}
         </h2>
-        <p className="font-vietnam text-gray-600 mb-8 max-w-2xl mx-auto">
+        <p className="font-vietnam text-gray-600 mb-8 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
           {t("audio.streaming.subtitle")}
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {platforms.map((platform) => (
+          {platforms.map((platform, index) => (
             <a
               key={platform.name}
               href={platform.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${platform.color} text-white p-6 rounded-lg transition-colors flex flex-col items-center gap-3`}
+              className={`${platform.color} text-white p-6 rounded-lg transition-colors flex flex-col items-center gap-3 animate-fade-in-up`}
+              style={{ animationDelay: `${0.3 + (index * 0.1)}s` }}
             >
               {platform.icon}
               <span className="font-vietnam font-medium">{platform.name}</span>

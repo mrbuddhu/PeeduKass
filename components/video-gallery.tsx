@@ -38,11 +38,11 @@ const VideoGallery = () => {
   return (
     <section className="py-16 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 text-center">{t("gallery.videos.title")}</h2>
+        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 text-center animate-fade-in-up">{t("gallery.videos.title")}</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {videos.map((video) => (
-            <div key={video.id} className="bg-white rounded-lg overflow-hidden shadow-lg">
+          {videos.map((video, index) => (
+            <div key={video.id} className="bg-white rounded-lg overflow-hidden shadow-lg animate-fade-in-up" style={{ animationDelay: `${0.2 + (index * 0.2)}s` }}>
               {/* Video Embed Placeholder */}
               <div className="aspect-video relative bg-gray-200">
                 <img
@@ -66,7 +66,7 @@ const VideoGallery = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 animate-fade-in-up" style={{ animationDelay: "1s" }}>
           <p className="font-vietnam text-gray-600 mb-4">{t("gallery.videos.more")}</p>
           <a
             href="https://youtube.com"
