@@ -1,7 +1,11 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 const PressPhotos = () => {
+  const { t } = useLanguage()
   const pressPhotos = [
     {
       id: 1,
@@ -36,7 +40,7 @@ const PressPhotos = () => {
   return (
     <section className="py-16 px-4 bg-gray-50">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 text-center">Press Photos</h2>
+        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 text-center">{t("press.photos.title")}</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {pressPhotos.map((photo) => (
@@ -56,7 +60,7 @@ const PressPhotos = () => {
                   </div>
                   <Button size="sm" className="flex items-center gap-2">
                     <Download className="h-4 w-4" />
-                    Download
+                    {t("press.kit.download")}
                   </Button>
                 </div>
               </div>
@@ -67,10 +71,10 @@ const PressPhotos = () => {
         <div className="text-center mt-12">
           <Button size="lg" className="flex items-center gap-2 mx-auto">
             <Download className="h-5 w-5" />
-            Download All Photos
+            {t("press.photos.downloadAll")}
           </Button>
           <p className="font-vietnam text-sm text-gray-600 mt-4">
-            For additional photos or specific requirements, please contact us directly.
+            {t("press.photos.contact")}
           </p>
         </div>
       </div>

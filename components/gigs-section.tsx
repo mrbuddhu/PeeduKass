@@ -1,6 +1,10 @@
+"use client"
+
 import { Calendar, MapPin, Clock, ExternalLink } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 const GigsSection = () => {
+  const { t } = useLanguage()
   const upcomingGigs = [
     {
       id: 1,
@@ -75,7 +79,7 @@ const GigsSection = () => {
   return (
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8">Upcoming Concerts</h2>
+        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8">{t("calendar.gigs.upcoming")}</h2>
 
         <div className="divide-y divide-gray-200">
           {upcomingEvents.map((gig) => (
@@ -99,14 +103,14 @@ const GigsSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Tickets <ExternalLink className="h-3 w-3" />
+                  {t("calendar.gigs.tickets")} <ExternalLink className="h-3 w-3" />
                 </a>
               )}
             </div>
           ))}
         </div>
 
-        <h3 className="font-playfair text-2xl font-semibold text-black mt-12 mb-6">Past Concerts</h3>
+        <h3 className="font-playfair text-2xl font-semibold text-black mt-12 mb-6">{t("calendar.gigs.past")}</h3>
         <div className="divide-y divide-gray-100 opacity-80">
           {pastEvents.map((gig) => (
             <div key={gig.id} className="py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
