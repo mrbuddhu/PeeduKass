@@ -1,36 +1,40 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Download, FileText, ImageIcon, Music } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 const PressKit = () => {
+  const { t } = useLanguage()
   const pressItems = [
     {
-      title: "Complete Press Kit",
-      description: "Full press kit including biography, photos, and technical requirements",
+      title: t("press.kit.complete"),
+      description: t("press.kit.completeDesc"),
       type: "PDF",
       size: "2.4 MB",
       icon: <FileText className="h-6 w-6" />,
       downloadUrl: "#",
     },
     {
-      title: "High-Resolution Photos",
-      description: "Professional photos suitable for print and digital media",
+      title: t("press.kit.photos"),
+      description: t("press.kit.photosDesc"),
       type: "ZIP",
       size: "15.2 MB",
       icon: <ImageIcon className="h-6 w-6" />,
       downloadUrl: "#",
     },
     {
-      title: "Audio Samples",
-      description: "High-quality audio samples and compositions",
+      title: t("press.kit.audio"),
+      description: t("press.kit.audioDesc"),
       type: "ZIP",
       size: "45.8 MB",
       icon: <Music className="h-6 w-6" />,
       downloadUrl: "#",
     },
     {
-      title: "Technical Rider",
-      description: "Stage plot, equipment requirements, and technical specifications",
+      title: t("press.kit.rider"),
+      description: t("press.kit.riderDesc"),
       type: "PDF",
       size: "1.1 MB",
       icon: <FileText className="h-6 w-6" />,
@@ -56,7 +60,7 @@ const PressKit = () => {
                       </span>
                       <Button size="sm" className="flex items-center gap-2">
                         <Download className="h-4 w-4" />
-                        Download
+                        {t("press.kit.download")}
                       </Button>
                     </div>
                   </div>
@@ -69,30 +73,30 @@ const PressKit = () => {
         {/* Quick Facts */}
         <Card className="bg-gray-50">
           <CardContent className="p-8">
-            <h3 className="font-playfair text-2xl font-bold text-black mb-6 text-center">Quick Facts</h3>
+            <h3 className="font-playfair text-2xl font-bold text-black mb-6 text-center">{t("press.kit.quickFacts")}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="text-center">
-                <h4 className="font-vietnam font-semibold text-black mb-2">Genre</h4>
+                <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.genre")}</h4>
                 <p className="font-vietnam text-gray-600">Jazz, Contemporary, Fusion</p>
               </div>
               <div className="text-center">
-                <h4 className="font-vietnam font-semibold text-black mb-2">Instrument</h4>
+                <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.instrument")}</h4>
                 <p className="font-vietnam text-gray-600">Bass Guitar, Double Bass</p>
               </div>
               <div className="text-center">
-                <h4 className="font-vietnam font-semibold text-black mb-2">Location</h4>
+                <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.location")}</h4>
                 <p className="font-vietnam text-gray-600">Estonia</p>
               </div>
               <div className="text-center">
-                <h4 className="font-vietnam font-semibold text-black mb-2">Experience</h4>
+                <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.experience")}</h4>
                 <p className="font-vietnam text-gray-600">20+ Years</p>
               </div>
               <div className="text-center">
-                <h4 className="font-vietnam font-semibold text-black mb-2">Languages</h4>
+                <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.languages")}</h4>
                 <p className="font-vietnam text-gray-600">Estonian, English</p>
               </div>
               <div className="text-center">
-                <h4 className="font-vietnam font-semibold text-black mb-2">Contact</h4>
+                <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.contact")}</h4>
                 <p className="font-vietnam text-gray-600">info@peedukass.com</p>
               </div>
             </div>

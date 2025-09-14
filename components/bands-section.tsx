@@ -2,8 +2,10 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { useLanguage } from "./language-context"
 
 const BandsSection = () => {
+  const { t } = useLanguage()
   const bands = [
     {
       name: "Kass-Talsi-Sink-Minn",
@@ -68,11 +70,11 @@ const BandsSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-8 tracking-wide">
-            Bands and Projects
+            {t("about.bands.title")}
           </h2>
           <div className="w-32 h-px bg-white mx-auto mb-8"></div>
           <p className="font-vietnam text-white/80 text-xl max-w-3xl mx-auto leading-relaxed">
-            Current and past musical collaborations and projects
+            {t("about.bands.subtitle")}
           </p>
         </div>
 

@@ -55,7 +55,8 @@ const translations = {
     "about.bio.title": "Biography",
     "about.bio.content":
       "Peedu Kass is a distinguished Estonian bassist, composer, and educator whose musical journey spans over two decades. Born and raised in Estonia, Peedu developed his passion for music at an early age, eventually becoming one of the most respected bass players in the Nordic music scene.\n\nHis unique approach to the bass guitar combines traditional Estonian folk influences with contemporary jazz and progressive rock elements. This distinctive style has earned him recognition both locally and internationally, leading to collaborations with renowned artists across Europe.\n\nAs an educator, Peedu is committed to nurturing the next generation of musicians. He regularly conducts masterclasses and workshops, sharing his expertise and passion for music with students of all levels.",
-    "about.bands.title": "Musical Projects",
+    "about.bands.title": "Bands and Projects",
+    "about.bands.subtitle": "Current and past musical collaborations and projects",
     "about.bands.current": "Current Projects",
     "about.bands.past": "Past Collaborations",
 
@@ -98,6 +99,44 @@ const translations = {
     "contact.form.subject": "Subject",
     "contact.form.message": "Message",
     "contact.form.send": "Send Message",
+
+    // Calendar/Gigs Section
+    "calendar.gigs.upcoming": "Upcoming Concerts",
+    "calendar.gigs.past": "Past Concerts",
+    "calendar.gigs.tickets": "Tickets",
+
+    // Gallery Section
+    "gallery.photos.title": "Photos",
+    "gallery.videos.title": "Videos",
+    "gallery.videos.more": "For more videos, visit our YouTube channel",
+    "gallery.videos.visit": "Visit YouTube Channel",
+
+    // Audio Section
+    "audio.player.title": "Featured Tracks",
+    "audio.player.allTracks": "All Tracks",
+    "audio.streaming.title": "Listen on Your Favorite Platform",
+    "audio.streaming.subtitle": "Stream and download music on all major platforms",
+
+    // Press Kit Section
+    "press.kit.complete": "Complete Press Kit",
+    "press.kit.completeDesc": "Full press kit including biography, photos, and technical requirements",
+    "press.kit.photos": "High-Resolution Photos",
+    "press.kit.photosDesc": "Professional photos suitable for print and digital media",
+    "press.kit.audio": "Audio Samples",
+    "press.kit.audioDesc": "High-quality audio samples and compositions",
+    "press.kit.rider": "Technical Rider",
+    "press.kit.riderDesc": "Stage plot, equipment requirements, and technical specifications",
+    "press.kit.download": "Download",
+    "press.kit.quickFacts": "Quick Facts",
+    "press.kit.genre": "Genre",
+    "press.kit.instrument": "Instrument",
+    "press.kit.location": "Location",
+    "press.kit.experience": "Experience",
+    "press.kit.languages": "Languages",
+    "press.kit.contact": "Contact",
+    "press.photos.title": "Press Photos",
+    "press.photos.downloadAll": "Download All Photos",
+    "press.photos.contact": "For additional photos or specific requirements, please contact us directly.",
   },
   est: {
     // Footer
@@ -143,7 +182,8 @@ const translations = {
     "about.bio.title": "Elulugu",
     "about.bio.content":
       "Peedu Kass on tunnustatud Eesti bassimängija, helilooja ja õpetaja, kelle muusikaline teekond ulatub üle kahe aastakümne. Eestis sündinud ja kasvanud Peedu arendas oma kirge muusika vastu varajases eas, saades lõpuks üheks austatuimaks bassimängijaks Põhjamaade muusikaskeenes.\n\nTema ainulaadne lähenemine bassgitarrile ühendab traditsioonilisi Eesti rahvamuusika mõjutusi kaasaegse džässi ja progressiivse rokiga. See eripärane stiil on toonud talle tunnustuse nii kohalikul kui ka rahvusvahelisel tasandil, viies koostööni tuntud artistidega üle Euroopa.\n\nÕpetajana on Peedu pühendunud järgmise muusikupõlvkonna kasvatamisele. Ta viib regulaarselt läbi meistriklasse ja töötube, jagades oma teadmisi ja kirge muusika vastu kõigi tasemete õpilastega.",
-    "about.bands.title": "Muusikalised Projektid",
+    "about.bands.title": "Ansamblid ja Projektid",
+    "about.bands.subtitle": "Praegused ja möödunud muusikalised koostööd ja projektid",
     "about.bands.current": "Praegused Projektid",
     "about.bands.past": "Varasemad Koostööd",
 
@@ -186,6 +226,44 @@ const translations = {
     "contact.form.subject": "Teema",
     "contact.form.message": "Sõnum",
     "contact.form.send": "Saada Sõnum",
+
+    // Calendar/Gigs Section
+    "calendar.gigs.upcoming": "Tulevased Kontserdid",
+    "calendar.gigs.past": "Möödunud Kontserdid",
+    "calendar.gigs.tickets": "Piletid",
+
+    // Gallery Section
+    "gallery.photos.title": "Fotod",
+    "gallery.videos.title": "Videod",
+    "gallery.videos.more": "Rohkem videoid leiad meie YouTube kanalist",
+    "gallery.videos.visit": "Külasta YouTube Kanalit",
+
+    // Audio Section
+    "audio.player.title": "Esitletud Lood",
+    "audio.player.allTracks": "Kõik Lood",
+    "audio.streaming.title": "Kuula Oma Lemmikplatvormil",
+    "audio.streaming.subtitle": "Kuula ja lae alla muusikat kõigil peamistel platvormidel",
+
+    // Press Kit Section
+    "press.kit.complete": "Täielik Pressikomplekt",
+    "press.kit.completeDesc": "Täielik pressikomplekt, mis sisaldab biograafiat, fotosid ja tehnilisi nõudeid",
+    "press.kit.photos": "Kõrge Lahutusega Fotod",
+    "press.kit.photosDesc": "Professionaalsed fotod, mis sobivad trükkimiseks ja digitaalseks meediaks",
+    "press.kit.audio": "Audio Näidised",
+    "press.kit.audioDesc": "Kõrge kvaliteediga audio näidised ja kompositsioonid",
+    "press.kit.rider": "Tehniline Rider",
+    "press.kit.riderDesc": "Lava plaan, seadmete nõuded ja tehnilised spetsifikatsioonid",
+    "press.kit.download": "Lae Alla",
+    "press.kit.quickFacts": "Kiired Faktid",
+    "press.kit.genre": "Žanr",
+    "press.kit.instrument": "Instrument",
+    "press.kit.location": "Asukoht",
+    "press.kit.experience": "Kogemus",
+    "press.kit.languages": "Keeled",
+    "press.kit.contact": "Kontakt",
+    "press.photos.title": "Pressifotod",
+    "press.photos.downloadAll": "Lae Kõik Fotod Alla",
+    "press.photos.contact": "Täiendavate fotode või spetsiifiliste nõuete puhul võtke palun otse ühendust.",
   },
 }
 

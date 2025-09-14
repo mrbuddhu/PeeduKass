@@ -4,10 +4,12 @@ import { useState } from "react"
 import { Play, Pause, SkipBack, SkipForward } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { useLanguage } from "./language-context"
 
 const AudioPlayer = () => {
   const [currentTrack, setCurrentTrack] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
+  const { t } = useLanguage()
 
   const tracks = [
     {
@@ -108,7 +110,7 @@ const AudioPlayer = () => {
 
         {/* Track List */}
         <div>
-          <h2 className="font-playfair text-2xl font-bold text-black mb-6">All Tracks</h2>
+          <h2 className="font-playfair text-2xl font-bold text-black mb-6">{t("audio.player.allTracks")}</h2>
           <div className="space-y-2">
             {tracks.map((track, index) => (
               <Card

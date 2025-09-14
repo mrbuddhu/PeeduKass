@@ -1,4 +1,9 @@
+"use client"
+
+import { useLanguage } from "./language-context"
+
 const StreamingLinks = () => {
+  const { t } = useLanguage()
   const platforms = [
     {
       name: "Spotify",
@@ -46,10 +51,10 @@ const StreamingLinks = () => {
     <section className="py-16 px-4 bg-gray-50">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-6">
-          Listen on Your Favorite Platform
+          {t("audio.streaming.title")}
         </h2>
         <p className="font-vietnam text-gray-600 mb-8 max-w-2xl mx-auto">
-          Stream and download music on all major platforms
+          {t("audio.streaming.subtitle")}
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
