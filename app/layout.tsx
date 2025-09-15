@@ -25,6 +25,16 @@ export const metadata: Metadata = {
   title: "Peedu Kass - Bassist, Composer & Educator",
   description: "Acclaimed bassist, composer and educator from Estonia",
   generator: "v0.app",
+  icons: {
+    icon: [
+      { url: "/icons/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    apple: [
+      { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 }
 
 export default function RootLayout({
