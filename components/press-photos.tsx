@@ -40,11 +40,11 @@ const PressPhotos = () => {
   return (
     <section className="py-16 px-4 bg-gray-50">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 text-center">{t("press.photos.title")}</h2>
+        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 text-center animate-fade-in-up">{t("press.photos.title")}</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {pressPhotos.map((photo) => (
-            <div key={photo.id} className="bg-white rounded-lg overflow-hidden shadow-lg">
+          {pressPhotos.map((photo, index) => (
+            <div key={photo.id} className="bg-white rounded-lg overflow-hidden shadow-lg animate-fade-in-up" style={{ animationDelay: `${0.2 + (index * 0.2)}s` }}>
               <div className="aspect-[3/2] relative overflow-hidden">
                 <img
                   src={photo.src || "/placeholder.svg"}
@@ -68,7 +68,7 @@ const PressPhotos = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 animate-fade-in-up" style={{ animationDelay: "1s" }}>
           <Button size="lg" className="flex items-center gap-2 mx-auto">
             <Download className="h-5 w-5" />
             {t("press.photos.downloadAll")}

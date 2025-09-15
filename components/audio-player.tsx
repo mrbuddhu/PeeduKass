@@ -62,11 +62,11 @@ const AudioPlayer = () => {
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Current Track Player */}
-        <Card className="mb-12 overflow-hidden">
+        <Card className="mb-12 overflow-hidden animate-fade-in-up">
           <CardContent className="p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               {/* Artwork */}
-              <div className="aspect-square relative overflow-hidden rounded-lg">
+              <div className="aspect-square relative overflow-hidden rounded-lg animate-fade-in-left" style={{ animationDelay: "0.2s" }}>
                 <img
                   src={tracks[currentTrack].artwork || "/placeholder.svg"}
                   alt={tracks[currentTrack].title}
@@ -75,7 +75,7 @@ const AudioPlayer = () => {
               </div>
 
               {/* Track Info & Controls */}
-              <div>
+              <div className="animate-fade-in-right" style={{ animationDelay: "0.3s" }}>
                 <h3 className="font-playfair text-2xl font-bold text-black mb-2">{tracks[currentTrack].title}</h3>
                 <p className="font-vietnam text-gray-600 mb-1">{tracks[currentTrack].album}</p>
                 <p className="font-vietnam text-sm text-gray-500 mb-6">{tracks[currentTrack].duration}</p>
@@ -110,14 +110,15 @@ const AudioPlayer = () => {
 
         {/* Track List */}
         <div>
-          <h2 className="font-playfair text-2xl font-bold text-black mb-6">{t("audio.player.allTracks")}</h2>
+          <h2 className="font-playfair text-2xl font-bold text-black mb-6 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>{t("audio.player.allTracks")}</h2>
           <div className="space-y-2">
             {tracks.map((track, index) => (
               <Card
                 key={track.id}
-                className={`cursor-pointer transition-colors ${
+                className={`cursor-pointer transition-colors animate-fade-in-up ${
                   index === currentTrack ? "bg-gray-50 border-black" : "hover:bg-gray-50"
                 }`}
+                style={{ animationDelay: `${0.5 + (index * 0.1)}s` }}
                 onClick={() => setCurrentTrack(index)}
               >
                 <CardContent className="p-4">

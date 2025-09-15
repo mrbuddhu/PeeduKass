@@ -62,14 +62,15 @@ const PhotoGallery = () => {
   return (
     <section className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 text-center">{t("gallery.photos.title")}</h2>
+        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 text-center animate-fade-in-up">{t("gallery.photos.title")}</h2>
 
         {/* Photo Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {photos.map((photo) => (
+          {photos.map((photo, index) => (
             <div
               key={photo.id}
-              className="aspect-square relative overflow-hidden rounded-lg cursor-pointer group"
+              className="aspect-square relative overflow-hidden rounded-lg cursor-pointer group animate-fade-in-up"
+              style={{ animationDelay: `${0.2 + (index * 0.1)}s` }}
               onClick={() => setSelectedImage(photo.src)}
             >
               <img

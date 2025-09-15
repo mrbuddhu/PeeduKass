@@ -20,7 +20,7 @@ const ContactMinimal = () => {
     <section className="min-h-[70vh] md:min-h-[75vh] lg:min-h-[80vh] bg-white text-black flex items-center justify-center px-6">
       <div className="w-full max-w-md mx-auto">
         <div className="text-center space-y-6">
-          <div className="flex items-center justify-center gap-2 text-gray-700">
+          <div className="flex items-center justify-center gap-2 text-gray-700 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
             <Mail className="h-5 w-5" />
             <button
               onClick={handleEmailClick}
@@ -31,19 +31,19 @@ const ContactMinimal = () => {
             </button>
           </div>
 
-          <div className="flex items-center justify-center gap-2 text-gray-700">
+          <div className="flex items-center justify-center gap-2 text-gray-700 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             <Phone className="h-5 w-5" />
             <a href="tel:+3725204970" className="font-vietnam text-lg md:text-xl hover:underline">
               +372 520 4970
             </a>
           </div>
 
-          <div className="flex items-center justify-center gap-2 text-gray-700">
+          <div className="flex items-center justify-center gap-2 text-gray-700 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
             <MapPin className="h-5 w-5" />
             <span className="font-vietnam text-base md:text-lg">{t("footer.location")}</span>
           </div>
 
-          <div className="flex items-center justify-center gap-6 pt-4">
+          <div className="flex items-center justify-center gap-6 pt-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <a
               href="https://www.instagram.com/peedu07"
               target="_blank"
