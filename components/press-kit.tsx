@@ -12,17 +12,17 @@ const PressKit = () => {
       title: t("press.kit.complete"),
       description: t("press.kit.completeDesc"),
       type: "PDF",
-      size: "2.4 MB",
+      size: "3.4 MB",
       icon: <FileText className="h-6 w-6" />,
-      downloadUrl: "#",
+      downloadUrl: "/press-kit/Peedu Kass EPK.pdf",
     },
     {
       title: t("press.kit.photos"),
       description: t("press.kit.photosDesc"),
       type: "ZIP",
-      size: "15.2 MB",
+      size: "82.9 MB",
       icon: <ImageIcon className="h-6 w-6" />,
-      downloadUrl: "#",
+      downloadUrl: "/press-kit/HIGH-RES PHOTOS.zip",
     },
     {
       title: t("press.kit.audio"),
@@ -58,7 +58,20 @@ const PressKit = () => {
                       <span className="font-vietnam text-sm text-gray-500">
                         {item.type} • {item.size}
                       </span>
-                      <Button size="sm" className="flex items-center gap-2">
+                      <Button 
+                        size="sm" 
+                        className="flex items-center gap-2"
+                        onClick={() => {
+                          if (item.downloadUrl !== "#") {
+                            const link = document.createElement('a');
+                            link.href = item.downloadUrl;
+                            link.download = item.downloadUrl.split('/').pop() || 'download';
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                          }
+                        }}
+                      >
                         <Download className="h-4 w-4" />
                         {t("press.kit.download")}
                       </Button>
