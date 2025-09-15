@@ -4,77 +4,118 @@ import { Calendar, MapPin, Clock, ExternalLink } from "lucide-react"
 import { useLanguage } from "./language-context"
 
 const GigsSection = () => {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const upcomingGigs = [
     {
       id: 1,
-      date: "2025-01-15",
-      time: "20:00",
-      venue: "Tallinn Jazz Club",
-      city: "Tallinn, Estonia",
-      title: "Winter Jazz Sessions",
-      description:
-        "An intimate evening featuring original compositions and jazz standards with special guest musicians.",
-      ticketLink: "#",
+      date: "2025-09-15",
+      time: "19:00",
+      venue: "Folk Music Center",
+      city: "Viljandi, EE",
+      title: "Kass/Talsi/Sink/Minn",
+      description: "Trio Kass–Talsi–Minn with Theodor Sink.",
+      ticketLink: "",
       status: "upcoming",
     },
     {
       id: 2,
-      date: "2025-02-03",
-      time: "19:30",
-      venue: "Tartu Music Hall",
-      city: "Tartu, Estonia",
-      title: "Contemporary Bass Showcase",
-      description: "A solo performance exploring the boundaries of contemporary bass playing and composition.",
-      ticketLink: "#",
+      date: "2025-09-19",
+      time: "19:00",
+      venue: "Salme Kultuurikeskus",
+      city: "Tallinn, EE",
+      title: "Miljardid",
+      description: "Miljardid in concert.",
+      ticketLink: "",
       status: "upcoming",
     },
     {
       id: 3,
-      date: "2025-02-20",
-      time: "21:00",
-      venue: "Pärnu Concert Hall",
-      city: "Pärnu, Estonia",
-      title: "Collaborative Evening",
-      description: "Performing with local musicians in a celebration of Estonian jazz and contemporary music.",
-      ticketLink: "#",
+      date: "2025-10-25",
+      time: "20:00",
+      venue: "Tampere-talo, WOMEX",
+      city: "Tampere, FI",
+      title: "Kass/Talsi/Minn — WOMEX Showcase",
+      description: "WOMEX showcase performance.",
+      ticketLink: "",
       status: "upcoming",
     },
     {
       id: 4,
-      date: "2024-12-10",
-      time: "20:30",
-      venue: "Viljandi Cultural Centre",
-      city: "Viljandi, Estonia",
-      title: "Autumn Melodies",
-      description: "A retrospective performance featuring compositions from the past year.",
-      ticketLink: "#",
-      status: "past",
+      date: "2025-11-27",
+      time: "19:00",
+      venue: "Haapsalu Kultuurikeskus",
+      city: "Haapsalu, EE",
+      title: "Võigemast/Käärnamets/Kass",
+      description: "JÕULUJAZZ concert.",
+      ticketLink: "",
+      status: "upcoming",
     },
     {
       id: 5,
-      date: "2024-11-22",
+      date: "2025-11-29",
       time: "19:00",
-      venue: "Rakvere Theatre",
-      city: "Rakvere, Estonia",
-      title: "Educational Workshop & Performance",
-      description: "Masterclass followed by an evening performance with student musicians.",
-      ticketLink: "#",
-      status: "past",
+      venue: "Von Krahl",
+      city: "Tallinn, EE",
+      title: "Raivo Tafenau & Lauri Saatpalu",
+      description: "JÕULUJAZZ at Von Krahl.",
+      ticketLink: "",
+      status: "upcoming",
+    },
+    {
+      id: 6,
+      date: "2025-11-30",
+      time: "19:00",
+      venue: "JÕULUJAZZ",
+      city: "Jõgeva, EE",
+      title: "Maarja Aarma",
+      description: "JÕULUJAZZ in Jõgeva.",
+      ticketLink: "",
+      status: "upcoming",
+    },
+    {
+      id: 7,
+      date: "2025-12-02",
+      time: "19:00",
+      venue: "Kumu auditoorium",
+      city: "Tallinn, EE",
+      title: "Maarja Aarma",
+      description: "JÕULUJAZZ at Kumu auditorium.",
+      ticketLink: "",
+      status: "upcoming",
+    },
+    {
+      id: 8,
+      date: "2025-12-09",
+      time: "19:00",
+      venue: "Kumu auditoorium",
+      city: "Tallinn, EE",
+      title: "Võigemast/Käärnamets/Kass",
+      description: "JÕULUJAZZ at Kumu auditorium.",
+      ticketLink: "",
+      status: "upcoming",
     },
   ]
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })
+    const isEstonian = language === "est"
+    const locale = isEstonian ? "et-EE" : "en-GB"
+    return date.toLocaleDateString(locale, isEstonian
+      ? { year: "numeric", month: "2-digit", day: "2-digit" }
+      : { year: "numeric", month: "long", day: "numeric" }
+    )
   }
 
-  const upcomingEvents = upcomingGigs.filter((gig) => gig.status === "upcoming")
-  const pastEvents = upcomingGigs.filter((gig) => gig.status === "past")
+  const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate())
+  const today = startOfDay(new Date())
+
+  const upcomingEvents = upcomingGigs
+    .filter((gig) => new Date(gig.date) >= today)
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+
+  const pastEvents = upcomingGigs
+    .filter((gig) => new Date(gig.date) < today)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   return (
     <section className="py-16 px-4">
@@ -85,7 +126,7 @@ const GigsSection = () => {
           {upcomingEvents.map((gig, index) => (
             <div 
               key={gig.id} 
-              className="py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 animate-fade-in-up"
+              className="py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3 animate-fade-in-up"
               style={{ animationDelay: `${(index + 1) * 0.1}s` }}
             >
               <div className="flex items-center gap-3 text-gray-700">
@@ -93,6 +134,11 @@ const GigsSection = () => {
                 <span className="font-vietnam text-sm">{formatDate(gig.date)}</span>
                 <Clock className="h-4 w-4 text-gray-400 hidden md:inline" />
                 <span className="font-vietnam text-sm hidden md:inline">{gig.time}</span>
+              </div>
+              <div className="inline-flex items-center">
+                <span className="font-vietnam text-xs md:text-sm bg-black text-white rounded px-3 py-1">
+                  {gig.title}
+                </span>
               </div>
               <div className="flex items-center gap-2 text-gray-800">
                 <MapPin className="h-4 w-4 text-gray-500" />

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Play, Pause, SkipBack, SkipForward } from "lucide-react"
+import { SkipBack, SkipForward } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { useLanguage } from "./language-context"
@@ -63,10 +63,19 @@ const AudioPlayer = () => {
     },
   ]
 
-  // Audio event handlers
+  // Audio event handlers (kept for potential local playback fallback, but not used with embeds)
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
+
+    // Ensure the audio source is the current track and respect play state
+    audio.src = tracks[currentTrack].src
+    if (isPlaying) {
+      audio.play().catch((error) => {
+        console.log('Audio play failed:', error)
+        setIsPlaying(false)
+      })
+    }
 
     const updateTime = () => {
       setCurrentTime(audio.currentTime)
@@ -79,20 +88,17 @@ const AudioPlayer = () => {
 
     audio.addEventListener('timeupdate', updateTime)
     audio.addEventListener('loadedmetadata', updateDuration)
-    audio.addEventListener('ended', () => {
-      setIsPlaying(false)
-      nextTrack()
-    })
+    const onEnded = () => {
+      nextTrack(true)
+    }
+    audio.addEventListener('ended', onEnded)
 
     return () => {
       audio.removeEventListener('timeupdate', updateTime)
       audio.removeEventListener('loadedmetadata', updateDuration)
-      audio.removeEventListener('ended', () => {
-        setIsPlaying(false)
-        nextTrack()
-      })
+      audio.removeEventListener('ended', onEnded)
     }
-  }, [currentTrack])
+  }, [currentTrack, isPlaying])
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60)
@@ -100,28 +106,11 @@ const AudioPlayer = () => {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`
   }
 
-  const togglePlay = () => {
-    const audio = audioRef.current
-    if (!audio) return
+  // No explicit play/pause controls for embedded players
 
-    if (isPlaying) {
-      audio.pause()
-    } else {
-      // Load and play the current track
-      const currentTrackSrc = tracks[currentTrack].src
-      audio.src = currentTrackSrc
-      audio.play().catch((error) => {
-        console.log('Audio play failed:', error)
-        // If local file doesn't exist, open external URL
-        window.open(tracks[currentTrack].externalUrl, '_blank')
-      })
-    }
-    setIsPlaying(!isPlaying)
-  }
-
-  const nextTrack = () => {
+  const nextTrack = (autoPlay: boolean = false) => {
     setCurrentTrack((prev) => (prev + 1) % tracks.length)
-    setIsPlaying(false)
+    setIsPlaying(autoPlay ? true : false)
   }
 
   const prevTrack = () => {
@@ -129,29 +118,33 @@ const AudioPlayer = () => {
     setIsPlaying(false)
   }
 
-  const handleWaveformClick = (e: React.MouseEvent) => {
-    // For now, just update the visual progress
-    // In the future, this can be connected to actual audio seeking
-    const rect = e.currentTarget.getBoundingClientRect()
-    const clickX = e.clientX - rect.left
-    const width = rect.width
-    const clickPercent = (clickX / width) * 100
-    
-    setProgress(clickPercent)
-    // Simulate time update based on track duration
-    const trackDuration = parseFloat(tracks[currentTrack].duration.replace(':', '.')) * 60
-    setCurrentTime((clickPercent / 100) * trackDuration)
+  const handleWaveformClick = (_e: React.MouseEvent) => {}
+
+  const getEmbedUrl = (url: string) => {
+    // YouTube
+    const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/)
+    if (ytMatch && ytMatch[1]) {
+      const id = ytMatch[1]
+      return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&showinfo=0&controls=1`
+    }
+    // SoundCloud (supports full or on.soundcloud.com short links)
+    const encoded = encodeURIComponent(url)
+    return `https://w.soundcloud.com/player/?url=${encoded}&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=true`
   }
 
   return (
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
-        {/* Audio Element for native playback */}
-        <audio
-          ref={audioRef}
-          src={tracks[currentTrack].src}
-          preload="metadata"
-        />
+        {/* Embedded Player */}
+        <div className="mb-8 rounded-lg overflow-hidden bg-black/5">
+          <iframe
+            key={tracks[currentTrack].externalUrl}
+            className="w-full h-64 md:h-80"
+            src={getEmbedUrl(tracks[currentTrack].externalUrl)}
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
         {/* Current Track Player */}
         <Card className="mb-12 overflow-hidden animate-fade-in-up">
           <CardContent className="p-8">
@@ -171,79 +164,28 @@ const AudioPlayer = () => {
                 <p className="font-vietnam text-gray-600 mb-1">{tracks[currentTrack].album}</p>
                 <p className="font-vietnam text-sm text-gray-500 mb-6">{tracks[currentTrack].duration}</p>
 
-                {/* Audio Controls */}
+                {/* Basic navigation (embeds handle play/pause) */}
                 <div className="flex items-center gap-4 mb-6">
                   <Button variant="outline" size="sm" onClick={prevTrack}>
                     <SkipBack className="h-4 w-4" />
                   </Button>
-                  <Button size="lg" onClick={togglePlay} className="rounded-full w-12 h-12">
-                    {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 ml-1" />}
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={nextTrack}>
+                  <Button variant="outline" size="sm" onClick={() => nextTrack(false)}>
                     <SkipForward className="h-4 w-4" />
                   </Button>
                 </div>
 
-                {/* Play on Platform Button */}
-                <div className="mb-6">
-                  <Button 
-                    variant="outline" 
-                    className="w-full"
-                    onClick={() => window.open(tracks[currentTrack].externalUrl, '_blank')}
-                  >
-                    <Play className="h-4 w-4 mr-2" />
-                    Play on {tracks[currentTrack].externalUrl.includes('soundcloud') ? 'SoundCloud' : 'YouTube'}
-                  </Button>
-                </div>
+                {/* No external redirects; play stays on-page */}
 
-                {/* Custom Waveform Progress Bar */}
+                {/* Decorative waveform retained but not interactive when using embeds */}
                 <div className="w-full mb-6">
                   <div 
-                    className="relative h-16 bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg overflow-hidden cursor-pointer"
+                    className="relative h-16 bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg overflow-hidden"
                     onClick={handleWaveformClick}
                   >
-                    {/* Waveform bars */}
                     <div className="absolute inset-0 flex items-center justify-between px-4">
-                      {Array.from({ length: 80 }).map((_, i) => {
-                        const isPlayed = (i / 80) * 100 < progress
-                        return (
-                          <div
-                            key={i}
-                            className={`w-1.5 transition-all duration-300 ${
-                              isPlayed ? 'bg-black' : 'bg-gray-400'
-                            }`}
-                            style={{
-                              height: `${Math.random() * 30 + 12}px`,
-                              transform: 'scaleY(0.9)'
-                            }}
-                          />
-                        )
-                      })}
-                    </div>
-                    {/* Reflection effect */}
-                    <div className="absolute inset-0 flex items-center justify-between px-4 opacity-20" style={{ transform: 'scaleY(-1) translateY(32px)' }}>
-                      {Array.from({ length: 80 }).map((_, i) => {
-                        const isPlayed = (i / 80) * 100 < progress
-                        return (
-                          <div
-                            key={i}
-                            className={`w-1.5 transition-all duration-300 ${
-                              isPlayed ? 'bg-black' : 'bg-gray-400'
-                            }`}
-                            style={{
-                              height: `${Math.random() * 30 + 12}px`,
-                              transform: 'scaleY(0.9)'
-                            }}
-                          />
-                        )
-                      })}
-                    </div>
-                    {/* Time indicators */}
-                    <div className="absolute left-4 top-2 bg-black bg-opacity-80 text-white text-sm px-3 py-1 rounded-md font-vietnam">
-                      {formatTime(currentTime)}
-                    </div>
-                    <div className="absolute right-4 top-2 bg-black bg-opacity-80 text-white text-sm px-3 py-1 rounded-md font-vietnam">
-                      {formatTime(duration)}
+                      {Array.from({ length: 80 }).map((_, i) => (
+                        <div key={i} className="w-1.5 bg-gray-400" style={{ height: `${Math.random() * 30 + 12}px`, transform: 'scaleY(0.9)' }} />
+                      ))}
                     </div>
                   </div>
                 </div>
