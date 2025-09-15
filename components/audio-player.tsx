@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { Play, Pause, SkipBack, SkipForward } from "lucide-react"
+import { useState, useRef, useEffect } from "react"
+import { SkipBack, SkipForward } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { useLanguage } from "./language-context"
@@ -9,58 +9,142 @@ import { useLanguage } from "./language-context"
 const AudioPlayer = () => {
   const [currentTrack, setCurrentTrack] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [progress, setProgress] = useState(0)
+  const audioRef = useRef<HTMLAudioElement>(null)
   const { t } = useLanguage()
 
   const tracks = [
     {
       id: 1,
-      title: "Midnight Reflections",
-      album: "Original Compositions",
-      duration: "4:32",
-      src: "/placeholder-audio.mp3",
-      artwork: "/placeholder.svg?height=300&width=300&text=Album+1",
+      title: "Force Minor",
+      album: "Peedu Kass Momentum",
+      duration: "8:12",
+      src: "/audio/force-minor.mp3", // Local audio file
+      externalUrl: "https://www.youtube.com/watch?v=ivm7SN1wqxQ",
+      artwork: "/placeholder.svg?height=300&width=300&text=Force+Minor",
     },
     {
       id: 2,
-      title: "Estonian Landscapes",
-      album: "Original Compositions",
+      title: "Cinema Paradiso",
+      album: "Peedu Kass Momentum",
       duration: "6:18",
-      src: "/placeholder-audio.mp3",
-      artwork: "/placeholder.svg?height=300&width=300&text=Album+2",
+      src: "/audio/cinema-paradiso.mp3", // Local audio file
+      externalUrl: "https://www.youtube.com/watch?v=qTUPyz3trkU",
+      artwork: "/placeholder.svg?height=300&width=300&text=Cinema+Paradiso",
     },
     {
       id: 3,
-      title: "Jazz Fusion Experiment",
-      album: "Collaborative Works",
-      duration: "5:45",
-      src: "/placeholder-audio.mp3",
-      artwork: "/placeholder.svg?height=300&width=300&text=Album+3",
+      title: "CD PREVIEW",
+      album: "Peedu Kass Momentum",
+      duration: "4:32",
+      src: "/audio/cd-preview.mp3", // Local audio file
+      externalUrl: "https://on.soundcloud.com/6nkLjGnhmX1vXAAJqs",
+      artwork: "/placeholder.svg?height=300&width=300&text=CD+PREVIEW",
     },
     {
       id: 4,
-      title: "Acoustic Sessions",
-      album: "Live Recordings",
+      title: "Seitse fragmenti",
+      album: "Estonian National Symphony Orchestra",
       duration: "7:22",
-      src: "/placeholder-audio.mp3",
-      artwork: "/placeholder.svg?height=300&width=300&text=Album+4",
+      src: "/audio/seitse-fragmenti.mp3", // Local audio file
+      externalUrl: "https://on.soundcloud.com/5QAY6RgK7GNLlkPSoC",
+      artwork: "/placeholder.svg?height=300&width=300&text=Seitse+Fragmenti",
+    },
+    {
+      id: 5,
+      title: "Reprise: Armada",
+      album: "Peedu Kass, Raun Juurikas, Andre Maaker",
+      duration: "5:45",
+      src: "/audio/reprise-armada.mp3", // Local audio file
+      externalUrl: "https://on.soundcloud.com/B23SuOoT4iwa10Lspg",
+      artwork: "/placeholder.svg?height=300&width=300&text=Reprise+Armada",
     },
   ]
 
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying)
+  // Audio event handlers (kept for potential local playback fallback, but not used with embeds)
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+
+    // Ensure the audio source is the current track and respect play state
+    audio.src = tracks[currentTrack].src
+    if (isPlaying) {
+      audio.play().catch((error) => {
+        console.log('Audio play failed:', error)
+        setIsPlaying(false)
+      })
+    }
+
+    const updateTime = () => {
+      setCurrentTime(audio.currentTime)
+      setProgress((audio.currentTime / audio.duration) * 100)
+    }
+
+    const updateDuration = () => {
+      setDuration(audio.duration)
+    }
+
+    audio.addEventListener('timeupdate', updateTime)
+    audio.addEventListener('loadedmetadata', updateDuration)
+    const onEnded = () => {
+      nextTrack(true)
+    }
+    audio.addEventListener('ended', onEnded)
+
+    return () => {
+      audio.removeEventListener('timeupdate', updateTime)
+      audio.removeEventListener('loadedmetadata', updateDuration)
+      audio.removeEventListener('ended', onEnded)
+    }
+  }, [currentTrack, isPlaying])
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60)
+    const seconds = Math.floor(time % 60)
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`
   }
 
-  const nextTrack = () => {
+  // No explicit play/pause controls for embedded players
+
+  const nextTrack = (autoPlay: boolean = false) => {
     setCurrentTrack((prev) => (prev + 1) % tracks.length)
+    setIsPlaying(autoPlay ? true : false)
   }
 
   const prevTrack = () => {
     setCurrentTrack((prev) => (prev - 1 + tracks.length) % tracks.length)
+    setIsPlaying(false)
+  }
+
+  const handleWaveformClick = (_e: React.MouseEvent) => {}
+
+  const getEmbedUrl = (url: string) => {
+    // YouTube
+    const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/)
+    if (ytMatch && ytMatch[1]) {
+      const id = ytMatch[1]
+      return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&showinfo=0&controls=1`
+    }
+    // SoundCloud (supports full or on.soundcloud.com short links)
+    const encoded = encodeURIComponent(url)
+    return `https://w.soundcloud.com/player/?url=${encoded}&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=true`
   }
 
   return (
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
+        {/* Embedded Player */}
+        <div className="mb-8 rounded-lg overflow-hidden bg-black/5">
+          <iframe
+            key={tracks[currentTrack].externalUrl}
+            className="w-full h-64 md:h-80"
+            src={getEmbedUrl(tracks[currentTrack].externalUrl)}
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
         {/* Current Track Player */}
         <Card className="mb-12 overflow-hidden animate-fade-in-up">
           <CardContent className="p-8">
@@ -80,29 +164,32 @@ const AudioPlayer = () => {
                 <p className="font-vietnam text-gray-600 mb-1">{tracks[currentTrack].album}</p>
                 <p className="font-vietnam text-sm text-gray-500 mb-6">{tracks[currentTrack].duration}</p>
 
-                {/* Audio Controls */}
+                {/* Basic navigation (embeds handle play/pause) */}
                 <div className="flex items-center gap-4 mb-6">
                   <Button variant="outline" size="sm" onClick={prevTrack}>
                     <SkipBack className="h-4 w-4" />
                   </Button>
-                  <Button size="lg" onClick={togglePlay} className="rounded-full w-12 h-12">
-                    {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 ml-1" />}
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={nextTrack}>
+                  <Button variant="outline" size="sm" onClick={() => nextTrack(false)}>
                     <SkipForward className="h-4 w-4" />
                   </Button>
                 </div>
 
-                {/* Progress Bar Placeholder */}
-                <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
-                  <div className="bg-black h-2 rounded-full w-1/3 transition-all duration-300" />
+                {/* No external redirects; play stays on-page */}
+
+                {/* Decorative waveform retained but not interactive when using embeds */}
+                <div className="w-full mb-6">
+                  <div 
+                    className="relative h-16 bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg overflow-hidden"
+                    onClick={handleWaveformClick}
+                  >
+                    <div className="absolute inset-0 flex items-center justify-between px-4">
+                      {Array.from({ length: 80 }).map((_, i) => (
+                        <div key={i} className="w-1.5 bg-gray-400" style={{ height: `${Math.random() * 30 + 12}px`, transform: 'scaleY(0.9)' }} />
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                {/* Time Display */}
-                <div className="flex justify-between text-sm text-gray-500 font-vietnam">
-                  <span>1:24</span>
-                  <span>{tracks[currentTrack].duration}</span>
-                </div>
               </div>
             </div>
           </CardContent>
@@ -119,7 +206,10 @@ const AudioPlayer = () => {
                   index === currentTrack ? "bg-gray-50 border-black" : "hover:bg-gray-50"
                 }`}
                 style={{ animationDelay: `${0.5 + (index * 0.1)}s` }}
-                onClick={() => setCurrentTrack(index)}
+                onClick={() => {
+                  setCurrentTrack(index);
+                  setIsPlaying(false);
+                }}
               >
                 <CardContent className="p-4">
                   <div className="flex items-center gap-4">
@@ -129,6 +219,14 @@ const AudioPlayer = () => {
                         alt={track.title}
                         className="w-full h-full object-cover"
                       />
+                      {index === currentTrack && isPlaying && (
+                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                          <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
+                            <div className="w-1 h-3 bg-black mx-0.5" />
+                            <div className="w-1 h-3 bg-black mx-0.5" />
+                          </div>
+                        </div>
+                      )}
                     </div>
                     <div className="flex-1">
                       <h4 className="font-vietnam font-medium text-black">{track.title}</h4>

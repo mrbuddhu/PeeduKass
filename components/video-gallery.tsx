@@ -7,31 +7,38 @@ const VideoGallery = () => {
   const videos = [
     {
       id: 1,
-      title: "Live Performance - Original Composition",
-      description: "Performing an original composition at Tallinn Jazz Festival",
-      embedId: "dQw4w9WgXcQ", // Placeholder YouTube ID
-      thumbnail: "/placeholder.svg?height=315&width=560&text=Video+1",
+      title: "Force Minor",
+      description: "Force Minor by Peedu Kass Momentum",
+      embedId: "ULhrckApTwo",
+      thumbnail: `https://img.youtube.com/vi/ULhrckApTwo/maxresdefault.jpg`,
     },
     {
       id: 2,
-      title: "Studio Session - Behind the Scenes",
-      description: "Behind the scenes footage from recent recording session",
-      embedId: "dQw4w9WgXcQ", // Placeholder YouTube ID
-      thumbnail: "/placeholder.svg?height=315&width=560&text=Video+2",
+      title: "Cinema Paradiso", 
+      description: "Cinema Paradiso by Peedu Kass Momentum",
+      embedId: "WvdPUFJ6HNk",
+      thumbnail: `https://img.youtube.com/vi/WvdPUFJ6HNk/maxresdefault.jpg`,
     },
     {
       id: 3,
-      title: "Masterclass - Bass Techniques",
-      description: "Educational content covering advanced bass playing techniques",
-      embedId: "dQw4w9WgXcQ", // Placeholder YouTube ID
-      thumbnail: "/placeholder.svg?height=315&width=560&text=Video+3",
+      title: "Peedu Kass Performance",
+      description: "Live performance by Peedu Kass",
+      embedId: "xczuO1HIRnM",
+      thumbnail: `https://img.youtube.com/vi/xczuO1HIRnM/maxresdefault.jpg`,
     },
     {
       id: 4,
-      title: "Collaborative Performance",
-      description: "Performing with guest musicians in an intimate setting",
-      embedId: "dQw4w9WgXcQ", // Placeholder YouTube ID
-      thumbnail: "/placeholder.svg?height=315&width=560&text=Video+4",
+      title: "Studio Session",
+      description: "Studio recording session with Peedu Kass",
+      embedId: "3OcwbVXiHH8",
+      thumbnail: `https://img.youtube.com/vi/3OcwbVXiHH8/maxresdefault.jpg`,
+    },
+    {
+      id: 5,
+      title: "Momentum",
+      description: "Momentum by Peedu Kass Momentum",
+      embedId: "riNh3reLrjY",
+      thumbnail: `https://img.youtube.com/vi/riNh3reLrjY/maxresdefault.jpg`,
     },
   ]
 
@@ -43,18 +50,16 @@ const VideoGallery = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {videos.map((video, index) => (
             <div key={video.id} className="bg-white rounded-lg overflow-hidden shadow-lg animate-fade-in-up" style={{ animationDelay: `${0.2 + (index * 0.2)}s` }}>
-              {/* Video Embed Placeholder */}
-              <div className="aspect-video relative bg-gray-200">
-                <img
-                  src={video.thumbnail || "/placeholder.svg"}
-                  alt={video.title}
-                  className="w-full h-full object-cover"
+              {/* YouTube Embed */}
+              <div className="aspect-video relative">
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.embedId}?rel=0&modestbranding=1&showinfo=0&controls=1&autoplay=0`}
+                  title={video.title}
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
                 />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-black/70 rounded-full flex items-center justify-center cursor-pointer hover:bg-black/80 transition-colors">
-                    <div className="w-0 h-0 border-l-[12px] border-l-white border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1" />
-                  </div>
-                </div>
               </div>
 
               {/* Video Info */}
