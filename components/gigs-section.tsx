@@ -126,23 +126,23 @@ const GigsSection = () => {
           {upcomingEvents.map((gig, index) => (
             <div 
               key={gig.id} 
-              className="py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3 animate-fade-in-up"
+              className="py-4 grid grid-cols-1 md:grid-cols-[200px_max-content_1fr] gap-6 animate-fade-in-up"
               style={{ animationDelay: `${(index + 1) * 0.1}s` }}
             >
-              <div className="flex items-center gap-3 text-gray-700">
+              <div className="flex items-center gap-3 text-gray-700 justify-center text-center md:justify-start md:text-left">
                 <Calendar className="h-4 w-4 text-gray-500" />
                 <span className="font-vietnam text-sm">{formatDate(gig.date)}</span>
                 <Clock className="h-4 w-4 text-gray-400 hidden md:inline" />
                 <span className="font-vietnam text-sm hidden md:inline">{gig.time}</span>
               </div>
-              <div className="inline-flex items-center">
-                <span className="font-vietnam text-xs md:text-sm bg-black text-white rounded px-3 py-1">
+              <div className="flex items-center justify-center text-center md:justify-start md:text-left">
+                <span className="font-vietnam text-xs md:text-sm bg-black text-white rounded px-3 py-1 whitespace-nowrap">
                   {gig.title}
                 </span>
               </div>
-              <div className="flex items-center gap-2 text-gray-800">
+              <div className="flex items-center gap-2 text-gray-800 min-w-0 justify-center text-center md:justify-end md:text-right">
                 <MapPin className="h-4 w-4 text-gray-500" />
-                <span className="font-vietnam text-sm">
+                <span className="font-vietnam text-sm whitespace-nowrap overflow-hidden text-ellipsis text-right">
                   {gig.city} — {gig.venue}
                 </span>
               </div>

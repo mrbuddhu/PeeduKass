@@ -66,13 +66,13 @@ const BandsSection = () => {
   ]
 
   return (
-    <section className="py-24 px-6 bg-black text-white">
+    <section className="py-24 px-6 bg-gradient-to-br from-[#0b1226] via-[#0a1a3a] to-black text-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-8 tracking-wide">
             {t("about.bands.title")}
           </h2>
-          <div className="w-32 h-px bg-white mx-auto mb-8"></div>
+          <div className="w-32 h-1 bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 rounded-full mx-auto mb-8"></div>
           <p className="font-vietnam text-white/80 text-xl max-w-3xl mx-auto leading-relaxed">
             {t("about.bands.subtitle")}
           </p>
@@ -96,7 +96,7 @@ const BandsSection = () => {
               </div>
               <CardContent className="p-6 text-center">
                 <h3 className="font-playfair text-xl md:text-2xl font-bold text-white mb-4 tracking-wide">
-                  {band.name.toUpperCase()}
+                  {band.name}
                 </h3>
                 <div className="space-y-2 mb-6">
                   {band.members.map((member, memberIndex) => (
@@ -108,12 +108,7 @@ const BandsSection = () => {
                     </p>
                   ))}
                 </div>
-                <Button
-                  onClick={() => window.open(band.link, '_blank')}
-                  className="w-full bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 transition-all duration-300"
-                >
-                  Learn More
-                </Button>
+                
               </CardContent>
             </Card>
           ))}
@@ -137,7 +132,7 @@ const BandsSection = () => {
               </div>
               <CardContent className="p-6 text-center">
                 <h3 className="font-playfair text-xl md:text-2xl font-bold text-white mb-4 tracking-wide">
-                  {band.name.toUpperCase()}
+                  {band.name}
                 </h3>
                 <div className="space-y-2 mb-6">
                   {band.members.map((member, memberIndex) => (
@@ -149,12 +144,7 @@ const BandsSection = () => {
                     </p>
                   ))}
                 </div>
-                <Button
-                  onClick={() => window.open(band.link, '_blank')}
-                  className="w-full bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 transition-all duration-300"
-                >
-                  Learn More
-                </Button>
+                
               </CardContent>
             </Card>
           ))}

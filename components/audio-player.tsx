@@ -21,8 +21,7 @@ const AudioPlayer = () => {
       title: "Force Minor",
       album: "Peedu Kass Momentum",
       duration: "8:12",
-      src: "/audio/force-minor.mp3", // Local audio file
-      externalUrl: "https://www.youtube.com/watch?v=ivm7SN1wqxQ",
+      src: "https://open.spotify.com/track/3LQ7NfhrdPJmIeWYmZU5TX/preview",
       artwork: "/placeholder.svg?height=300&width=300&text=Force+Minor",
     },
     {
@@ -30,52 +29,66 @@ const AudioPlayer = () => {
       title: "Cinema Paradiso",
       album: "Peedu Kass Momentum",
       duration: "6:18",
-      src: "/audio/cinema-paradiso.mp3", // Local audio file
-      externalUrl: "https://www.youtube.com/watch?v=qTUPyz3trkU",
+      src: "https://open.spotify.com/track/6OJCISe0NqEd85q0d0UKb5/preview",
       artwork: "/placeholder.svg?height=300&width=300&text=Cinema+Paradiso",
     },
     {
       id: 3,
-      title: "CD PREVIEW",
-      album: "Peedu Kass Momentum",
+      title: "Kunagi läänes",
+      album: "Miljardid",
       duration: "4:32",
-      src: "/audio/cd-preview.mp3", // Local audio file
-      externalUrl: "https://on.soundcloud.com/6nkLjGnhmX1vXAAJqs",
-      artwork: "/placeholder.svg?height=300&width=300&text=CD+PREVIEW",
+      src: "https://open.spotify.com/track/053STjejOXP08rrYCfvZAC/preview",
+      artwork: "/placeholder.svg?height=300&width=300&text=Kunagi+Läänes",
     },
     {
       id: 4,
-      title: "Seitse fragmenti",
-      album: "Estonian National Symphony Orchestra",
+      title: "Efterglow",
+      album: "Erki Pärnoja",
       duration: "7:22",
-      src: "/audio/seitse-fragmenti.mp3", // Local audio file
-      externalUrl: "https://on.soundcloud.com/5QAY6RgK7GNLlkPSoC",
-      artwork: "/placeholder.svg?height=300&width=300&text=Seitse+Fragmenti",
+      src: "https://open.spotify.com/track/0iAYVJSh1v2OcMEEePAIp7/preview",
+      artwork: "/placeholder.svg?height=300&width=300&text=Efterglow",
     },
     {
       id: 5,
       title: "Reprise: Armada",
       album: "Peedu Kass, Raun Juurikas, Andre Maaker",
       duration: "5:45",
-      src: "/audio/reprise-armada.mp3", // Local audio file
-      externalUrl: "https://on.soundcloud.com/B23SuOoT4iwa10Lspg",
+      src: "https://open.spotify.com/track/2hmwyxyLzfgHLhM5NQfeqG/preview",
       artwork: "/placeholder.svg?height=300&width=300&text=Reprise+Armada",
+    },
+    {
+      id: 6,
+      title: "Jäälõhkuja poeg",
+      album: "European Jazz Orchestra 2011",
+      duration: "6:30",
+      src: "https://open.spotify.com/track/082c4n6twzKmQvGpcw9KAi/preview",
+      artwork: "/placeholder.svg?height=300&width=300&text=Jäälõhkuja+Poeg",
+    },
+    {
+      id: 7,
+      title: "Vihm/Haapsalu",
+      album: "Erki Pärnoja Saja lugu",
+      duration: "5:15",
+      src: "https://open.spotify.com/track/2mKKweW2doNssevKXIlXBc/preview",
+      artwork: "/placeholder.svg?height=300&width=300&text=Vihm+Haapsalu",
+    },
+    {
+      id: 8,
+      title: "Apple Tree",
+      album: "Anna Kaneelina",
+      duration: "4:20",
+      src: "https://open.spotify.com/track/6AUpKzXXVjDxkeiWqys3aE/preview",
+      artwork: "/placeholder.svg?height=300&width=300&text=Apple+Tree",
     },
   ]
 
-  // Audio event handlers (kept for potential local playback fallback, but not used with embeds)
+  // Audio event handlers for native HTML5 playback
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
 
-    // Ensure the audio source is the current track and respect play state
+    // Set the audio source to the current track
     audio.src = tracks[currentTrack].src
-    if (isPlaying) {
-      audio.play().catch((error) => {
-        console.log('Audio play failed:', error)
-        setIsPlaying(false)
-      })
-    }
 
     const updateTime = () => {
       setCurrentTime(audio.currentTime)
@@ -86,19 +99,20 @@ const AudioPlayer = () => {
       setDuration(audio.duration)
     }
 
+    const handleEnded = () => {
+      nextTrack()
+    }
+
     audio.addEventListener('timeupdate', updateTime)
     audio.addEventListener('loadedmetadata', updateDuration)
-    const onEnded = () => {
-      nextTrack(true)
-    }
-    audio.addEventListener('ended', onEnded)
+    audio.addEventListener('ended', handleEnded)
 
     return () => {
       audio.removeEventListener('timeupdate', updateTime)
       audio.removeEventListener('loadedmetadata', updateDuration)
-      audio.removeEventListener('ended', onEnded)
+      audio.removeEventListener('ended', handleEnded)
     }
-  }, [currentTrack, isPlaying])
+  }, [currentTrack])
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60)
@@ -106,45 +120,46 @@ const AudioPlayer = () => {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`
   }
 
-  // No explicit play/pause controls for embedded players
+  const togglePlay = () => {
+    const audio = audioRef.current
+    if (!audio) return
 
-  const nextTrack = (autoPlay: boolean = false) => {
+    if (isPlaying) {
+      audio.pause()
+    } else {
+      audio.play().catch((error) => {
+        console.log('Audio play failed:', error)
+      })
+    }
+    setIsPlaying(!isPlaying)
+  }
+
+  const nextTrack = () => {
     setCurrentTrack((prev) => (prev + 1) % tracks.length)
-    setIsPlaying(autoPlay ? true : false)
+    setIsPlaying(true)
   }
 
   const prevTrack = () => {
     setCurrentTrack((prev) => (prev - 1 + tracks.length) % tracks.length)
-    setIsPlaying(false)
+    setIsPlaying(true)
   }
 
-  const handleWaveformClick = (_e: React.MouseEvent) => {}
+  const handleWaveformClick = (e: React.MouseEvent) => {
+    const audio = audioRef.current
+    if (!audio) return
 
-  const getEmbedUrl = (url: string) => {
-    // YouTube
-    const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/)
-    if (ytMatch && ytMatch[1]) {
-      const id = ytMatch[1]
-      return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&showinfo=0&controls=1`
-    }
-    // SoundCloud (supports full or on.soundcloud.com short links)
-    const encoded = encodeURIComponent(url)
-    return `https://w.soundcloud.com/player/?url=${encoded}&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=true`
+    const rect = e.currentTarget.getBoundingClientRect()
+    const clickX = e.clientX - rect.left
+    const width = rect.width
+    const clickTime = (clickX / width) * audio.duration
+    audio.currentTime = clickTime
   }
 
   return (
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
-        {/* Embedded Player */}
-        <div className="mb-8 rounded-lg overflow-hidden bg-black/5">
-          <iframe
-            key={tracks[currentTrack].externalUrl}
-            className="w-full h-64 md:h-80"
-            src={getEmbedUrl(tracks[currentTrack].externalUrl)}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
+        {/* Hidden Audio Element */}
+        <audio ref={audioRef} preload="metadata" />
         {/* Current Track Player */}
         <Card className="mb-12 overflow-hidden animate-fade-in-up">
           <CardContent className="p-8">
@@ -164,28 +179,64 @@ const AudioPlayer = () => {
                 <p className="font-vietnam text-gray-600 mb-1">{tracks[currentTrack].album}</p>
                 <p className="font-vietnam text-sm text-gray-500 mb-6">{tracks[currentTrack].duration}</p>
 
-                {/* Basic navigation (embeds handle play/pause) */}
+                {/* Play Controls */}
                 <div className="flex items-center gap-4 mb-6">
                   <Button variant="outline" size="sm" onClick={prevTrack}>
                     <SkipBack className="h-4 w-4" />
                   </Button>
-                  <Button variant="outline" size="sm" onClick={() => nextTrack(false)}>
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    onClick={togglePlay}
+                    className="w-12 h-12 rounded-full"
+                  >
+                    {isPlaying ? (
+                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                      </svg>
+                    ) : (
+                      <svg className="h-5 w-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    )}
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={nextTrack}>
                     <SkipForward className="h-4 w-4" />
                   </Button>
                 </div>
 
-                {/* No external redirects; play stays on-page */}
+                {/* Time Display */}
+                <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{formatTime(duration)}</span>
+                </div>
 
-                {/* Decorative waveform retained but not interactive when using embeds */}
+                {/* Interactive Waveform */}
                 <div className="w-full mb-6">
                   <div 
-                    className="relative h-16 bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg overflow-hidden"
+                    className="relative h-16 bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg overflow-hidden cursor-pointer"
                     onClick={handleWaveformClick}
                   >
+                    {/* Progress Bar */}
+                    <div 
+                      className="absolute top-0 left-0 h-full bg-gradient-to-r from-black to-gray-600 transition-all duration-100"
+                      style={{ width: `${progress}%` }}
+                    />
+                    
+                    {/* Waveform Bars */}
                     <div className="absolute inset-0 flex items-center justify-between px-4">
-                      {Array.from({ length: 80 }).map((_, i) => (
-                        <div key={i} className="w-1.5 bg-gray-400" style={{ height: `${Math.random() * 30 + 12}px`, transform: 'scaleY(0.9)' }} />
-                      ))}
+                      {Array.from({ length: 80 }).map((_, i) => {
+                        const isActive = (i / 80) * 100 <= progress
+                        return (
+                          <div 
+                            key={i} 
+                            className={`w-1.5 transition-colors duration-100 ${
+                              isActive ? 'bg-white' : 'bg-gray-400'
+                            }`} 
+                            style={{ height: `${Math.random() * 30 + 12}px`, transform: 'scaleY(0.9)' }} 
+                          />
+                        )
+                      })}
                     </div>
                   </div>
                 </div>
@@ -208,7 +259,6 @@ const AudioPlayer = () => {
                 style={{ animationDelay: `${0.5 + (index * 0.1)}s` }}
                 onClick={() => {
                   setCurrentTrack(index);
-                  setIsPlaying(false);
                 }}
               >
                 <CardContent className="p-4">
@@ -219,11 +269,18 @@ const AudioPlayer = () => {
                         alt={track.title}
                         className="w-full h-full object-cover"
                       />
-                      {index === currentTrack && isPlaying && (
+                      {index === currentTrack && (
                         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                           <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
-                            <div className="w-1 h-3 bg-black mx-0.5" />
-                            <div className="w-1 h-3 bg-black mx-0.5" />
+                            {isPlaying ? (
+                              <svg className="w-2 h-2 text-black" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                              </svg>
+                            ) : (
+                              <svg className="w-2 h-2 text-black ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                              </svg>
+                            )}
                           </div>
                         </div>
                       )}
