@@ -23,7 +23,7 @@ const PressPhotos = () => {
     },
     {
       id: 3,
-      src: "/press-kit/HIGH-RES PHOTOS/HIGH-RES PHOTOS/7_Martin_Heinmets.JPG",
+      src: "/press-kit/HIGH-RES PHOTOS/HIGH-RES PHOTOS/7_Martin_Heinmets.jpg",
       alt: "Peedu Kass — photo by Martin Heinmets",
       title: "Photo by Martin Heinmets",
       resolution: "300 DPI",
