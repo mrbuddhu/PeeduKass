@@ -27,31 +27,10 @@ const discography = [
     link: "#"
   },
   {
-    id: 4,
-    title: "Kunagi läänes",
-    year: "2018",
-    image: "/uploads/Kunagi Läänes_Miljardid.webp",
-    link: "#"
-  },
-  {
     id: 5,
     title: "Ma luban, et ma muutun",
     year: "2021",
     image: "/uploads/Ma luban, et ma muutun_Miljardid.webp",
-    link: "#"
-  },
-  {
-    id: 6,
-    title: "Efterglow",
-    year: "2019",
-    image: "/uploads/Efterglow_Erki Pärnoja.webp",
-    link: "#"
-  },
-  {
-    id: 7,
-    title: "Saja lugu",
-    year: "2020",
-    image: "/uploads/Saja lugu_Erki Pärnoja.webp",
     link: "#"
   },
   {

@@ -77,7 +77,7 @@ const PhotoGallery = () => {
   }, [])
 
   // Prefer admin items over defaults when IDs collide
-  const photos = [...defaults, ...(external || [])].filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
+  const photos = [...(external || []), ...defaults].filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
 
   return (
     <section className="py-16 px-4">

@@ -1,39 +1,38 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react"
 import { Download } from "lucide-react"
 import { useLanguage } from "./language-context"
-import { useEffect, useState } from "react"
 
 const PressPhotos = () => {
   const { t } = useLanguage()
   const defaults = [
     {
       id: 1,
-      src: "/press-kit/HIGH-RES PHOTOS/HIGH-RES PHOTOS/1_Harri_Rospu.JPG",
+      src: "/uploads/2_photo_by_Harri_Rospu.webp",
       alt: "Peedu Kass — photo by Harri Rospu",
       title: "Photo by Harri Rospu",
       resolution: "300 DPI",
     },
     {
       id: 2,
-      src: "/press-kit/HIGH-RES PHOTOS/HIGH-RES PHOTOS/3_Krõõt_Tarkmeel.JPG",
-      alt: "Peedu Kass — photo by Krõõt Tarkmeel",
-      title: "Photo by Krõõt Tarkmeel",
+      src: "/uploads/1_photo_by_Martin_Heinmets.webp",
+      alt: "Peedu Kass — photo by Martin Heinmets",
+      title: "Photo by Martin Heinmets",
       resolution: "300 DPI",
     },
     {
       id: 3,
-      src: "/press-kit/HIGH-RES PHOTOS/HIGH-RES PHOTOS/7_Martin_Heinmets.jpg",
+      src: "/uploads/3_photo_by_Martin_Heinmets.webp",
       alt: "Peedu Kass — photo by Martin Heinmets",
       title: "Photo by Martin Heinmets",
       resolution: "300 DPI",
     },
     {
       id: 4,
-      src: "/press-kit/HIGH-RES PHOTOS/HIGH-RES PHOTOS/5_Stina_Kase.jpeg",
-      alt: "Peedu Kass — photo by Stina Kase",
-      title: "Photo by Stina Kase",
+      src: "/uploads/2_photo_by_Harri_Rospu.webp",
+      alt: "Peedu Kass — photo by Harri Rospu",
+      title: "Photo by Harri Rospu",
       resolution: "300 DPI",
     },
   ]
@@ -48,82 +47,72 @@ const PressPhotos = () => {
     load()
     const handler = () => load()
     window.addEventListener("cms:content-updated", handler as EventListener)
-    try { const bc = new BroadcastChannel("cms"); bc.onmessage = (e) => { if (e?.data?.type === "updated") load() } } catch {}
+    try {
+      const bc = new BroadcastChannel("cms")
+      bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
+    } catch {}
     return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
   }, [])
 
-  const pressPhotos = external || defaults
+  // Prefer admin items over defaults when IDs collide
+  const photos = [...(external || []), ...defaults].filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
+
+  const handleDownload = (photo: typeof defaults[0]) => {
+    const link = document.createElement('a')
+    link.href = photo.src
+    link.download = `${photo.title.replace(/\s+/g, '_')}.webp`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
 
   return (
-    <section className="py-16 px-4 bg-gray-50">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-16 px-4">
+      <div className="max-w-7xl mx-auto">
         <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 text-center animate-fade-in-up">{t("press.photos.title")}</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {pressPhotos.map((photo, index) => (
-            <div 
-              key={photo.id} 
-              className="bg-white rounded-lg overflow-hidden shadow-lg animate-fade-in-up cursor-pointer" 
-              style={{ animationDelay: `${0.2 + (index * 0.2)}s` }}
-              onClick={() => {
-                const link = document.createElement('a')
-                link.href = encodeURI(photo.src)
-                link.download = photo.src.split('/').pop() || 'press-photo.jpg'
-                document.body.appendChild(link)
-                link.click()
-                document.body.removeChild(link)
-              }}
-            >
-              <div className="aspect-[3/2] relative overflow-hidden">
-                <div className="relative overflow-hidden shadow-3xl rounded-2xl transform hover:scale-105 hover:shadow-4xl transition-all duration-500 group w-full h-full bg-gray-100">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {photos.map((photo, index) => (
+            <div key={photo.id} className="group animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+              <div className="bg-gray-50 rounded-lg shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden group">
+                <div className="relative aspect-[4/3] bg-white overflow-hidden">
                   <img
-                    src={encodeURI(photo.src) || "/placeholder.svg"}
+                    src={photo.src}
                     alt={photo.alt}
-                    className={`w-full h-full ${index === 0 ? 'object-cover object-[50%_20%]' : 'object-contain'} transition-all duration-700`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    onError={(e) => {
+                      e.currentTarget.src = "/placeholder.svg?height=400&width=300&text=Press+Photo"
+                    }}
                   />
-                  <div className="absolute inset-0 pointer-events-none" />
+                  <button
+                    onClick={() => handleDownload(photo)}
+                    className="absolute bottom-4 right-4 bg-black text-white px-4 py-2 hover:bg-gray-800 transition-colors duration-200 font-vietnam text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  >
+                    <Download className="w-4 h-4 inline mr-2" />
+                    Download
+                  </button>
                 </div>
-              </div>
-              <div className="p-4 flex items-center justify-center">
-                <Button 
-                  size="sm" 
-                  className="flex items-center gap-2 cursor-pointer"
-                  onClick={() => {
-                    const link = document.createElement('a')
-                    link.href = encodeURI(photo.src)
-                    link.download = photo.src.split('/').pop() || 'press-photo.jpg'
-                    document.body.appendChild(link)
-                    link.click()
-                    document.body.removeChild(link)
-                  }}
-                >
-                  <Download className="h-4 w-4" />
-                  {t("press.kit.download")}
-                </Button>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-12 animate-fade-in-up" style={{ animationDelay: "1s" }}>
-          <Button 
-            size="lg" 
-            className="flex items-center gap-2 mx-auto"
+        <div className="mt-12 text-center">
+          <p className="font-vietnam text-gray-600 mb-4">Need high-resolution versions or additional photos?</p>
+          <button
             onClick={() => {
               const link = document.createElement('a')
               link.href = "/press-kit/HIGH-RES PHOTOS.zip"
-              link.download = "HIGH-RES PHOTOS.zip"
+              link.download = "Peedu_Kass_Press_Photos.zip"
               document.body.appendChild(link)
               link.click()
               document.body.removeChild(link)
             }}
+            className="inline-flex items-center gap-2 bg-gray-800 text-white px-8 py-3 rounded-full hover:bg-black transition-colors duration-200 font-vietnam"
           >
-            <Download className="h-5 w-5" />
-            {t("press.photos.downloadAll")}
-          </Button>
-          <p className="font-vietnam text-sm text-gray-600 mt-4">
-            {t("press.photos.contact")}
-          </p>
+            <Download className="w-5 h-5" />
+            Download All Press Photos (ZIP)
+          </button>
         </div>
       </div>
     </section>

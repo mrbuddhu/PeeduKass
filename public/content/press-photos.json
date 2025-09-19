@@ -1,5 +1,6 @@
 [
-  { "id": 1, "src": "/uploads/1_photo_by_Martin_Heinmets.webp", "alt": "Peedu Kass — photo by Martin Heinmets", "title": "Photo by Martin Heinmets", "resolution": "300 DPI" },
-  { "id": 2, "src": "/uploads/2_photo_by_Harri_Rospu.webp", "alt": "Peedu Kass — photo by Harri Rospu", "title": "Photo by Harri Rospu", "resolution": "300 DPI" },
-  { "id": 3, "src": "/uploads/3_photo_by_Martin_Heinmets.webp", "alt": "Peedu Kass — photo by Martin Heinmets", "title": "Photo by Martin Heinmets", "resolution": "300 DPI" }
+  { "id": 1, "src": "/uploads/1_Harri_Rospu.webp", "alt": "Peedu Kass — photo by Harri Rospu", "title": "Peedu Kass – photo by Harri Rospu", "resolution": "300 DPI" },
+  { "id": 2, "src": "/uploads/3_Kroot_Tarkmeel.webp", "alt": "Peedu Kass — photo by Krõõt Tarkmeel", "title": "Peedu Kass – photo by Krõõt Tarkmeel", "resolution": "300 DPI" },
+  { "id": 3, "src": "/uploads/5_Stina_Kase.webp", "alt": "Peedu Kass — photo by Stina Kase", "title": "Peedu Kass – photo by Stina Kase", "resolution": "300 DPI" },
+  { "id": 4, "src": "/uploads/7_Martin_Heinmets.webp", "alt": "Peedu Kass — photo by Martin Heinmets", "title": "Peedu Kass – photo by Martin Heinmets", "resolution": "300 DPI" }
 ]
