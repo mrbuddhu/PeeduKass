@@ -296,15 +296,15 @@ export default function AdminPage() {
                             className="w-full border rounded p-1 text-xs"
                             placeholder={
                               f.key === "image"
-                                ? "Image URL (imgur.com or peedukass.com/uploads)"
+                                ? "Image URL (postimages.org/imgbb.com)"
                                 : f.key === "artwork"
-                                ? "Artwork URL (imgur.com or peedukass.com/uploads)"
+                                ? "Artwork URL (postimages.org/imgbb.com)"
                                 : f.key === "embedUrl"
                                 ? "Google Drive /preview URL"
                                 : f.key === "spotifyUrl"
-                                ? "Audio URL (peedukass.com/uploads) or Spotify URL"
+                                ? "Audio URL (Spotify/external hosting)"
                                 : f.key === "src"
-                                ? "Image/Audio URL (peedukass.com/uploads)"
+                                ? "Image URL (postimages.org/imgbb.com)"
                                 : f.key === "downloadUrl"
                                 ? "File URL"
                                 : "Paste URL"
@@ -312,6 +312,45 @@ export default function AdminPage() {
                             value={it[f.key] || ""}
                             onChange={(e) => updateField(idx, f.key, e.target.value)}
                           />
+                          {/* Image Preview */}
+                          {(f.key === "image" || f.key === "artwork" || f.key === "src") && it[f.key] && (
+                            <div className="mt-2">
+                              <div className="text-xs text-gray-500 mb-1">Preview:</div>
+                              <div className="border rounded p-2 bg-gray-50">
+                                <img
+                                  src={it[f.key]}
+                                  alt="Preview"
+                                  className="max-w-full h-20 object-cover rounded"
+                                  onError={(e) => {
+                                    e.currentTarget.style.display = 'none'
+                                    const nextElement = e.currentTarget.nextElementSibling as HTMLElement
+                                    if (nextElement) nextElement.style.display = 'block'
+                                  }}
+                                />
+                                <div className="text-xs text-red-500 hidden">❌ Image failed to load</div>
+                              </div>
+                            </div>
+                          )}
+                          {/* Video Preview */}
+                          {f.key === "embedUrl" && it[f.key] && (
+                            <div className="mt-2">
+                              <div className="text-xs text-gray-500 mb-1">Preview:</div>
+                              <div className="border rounded p-2 bg-gray-50">
+                                <div className="text-xs text-blue-600">🎥 Video URL detected</div>
+                                <div className="text-xs text-gray-600 mt-1 break-all">{it[f.key]}</div>
+                              </div>
+                            </div>
+                          )}
+                          {/* Audio Preview */}
+                          {f.key === "spotifyUrl" && it[f.key] && (
+                            <div className="mt-2">
+                              <div className="text-xs text-gray-500 mb-1">Preview:</div>
+                              <div className="border rounded p-2 bg-gray-50">
+                                <div className="text-xs text-green-600">🎵 Audio URL detected</div>
+                                <div className="text-xs text-gray-600 mt-1 break-all">{it[f.key]}</div>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       ) : (
                         <input
