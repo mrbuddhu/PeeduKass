@@ -1,12 +1,21 @@
 <?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, X-Admin-Secret');
 
-// Simple auth check
-$adminSecret = $_SERVER['HTTP_X_ADMIN_SECRET'] ?? '';
+// Handle CORS preflight
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
+
+// Simple auth check (header, then query)
+$adminSecret = isset($_SERVER['HTTP_X_ADMIN_SECRET']) ? $_SERVER['HTTP_X_ADMIN_SECRET'] : '';
 $expectedSecret = 'peedukass-admin-2024';
+if (empty($adminSecret) && isset($_GET['secret'])) {
+    $adminSecret = $_GET['secret'];
+}
 
 if ($adminSecret !== $expectedSecret) {
     http_response_code(401);

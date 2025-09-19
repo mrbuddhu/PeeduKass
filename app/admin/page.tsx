@@ -131,22 +131,20 @@ export default function AdminPage() {
       try {
         const ts = new Date().toISOString().replace(/[:.]/g, "-")
         const backupPath = `/content/_backups/${active}-${ts}.json`
-        await fetch("https://peedukass.com/api/save.php", {
+        await fetch("https://peedukass.com/api/save.php?secret=peedukass-admin-2024", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Admin-Secret": "peedukass-admin-2024",
           },
           body: JSON.stringify({ path: backupPath, contents: pretty, secret: "peedukass-admin-2024" }),
         })
       } catch {}
 
       // 2) Write the primary file
-      const res = await fetch("https://peedukass.com/api/save.php", {
+      const res = await fetch("https://peedukass.com/api/save.php?secret=peedukass-admin-2024", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-Admin-Secret": "peedukass-admin-2024",
         },
         body: JSON.stringify({ path: section.file, contents: pretty, secret: "peedukass-admin-2024" }),
       })
@@ -330,9 +328,8 @@ export default function AdminPage() {
                               if (file) {
                                 const fd = new FormData()
                                 fd.append("file", file)
-                                fetch("https://peedukass.com/api/upload.php", {
+                                fetch("https://peedukass.com/api/upload.php?secret=peedukass-admin-2024", {
                                   method: "POST",
-                                  headers: { "X-Admin-Secret": "peedukass-admin-2024" },
                                   body: fd,
                                 })
                                   .then((res) => res.json())
