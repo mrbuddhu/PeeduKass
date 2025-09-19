@@ -131,24 +131,22 @@ export default function AdminPage() {
       try {
         const ts = new Date().toISOString().replace(/[:.]/g, "-")
         const backupPath = `/content/_backups/${active}-${ts}.json`
-        await fetch("/api/admin/save", {
+        await fetch("https://peedukass.com/api/save.php", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-admin-user": username,
-            "x-admin-pass": password,
+            "X-Admin-Secret": "peedukass-admin-2024",
           },
           body: JSON.stringify({ path: backupPath, contents: pretty }),
         })
       } catch {}
 
       // 2) Write the primary file
-      const res = await fetch("/api/admin/save", {
+      const res = await fetch("https://peedukass.com/api/save.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-admin-user": username,
-          "x-admin-pass": password,
+          "X-Admin-Secret": "peedukass-admin-2024",
         },
         body: JSON.stringify({ path: section.file, contents: pretty }),
       })
@@ -332,9 +330,9 @@ export default function AdminPage() {
                               if (file) {
                                 const fd = new FormData()
                                 fd.append("file", file)
-                                fetch("/api/admin/upload", {
+                                fetch("https://peedukass.com/api/upload.php", {
                                   method: "POST",
-                                  headers: { "x-admin-user": username, "x-admin-pass": password },
+                                  headers: { "X-Admin-Secret": "peedukass-admin-2024" },
                                   body: fd,
                                 })
                                   .then((res) => res.json())
