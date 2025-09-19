@@ -51,53 +51,37 @@ const NewsSection = () => {
   ]
 
   const [external, setExternal] = useState<typeof defaults | null>(null)
-  useEffect(() => {
-    let mounted = true
-    const load = () => fetch("/content/news.json", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => { if (mounted && Array.isArray(data)) setExternal(data) })
-      .catch(() => {})
-    load()
-    const handler = () => load()
-    window.addEventListener("cms:content-updated", handler as EventListener)
-    try {
-      const bc = new BroadcastChannel("cms")
-      bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
-    } catch {}
-    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
-  }, [])
-
-  // Prefer admin items over defaults when IDs collide
-  const newsItems = [...(external || []), ...defaults].filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
-
-  // Load external JSON with state so UI updates immediately after save
-  const [externalItems, setExternalItems] = useState<typeof newsItems | null>(null)
+  
   useEffect(() => {
     let mounted = true
     const load = () => {
       fetch("/content/news.json", { cache: "no-store" })
         .then((r) => (r.ok ? r.json() : null))
-        .then((data) => {
-          if (mounted && Array.isArray(data) && data.length > 0) {
-            setExternalItems(data)
+        .then((data) => { 
+          if (mounted && Array.isArray(data)) {
+            setExternal(data)
           }
         })
         .catch(() => {})
     }
+    
     load()
     const handler = () => load()
     window.addEventListener("cms:content-updated", handler as EventListener)
+    
     try {
       const bc = new BroadcastChannel("cms")
       bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
     } catch {}
-    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+    
+    return () => { 
+      mounted = false
+      window.removeEventListener("cms:content-updated", handler as EventListener) 
+    }
   }, [])
-  // Always show all 3 default news items + any additional ones from admin panel (remove duplicates by ID)
-  const allItems = [...newsItems, ...(externalItems || [])]
-  const itemsToRender = allItems.filter((item, index, self) => 
-    index === self.findIndex(i => i.id === item.id)
-  )
+
+  // Use external data if available, otherwise use defaults
+  const itemsToRender = external || defaults
 
   return (
     <section className="py-24 px-6">
@@ -113,15 +97,17 @@ const NewsSection = () => {
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="aspect-[3/4] relative overflow-hidden">
-                  {item.type === "instagram" && item.link && item.link.includes("instagram.com") ? (
-                    <iframe
-                      src={`${item.link}/embed/`}
-                      className="w-full h-full border-0"
-                      scrolling="no"
-                      allow="encrypted-media"
-                      title={item.title}
-                      frameBorder="0"
-                    />
+                  {item.type === "instagram" ? (
+                    <>
+                      {/* Instagram post - show image with Instagram styling */}
+                      <div className="w-full h-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
+                        <div className="text-center text-white p-4">
+                          <div className="text-2xl mb-2">📸</div>
+                          <div className="text-sm font-medium">Instagram Post</div>
+                          <div className="text-xs opacity-80 mt-1">Click to view on Instagram</div>
+                        </div>
+                      </div>
+                    </>
                   ) : (
                     <>
                       {/* Blurred background */}
