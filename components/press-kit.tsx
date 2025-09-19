@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
 const PressKit = () => {
   const { t } = useLanguage()
   const [sizes, setSizes] = useState<Record<string, string>>({})
-  const pressItems = [
+  const defaults = [
     {
       title: t("press.kit.complete"),
       description: "",
@@ -27,6 +27,22 @@ const PressKit = () => {
       downloadUrl: "/press-kit/HIGH-RES PHOTOS.zip",
     },
   ]
+
+  const [external, setExternal] = useState<typeof defaults | null>(null)
+  useEffect(() => {
+    let mounted = true
+    const load = () => fetch("/content/press-kit.json", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (mounted && Array.isArray(data)) setExternal(data) })
+      .catch(() => {})
+    load()
+    const handler = () => load()
+    window.addEventListener("cms:content-updated", handler as EventListener)
+    try { const bc = new BroadcastChannel("cms"); bc.onmessage = (e) => { if (e?.data?.type === "updated") load() } } catch {}
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+  }, [])
+
+  const pressItems = external || defaults
 
   useEffect(() => {
     const formatBytes = (bytes: number) => {

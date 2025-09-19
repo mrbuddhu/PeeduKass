@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "date": "2025-09-15",
+    "time": "19:00",
+    "venue": "Folk Music Center",
+    "city": "Viljandi, EE",
+    "title": "Kass/Talsi/Sink/Minn",
+    "description": "Trio Kass–Talsi–Minn with Theodor Sink.",
+    "ticketLink": "",
+    "status": "upcoming"
+  },
+  {
+    "id": 2,
+    "date": "2025-09-19",
+    "time": "19:00",
+    "venue": "Salme Kultuurikeskus",
+    "city": "Tallinn, EE",
+    "title": "Miljardid",
+    "description": "Miljardid in concert.",
+    "ticketLink": "",
+    "status": "upcoming"
+  },
+  {
+    "id": 3,
+    "date": "2025-10-25",
+    "time": "20:00",
+    "venue": "Tampere-talo, WOMEX",
+    "city": "Tampere, FI",
+    "title": "Kass/Talsi/Minn — WOMEX Showcase",
+    "description": "WOMEX showcase performance.",
+    "ticketLink": "",
+    "status": "upcoming"
+  },
+  {
+    "id": 4,
+    "date": "2025-11-27",
+    "time": "19:00",
+    "venue": "Haapsalu Kultuurikeskus",
+    "city": "Haapsalu, EE",
+    "title": "Võigemast/Kaarnamets/Kass",
+    "description": "JÕULUJAZZ concert.",
+    "ticketLink": "",
+    "status": "upcoming"
+  },
+  {
+    "id": 5,
+    "date": "2025-11-29",
+    "time": "19:00",
+    "venue": "Von Krahl",
+    "city": "Tallinn, EE",
+    "title": "Raivo Tafenau & Lauri Saatpalu",
+    "description": "JÕULUJAZZ at Von Krahl.",
+    "ticketLink": "",
+    "status": "upcoming"
+  },
+  {
+    "id": 6,
+    "date": "2025-11-30",
+    "time": "19:00",
+    "venue": "JÕULUJAZZ",
+    "city": "Jõgeva, EE",
+    "title": "Maarja Aarma",
+    "description": "JÕULUJAZZ in Jõgeva.",
+    "ticketLink": "",
+    "status": "upcoming"
+  },
+  {
+    "id": 7,
+    "date": "2025-12-02",
+    "time": "19:00",
+    "venue": "Kumu auditoorium",
+    "city": "Tallinn, EE",
+    "title": "Maarja Aarma",
+    "description": "JÕULUJAZZ at Kumu auditorium.",
+    "ticketLink": "",
+    "status": "upcoming"
+  },
+  {
+    "id": 8,
+    "date": "2025-12-09",
+    "time": "19:00",
+    "venue": "Kumu auditoorium",
+    "city": "Tallinn, EE",
+    "title": "Võigemast/Kaarnamets/Kass",
+    "description": "JÕULUJAZZ at Kumu auditorium.",
+    "ticketLink": "",
+    "status": "upcoming"
+  }
+]

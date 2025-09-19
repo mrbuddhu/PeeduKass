@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { X } from "lucide-react"
 import { useLanguage } from "./language-context"
 
@@ -8,7 +8,7 @@ const PhotoGallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const { t } = useLanguage()
 
-  const photos = [
+  const defaults = [
     {
       id: 1,
       src: "/placeholder.svg?height=600&width=800&text=Performance+1",
@@ -59,6 +59,26 @@ const PhotoGallery = () => {
     },
   ]
 
+  const [external, setExternal] = useState<typeof defaults | null>(null)
+  useEffect(() => {
+    let mounted = true
+    const load = () => fetch("/content/photos.json", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (mounted && Array.isArray(data)) setExternal(data) })
+      .catch(() => {})
+    load()
+    const handler = () => load()
+    window.addEventListener("cms:content-updated", handler as EventListener)
+    try {
+      const bc = new BroadcastChannel("cms")
+      bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
+    } catch {}
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+  }, [])
+
+  // Prefer admin items over defaults when IDs collide
+  const photos = [...(external || []), ...defaults].filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
+
   return (
     <section className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
@@ -71,10 +91,10 @@ const PhotoGallery = () => {
               key={photo.id}
               className="aspect-square relative overflow-hidden rounded-lg cursor-pointer group animate-fade-in-up"
               style={{ animationDelay: `${0.2 + (index * 0.1)}s` }}
-              onClick={() => setSelectedImage(photo.src)}
+              onClick={() => setSelectedImage(encodeURI(photo.src))}
             >
               <img
-                src={photo.src || "/placeholder.svg"}
+                src={encodeURI(photo.src) || "/placeholder.svg"}
                 alt={photo.alt}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />

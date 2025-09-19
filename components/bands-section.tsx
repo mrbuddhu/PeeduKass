@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "./language-context"
@@ -65,6 +66,38 @@ const BandsSection = () => {
     }
   ]
 
+  // Load external bands from JSON
+  const [externalBands, setExternalBands] = useState<typeof bands | null>(null)
+  useEffect(() => {
+    let mounted = true
+    const load = () => {
+      fetch("/content/bands.json", { cache: "no-store" })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data) => {
+          if (mounted && Array.isArray(data) && data.length > 0) {
+            // Convert members string to array if needed
+            const processedData = data.map((band: any) => ({
+              ...band,
+              members: typeof band.members === 'string' 
+                ? band.members.split('\n').filter((m: string) => m.trim())
+                : band.members || []
+            }))
+            setExternalBands(processedData)
+          }
+        })
+        .catch(() => {})
+    }
+    load()
+    const handler = () => load()
+    window.addEventListener("cms:content-updated", handler as EventListener)
+    try {
+      const bc = new BroadcastChannel("cms")
+      bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
+    } catch {}
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+  }, [])
+  const effectiveBands = externalBands || []
+
   return (
     <section className="py-24 px-6 bg-gradient-to-br from-[#0b1226] via-[#0a1a3a] to-black text-white">
       <div className="max-w-7xl mx-auto">
@@ -80,10 +113,10 @@ const BandsSection = () => {
 
         {/* First row - 3 cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-          {bands.slice(0, 3).map((band, index) => (
+          {effectiveBands.slice(0, 3).map((band, index) => (
             <Card
               key={index}
-              className="overflow-hidden bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-500 group backdrop-blur-sm animate-fade-in-up"
+              className="overflow-hidden bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-500 group backdrop-blur-sm animate-fade-in-up pt-0"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="aspect-square relative overflow-hidden">
@@ -91,6 +124,7 @@ const BandsSection = () => {
                   src={band.image || "/placeholder.svg"}
                   alt={band.name}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                  style={index === 2 ? { objectPosition: "center 10%" } : undefined}
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
               </div>
@@ -116,10 +150,10 @@ const BandsSection = () => {
 
         {/* Second row - 2 cards centered */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {bands.slice(3, 5).map((band, index) => (
+          {effectiveBands.slice(3, 5).map((band, index) => (
             <Card
               key={index + 3}
-              className="overflow-hidden bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-500 group backdrop-blur-sm animate-fade-in-up"
+              className="overflow-hidden bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-500 group backdrop-blur-sm animate-fade-in-up pt-0"
               style={{ animationDelay: `${(index + 3) * 0.2}s` }}
             >
               <div className="aspect-square relative overflow-hidden">

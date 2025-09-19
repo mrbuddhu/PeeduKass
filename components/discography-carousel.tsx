@@ -1,0 +1,183 @@
+"use client"
+
+import { useState } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+
+const discography = [
+  {
+    id: 1,
+    title: "Peedu Kass Momentum",
+    year: "2016",
+    image: "/Discographythumbnails/Discography thumbnails/Peedu Kass Momentum_Peedu Kass Momentum.jpg",
+    link: "#"
+  },
+  {
+    id: 2,
+    title: "Armada",
+    year: "2012",
+    image: "/Discographythumbnails/Discography thumbnails/Armada_Peedu Kass Raun Juurikas Andre Maaker.jpg",
+    link: "#"
+  },
+  {
+    id: 3,
+    title: "Home",
+    year: "2010",
+    image: "/Discographythumbnails/Discography thumbnails/Home_Peedu Kass 005.jpg",
+    link: "#"
+  },
+  {
+    id: 4,
+    title: "Kunagi läänes",
+    year: "2018",
+    image: "/Discographythumbnails/Discography thumbnails/Kunagi Läänes_Miljardid.jpg",
+    link: "#"
+  },
+  {
+    id: 5,
+    title: "Ma luban, et ma muutun",
+    year: "2021",
+    image: "/Discographythumbnails/Discography thumbnails/Ma luban, et ma muutun_Miljardid.jpg",
+    link: "#"
+  },
+  {
+    id: 6,
+    title: "Efterglow",
+    year: "2019",
+    image: "/Discographythumbnails/Discography thumbnails/Efterglow_Erki Pärnoja.png",
+    link: "#"
+  },
+  {
+    id: 7,
+    title: "Saja lugu",
+    year: "2020",
+    image: "/Discographythumbnails/Discography thumbnails/Saja lugu_Erki Pärnoja.jpeg",
+    link: "#"
+  },
+  {
+    id: 8,
+    title: "Anna Kaneelina",
+    year: "2018",
+    image: "/Discographythumbnails/Discography thumbnails/Anna Kaneelina_Anna Kaneelina.jpg",
+    link: "#"
+  },
+  {
+    id: 9,
+    title: "Baltic Sketches",
+    year: "2017",
+    image: "/Discographythumbnails/Discography thumbnails/Baltic Sketches_Tree Stones Quartet.jpg",
+    link: "#"
+  },
+  {
+    id: 10,
+    title: "Imeline",
+    year: "2019",
+    image: "/Discographythumbnails/Discography thumbnails/Imeline_Miljardid.jpg",
+    link: "#"
+  },
+  {
+    id: 11,
+    title: "Ood metsale",
+    year: "2021",
+    image: "/Discographythumbnails/Discography thumbnails/Ood metsale_Joel Remmel Peedu Kass.jpg",
+    link: "#"
+  }
+]
+
+const DiscographyCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const itemsToShow = 3
+  const maxIndex = Math.max(0, discography.length - itemsToShow)
+
+  const nextSlide = () => {
+    setCurrentIndex(prev => prev >= maxIndex ? 0 : prev + 1)
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex(prev => prev <= 0 ? maxIndex : prev - 1)
+  }
+
+  return (
+    <section className="py-16 px-4 bg-transparent">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-4">Discography</h2>
+          <div className="w-24 h-px bg-black mx-auto mb-4" />
+          <p className="font-vietnam text-gray-600 text-sm">Selected releases</p>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto">
+          {/* Carousel Container */}
+          <div className="overflow-hidden">
+            <div 
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)` }}
+            >
+              {discography.map((album, index) => (
+                <div key={album.id} className="flex-shrink-0 px-2" style={{ width: `${100 / itemsToShow}%` }}>
+                  <div className="group cursor-pointer">
+                    <div className="relative overflow-hidden rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 max-w-48 mx-auto">
+                      {/* Blurred background */}
+                      <img
+                        src={encodeURI(album.image)}
+                        alt=""
+                        className="absolute inset-0 w-full h-full object-cover filter blur-md scale-110"
+                        onError={(e) => {
+                          e.currentTarget.src = "/placeholder.svg?height=300&width=300&text=Album+Cover"
+                        }}
+                        loading="lazy"
+                      />
+                      {/* Main image */}
+                      <img
+                        src={encodeURI(album.image)}
+                        alt={album.title}
+                        className="relative w-full aspect-square object-contain z-10 transition-all duration-500"
+                        style={index === 2 ? { objectPosition: "center 0%" } : undefined}
+                        onError={(e) => {
+                          e.currentTarget.src = "/placeholder.svg?height=300&width=300&text=Album+Cover"
+                        }}
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Buttons */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white/80 hover:bg-white shadow-xl rounded-full p-3 transition-all duration-200 hover:scale-110 backdrop-blur-sm"
+            aria-label="Previous albums"
+          >
+            <ChevronLeft className="h-6 w-6 text-black" />
+          </button>
+          
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white/80 hover:bg-white shadow-xl rounded-full p-3 transition-all duration-200 hover:scale-110 backdrop-blur-sm"
+            aria-label="Next albums"
+          >
+            <ChevronRight className="h-6 w-6 text-black" />
+          </button>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center mt-6 space-x-2">
+            {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                  index === currentIndex ? 'bg-black' : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default DiscographyCarousel

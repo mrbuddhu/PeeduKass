@@ -2,6 +2,7 @@
 
 import { Calendar, MapPin, Clock, ExternalLink } from "lucide-react"
 import { useLanguage } from "./language-context"
+import { useState, useEffect } from "react"
 
 const GigsSection = () => {
   const { t, language } = useLanguage()
@@ -96,6 +97,29 @@ const GigsSection = () => {
     },
   ]
 
+  // Optional external gigs from JSON; fallback to bundled list
+  const [externalGigs, setExternalGigs] = useState<typeof upcomingGigs | null>(null)
+  useEffect(() => {
+    let mounted = true
+    const load = () => fetch("/content/gigs.json", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (mounted && Array.isArray(data)) setExternalGigs(data) })
+      .catch(() => {})
+    load()
+    const handler = () => load()
+    window.addEventListener("cms:content-updated", handler as EventListener)
+    try {
+      const bc = new BroadcastChannel("cms")
+      bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
+    } catch {}
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+  }, [])
+  // Always show default gigs + any additional ones from admin panel (remove duplicates by ID)
+  const allGigs = [...upcomingGigs, ...(externalGigs || [])]
+  const gigs = allGigs.filter((gig, index, self) => 
+    index === self.findIndex(g => g.id === gig.id)
+  )
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     const isEstonian = language === "est"
@@ -109,11 +133,11 @@ const GigsSection = () => {
   const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate())
   const today = startOfDay(new Date())
 
-  const upcomingEvents = upcomingGigs
+  const upcomingEvents = gigs
     .filter((gig) => new Date(gig.date) >= today)
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 
-  const pastEvents = upcomingGigs
+  const pastEvents = gigs
     .filter((gig) => new Date(gig.date) < today)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 

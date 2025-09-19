@@ -32,31 +32,31 @@ const BioSection = () => {
         <div className="max-w-7xl mx-auto py-16">
           {/* Header with title and language toggle */}
           <div className="flex items-center gap-6 mb-16">
-            <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-black tracking-wide">
-              {bioContent[language].title}
-            </h2>
-            <ToggleGroup
-              type="single"
-              value={language}
-              onValueChange={(v) => v && setLanguage(v as "en" | "est")}
-              className="rounded-full border border-black/20 overflow-hidden"
-            >
-              <ToggleGroupItem
-                value="en"
-                aria-label="English"
-                className="px-4 py-2 font-vietnam text-sm data-[state=on]:bg-black data-[state=on]:text-white"
-              >
-                EN
-              </ToggleGroupItem>
-              <ToggleGroupItem
-                value="est"
-                aria-label="Estonian"
-                className="px-4 py-2 font-vietnam text-sm data-[state=on]:bg-black data-[state=on]:text-white"
-              >
-                EST
-              </ToggleGroupItem>
-            </ToggleGroup>
-          </div>
+                <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-black tracking-wide">
+                  {bioContent[language].title}
+                </h2>
+                <ToggleGroup
+                  type="single"
+                  value={language}
+                  onValueChange={(v) => v && setLanguage(v as "en" | "est")}
+                  className="rounded-full border border-black/20 overflow-hidden"
+                >
+                  <ToggleGroupItem
+                    value="en"
+                    aria-label="English"
+                    className="px-4 py-2 font-vietnam text-sm data-[state=on]:bg-black data-[state=on]:text-white"
+                  >
+                    EN
+                  </ToggleGroupItem>
+                  <ToggleGroupItem
+                    value="est"
+                    aria-label="Estonian"
+                    className="px-4 py-2 font-vietnam text-sm data-[state=on]:bg-black data-[state=on]:text-white"
+                  >
+                    EST
+                  </ToggleGroupItem>
+                </ToggleGroup>
+              </div>
 
           <div className="w-24 h-px bg-black mb-16"></div>
 
@@ -97,7 +97,7 @@ const BioSection = () => {
                     </div>
                   </div>
                   <div className="lg:col-start-1 animate-fade-in-right" style={{ animationDelay: "0.5s" }}>
-                    <div className="space-y-8">
+              <div className="space-y-8">
                       <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
                         {bioContent[language].paragraphs[1]}
                       </p>
@@ -131,7 +131,7 @@ const BioSection = () => {
               // Estonian layout: original alternating pattern
               bioContent[language].paragraphs.slice(0, 3).map((paragraph, index) => (
                 <div 
-                  key={index} 
+                    key={index}
                   className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''} animate-fade-in-up`}
                   style={{ animationDelay: `${index * 0.3}s` }}
                 >
@@ -158,10 +158,10 @@ const BioSection = () => {
                   {/* Text */}
                   <div className={`${index % 2 === 1 ? 'lg:col-start-1' : ''} animate-fade-in-right`} style={{ animationDelay: `${index * 0.3 + 0.2}s` }}>
                     <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                      {paragraph}
-                    </p>
-                  </div>
-                </div>
+                    {paragraph}
+                  </p>
+              </div>
+            </div>
               ))
             )}
           </div>

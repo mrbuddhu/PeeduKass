@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "date": "WOMEX Showcase Performance",
+    "title": "WOMEX Showcase Performance",
+    "content": "",
+    "image": "/wmx25_Kass-Talsi-Minn_Northern_Connections_post_1080x1350.png",
+    "link": "https://womex.com/",
+    "type": "news"
+  },
+  {
+    "id": 2,
+    "date": "",
+    "title": "“Play with more rhythm” they said to me in school.",
+    "content": "",
+    "image": "/placeholder-e024j.png",
+    "link": "https://www.instagram.com/reel/DGiJt3MtWfT/",
+    "type": "instagram"
+  },
+  {
+    "id": 3,
+    "date": "16th June 2023",
+    "title": "New Record with Joel Remmel",
+    "content": "",
+    "image": "/ood metsale mockup.jpeg",
+    "link": "https://open.spotify.com/album/",
+    "type": "news"
+  }
+]

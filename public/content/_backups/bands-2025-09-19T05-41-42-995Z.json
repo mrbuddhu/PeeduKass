@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Kass-Talsi-Sink-Minn",
+    "members": [
+      "Villu Talsi (mandolin)",
+      "Theodor Sink (cello)",
+      "Simone Minn (viola, voice)",
+      "PK (bass, electronics)"
+    ],
+    "image": "/uploads/1758260498178-fb.png",
+    "link": "#"
+  },
+  {
+    "name": "Peedu Kass Solo",
+    "members": [
+      "kontrabass, basskitarr, elektroonika"
+    ],
+    "image": "/placeholder.svg?height=400&width=400&text=Peedu+Kass+Solo",
+    "link": "#"
+  },
+  {
+    "name": "Miljardid",
+    "members": [
+      "Marten Kuningas (voc, gtr)",
+      "Raul Ojamaa (gtr)",
+      "Kristjan Kallas (drs)",
+      "PK (bs)"
+    ],
+    "image": "/placeholder.svg?height=400&width=400&text=Miljardid",
+    "link": "#"
+  },
+  {
+    "name": "Funkifize",
+    "members": [
+      "Lauri Pihlap (voc)",
+      "Marianne Leibur (voc)",
+      "Pent Järve (gtr)",
+      "Tanel Kuusk (trp)",
+      "Keio Vutt (sax)",
+      "Caspar Salo (drs)",
+      "PK (bs)"
+    ],
+    "image": "/placeholder.svg?height=400&width=400&text=Funkifize",
+    "link": "#"
+  },
+  {
+    "name": "Ajaväli",
+    "members": [
+      "Raun Juurikas (kbd)",
+      "Liisi Koikson (voc)",
+      "Andre Maaker (gtr)",
+      "Martin Petermann (drs)",
+      "PK (bs)"
+    ],
+    "image": "/placeholder.svg?height=400&width=400&text=Ajaväli",
+    "link": "#"
+  }
+]

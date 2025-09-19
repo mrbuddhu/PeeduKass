@@ -3,10 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
 import { useLanguage } from "./language-context"
+import { useEffect, useState } from "react"
 
 const PressPhotos = () => {
   const { t } = useLanguage()
-  const pressPhotos = [
+  const defaults = [
     {
       id: 1,
       src: "/press-kit/HIGH-RES PHOTOS/HIGH-RES PHOTOS/1_Harri_Rospu.JPG",
@@ -36,6 +37,22 @@ const PressPhotos = () => {
       resolution: "300 DPI",
     },
   ]
+
+  const [external, setExternal] = useState<typeof defaults | null>(null)
+  useEffect(() => {
+    let mounted = true
+    const load = () => fetch("/content/press-photos.json", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (mounted && Array.isArray(data)) setExternal(data) })
+      .catch(() => {})
+    load()
+    const handler = () => load()
+    window.addEventListener("cms:content-updated", handler as EventListener)
+    try { const bc = new BroadcastChannel("cms"); bc.onmessage = (e) => { if (e?.data?.type === "updated") load() } } catch {}
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+  }, [])
+
+  const pressPhotos = external || defaults
 
   return (
     <section className="py-16 px-4 bg-gray-50">
