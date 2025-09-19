@@ -98,13 +98,14 @@ const NewsSection = () => {
               >
                 <div className="aspect-[3/4] relative overflow-hidden">
                   {item.type === "instagram" && item.link && item.link.includes("instagram.com") ? (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                      <div className="text-center p-4">
-                        <div className="text-4xl mb-2">📸</div>
-                        <div className="text-sm font-medium text-gray-700">Instagram Post</div>
-                        <div className="text-xs text-gray-500 mt-1">Click to view on Instagram</div>
-                      </div>
-                    </div>
+                    <iframe
+                      src={`${item.link}/embed/`}
+                      className="w-full h-full border-0"
+                      scrolling="no"
+                      allow="encrypted-media"
+                      title={item.title}
+                      frameBorder="0"
+                    />
                   ) : (
                     <>
                       {/* Blurred background */}
