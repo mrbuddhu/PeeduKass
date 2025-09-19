@@ -127,29 +127,16 @@ export default function AdminPage() {
       const section = sections.find((s) => s.key === active)!
       const pretty = JSON.stringify(items[active], null, 2)
 
-      // 1) Write a timestamped backup copy
-      try {
-        const ts = new Date().toISOString().replace(/[:.]/g, "-")
-        const backupPath = `/content/_backups/${active}-${ts}.json`
-        await fetch("https://peedukass.com/api/save.php?secret=peedukass-admin-2024", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ path: backupPath, contents: pretty, secret: "peedukass-admin-2024" }),
-        })
-      } catch {}
-
-      // 2) Write the primary file
-      const res = await fetch("https://peedukass.com/api/save.php?secret=peedukass-admin-2024", {
+      // Save to local API
+      const res = await fetch("/api/admin/save", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ path: section.file, contents: pretty, secret: "peedukass-admin-2024" }),
+        body: JSON.stringify({ path: section.file, contents: pretty }),
       })
       if (!res.ok) throw new Error(await res.text())
-      setMessage("Saved ✓ (backup created)")
+      setMessage("Saved ✓")
       // notify open pages to refetch this section
       if (typeof window !== "undefined") {
         try {
@@ -218,16 +205,17 @@ export default function AdminPage() {
         
         {/* Instructions */}
     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-      <h3 className="font-semibold text-blue-800 mb-2">📸 Image Upload Instructions:</h3>
+      <h3 className="font-semibold text-blue-800 mb-2">📸 Media URL Instructions:</h3>
       <div className="text-sm text-blue-700 space-y-1">
-        <p><strong>Recommended Image Hosting:</strong></p>
+        <p><strong>For Images:</strong></p>
         <ul className="list-disc list-inside ml-2 space-y-1">
           <li><strong>Postimages.org</strong> - Free, reliable, direct links</li>
           <li><strong>ImgBB.com</strong> - Free, no registration needed</li>
           <li><strong>Cloudinary.com</strong> - Free tier available</li>
-          <li><strong>Google Drive</strong> - Use "Get Link" → "Anyone with link" → Copy ID</li>
         </ul>
-        <p className="mt-2"><strong>Note:</strong> Imgur is currently having issues. Try the alternatives above!</p>
+        <p className="mt-2"><strong>For Videos:</strong> Use Google Drive embed URLs</p>
+        <p><strong>For Audio:</strong> Use Spotify preview URLs or external hosting</p>
+        <p className="mt-2 text-green-600"><strong>✅ All changes save directly to the website!</strong></p>
       </div>
     </div>
         <div className="flex gap-2 mb-4">
