@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useLanguage } from "./language-context"
 
 const discography = [
   {
@@ -84,6 +85,7 @@ const discography = [
 ]
 
 const DiscographyCarousel = () => {
+  const { language } = useLanguage()
   const [currentIndex, setCurrentIndex] = useState(0)
   const itemsToShow = 3
   const maxIndex = Math.max(0, discography.length - itemsToShow)
@@ -100,9 +102,13 @@ const DiscographyCarousel = () => {
     <section className="py-16 px-4 bg-transparent">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-4">Discography</h2>
+          <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-4">
+            {language === "en" ? "Discography" : "Diskograafia"}
+          </h2>
           <div className="w-24 h-px bg-black mx-auto mb-4" />
-          <p className="font-vietnam text-gray-600 text-sm">Selected releases</p>
+          <p className="font-vietnam text-gray-600 text-sm">
+            {language === "en" ? "Selected releases" : "Valitud väljaanded"}
+          </p>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
