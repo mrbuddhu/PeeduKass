@@ -131,26 +131,22 @@ export default function AdminPage() {
       try {
         const ts = new Date().toISOString().replace(/[:.]/g, "-")
         const backupPath = `/content/_backups/${active}-${ts}.json`
-        await fetch("/api/admin/save", {
+        await fetch("https://peedukass.com/api/save.php?secret=peedukass-admin-2024", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-admin-user": username,
-            "x-admin-pass": password,
           },
-          body: JSON.stringify({ path: backupPath, contents: pretty }),
+          body: JSON.stringify({ path: backupPath, contents: pretty, secret: "peedukass-admin-2024" }),
         })
       } catch {}
 
       // 2) Write the primary file
-      const res = await fetch("/api/admin/save", {
+      const res = await fetch("https://peedukass.com/api/save.php?secret=peedukass-admin-2024", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-admin-user": username,
-          "x-admin-pass": password,
         },
-        body: JSON.stringify({ path: section.file, contents: pretty }),
+        body: JSON.stringify({ path: section.file, contents: pretty, secret: "peedukass-admin-2024" }),
       })
       if (!res.ok) throw new Error(await res.text())
       setMessage("Saved ✓ (backup created)")
@@ -219,6 +215,16 @@ export default function AdminPage() {
     <section className="p-6">
       <div className="max-w-5xl mx-auto">
         <h1 className="text-3xl font-bold mb-4">Content Admin (Staging)</h1>
+        
+        {/* Instructions */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+          <h3 className="font-semibold text-blue-800 mb-2">📸 Image Upload Instructions:</h3>
+          <div className="text-sm text-blue-700 space-y-1">
+            <p><strong>For Live Website:</strong> Use external image URLs (recommended: imgur.com)</p>
+            <p><strong>For Testing:</strong> Upload files locally (won't work on live site)</p>
+            <p><strong>How to get imgur URL:</strong> Go to imgur.com → Upload image → Copy "Direct Link"</p>
+          </div>
+        </div>
         <div className="flex gap-2 mb-4">
           {sections.map((s) => (
             <button
@@ -297,18 +303,18 @@ export default function AdminPage() {
                             className="w-full border rounded p-1 text-xs"
                             placeholder={
                               f.key === "image"
-                                ? "Image URL / Upload file"
+                                ? "Image URL (imgur.com) or Upload file"
                                 : f.key === "artwork"
-                                ? "Artwork URL / Upload file"
+                                ? "Image URL (imgur.com) or Upload file"
                                 : f.key === "embedUrl"
-                                ? "Google Drive /preview URL / Upload file"
+                                ? "Google Drive /preview URL or Upload file"
                                 : f.key === "spotifyUrl"
-                                ? "Spotify URL / Upload file"
+                                ? "Spotify URL or Upload file"
                                 : f.key === "src"
-                                ? "Image URL / Upload file"
+                                ? "Image URL (imgur.com) or Upload file"
                                 : f.key === "downloadUrl"
-                                ? "File URL / Upload file"
-                                : "Paste URL / Upload files"
+                                ? "File URL or Upload file"
+                                : "Paste URL or Upload files"
                             }
                             value={it[f.key] || ""}
                             onChange={(e) => updateField(idx, f.key, e.target.value)}
@@ -322,9 +328,8 @@ export default function AdminPage() {
                               if (file) {
                                 const fd = new FormData()
                                 fd.append("file", file)
-                                fetch("/api/admin/upload", {
+                                fetch("https://peedukass.com/api/upload.php?secret=peedukass-admin-2024", {
                                   method: "POST",
-                                  headers: { "x-admin-user": username, "x-admin-pass": password },
                                   body: fd,
                                 })
                                   .then((res) => res.json())
