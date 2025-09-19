@@ -20,7 +20,6 @@ const nextConfig = {
             'public/bio/**',
             'public/Discographythumbnails/**',
             'public/press-kit/HIGH-RES PHOTOS/**',
-            'public/press-kit/*.zip',
           ],
         },
   },

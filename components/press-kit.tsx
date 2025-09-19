@@ -18,6 +18,14 @@ const PressKit = () => {
       icon: <FileText className="h-6 w-6" />,
       downloadUrl: "/press-kit/Peedu Kass EPK.pdf",
     },
+    {
+      title: t("press.kit.photos"),
+      description: "",
+      type: "ZIP",
+      size: "82.9 MB",
+      icon: <ImageIcon className="h-6 w-6" />,
+      downloadUrl: "/press-kit/HIGH-RES PHOTOS.zip",
+    },
   ]
 
   const [external, setExternal] = useState<typeof defaults | null>(null)
