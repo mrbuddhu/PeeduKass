@@ -13,6 +13,10 @@ const nextConfig = {
         outputFileTracingExcludes: {
           '*': [
             'public/uploads/**',
+            'public/hero.mp4',
+            'public/bio/**',
+            'public/Discographythumbnails/**',
+            'public/press-kit/**',
           ],
         },
   },
