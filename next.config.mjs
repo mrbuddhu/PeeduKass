@@ -12,8 +12,11 @@ const nextConfig = {
   experimental: {
         outputFileTracingExcludes: {
           '*': [
-            'public/uploads/**',
-            'public/hero.mp4',
+            'public/uploads/*.mp3',
+            'public/uploads/*.m4a',
+            'public/uploads/*.wav',
+            'public/uploads/*.aac',
+            'public/uploads/*.ogg',
             'public/bio/**',
             'public/Discographythumbnails/**',
             'public/press-kit/**',
