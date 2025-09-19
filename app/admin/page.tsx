@@ -21,7 +21,7 @@ const fieldConfigs: Record<SectionKey, { key: string; label: string; type: "text
     { key: "date", label: "Date", type: "text" },
     { key: "title", label: "Title", type: "text" },
     { key: "content", label: "Content", type: "textarea" },
-    { key: "image", label: "Image URL / Upload file", type: "text" },
+    { key: "image", label: "Image URL (postimages.org/imgbb.com)", type: "text" },
     { key: "link", label: "Link", type: "text" },
     { key: "type", label: "Type", type: "select", options: ["news", "instagram", "link"] },
   ],
@@ -44,13 +44,13 @@ const fieldConfigs: Record<SectionKey, { key: string; label: string; type: "text
     { key: "title", label: "Title", type: "text" },
     { key: "artist", label: "Artist", type: "text" },
     { key: "spotifyUrl", label: "Spotify URL / Upload file", type: "text" },
-    { key: "artwork", label: "Artwork URL / Upload file", type: "text" },
+    { key: "artwork", label: "Artwork URL (postimages.org/imgbb.com)", type: "text" },
   ],
   bands: [
     { key: "id", label: "ID", type: "text" },
     { key: "name", label: "Name", type: "text" },
     { key: "members", label: "Members (one per line)", type: "textarea" },
-    { key: "image", label: "Image URL / Upload file", type: "text" },
+    { key: "image", label: "Image URL (postimages.org/imgbb.com)", type: "text" },
     { key: "link", label: "Link", type: "text" },
   ],
   photos: [
@@ -217,14 +217,19 @@ export default function AdminPage() {
         <h1 className="text-3xl font-bold mb-4">Content Admin (Staging)</h1>
         
         {/* Instructions */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <h3 className="font-semibold text-blue-800 mb-2">📸 Image Upload Instructions:</h3>
-          <div className="text-sm text-blue-700 space-y-1">
-            <p><strong>For Live Website:</strong> Use external image URLs (recommended: imgur.com)</p>
-            <p><strong>For Testing:</strong> Upload files locally (won't work on live site)</p>
-            <p><strong>How to get imgur URL:</strong> Go to imgur.com → Upload image → Copy "Direct Link"</p>
-          </div>
-        </div>
+    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <h3 className="font-semibold text-blue-800 mb-2">📸 Image Upload Instructions:</h3>
+      <div className="text-sm text-blue-700 space-y-1">
+        <p><strong>Recommended Image Hosting:</strong></p>
+        <ul className="list-disc list-inside ml-2 space-y-1">
+          <li><strong>Postimages.org</strong> - Free, reliable, direct links</li>
+          <li><strong>ImgBB.com</strong> - Free, no registration needed</li>
+          <li><strong>Cloudinary.com</strong> - Free tier available</li>
+          <li><strong>Google Drive</strong> - Use "Get Link" → "Anyone with link" → Copy ID</li>
+        </ul>
+        <p className="mt-2"><strong>Note:</strong> Imgur is currently having issues. Try the alternatives above!</p>
+      </div>
+    </div>
         <div className="flex gap-2 mb-4">
           {sections.map((s) => (
             <button
