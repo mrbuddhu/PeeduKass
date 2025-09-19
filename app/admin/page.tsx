@@ -219,6 +219,16 @@ export default function AdminPage() {
     <section className="p-6">
       <div className="max-w-5xl mx-auto">
         <h1 className="text-3xl font-bold mb-4">Content Admin (Staging)</h1>
+        
+        {/* Instructions */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+          <h3 className="font-semibold text-blue-800 mb-2">📸 Image Upload Instructions:</h3>
+          <div className="text-sm text-blue-700 space-y-1">
+            <p><strong>For Live Website:</strong> Use external image URLs (recommended: imgur.com)</p>
+            <p><strong>For Testing:</strong> Upload files locally (won't work on live site)</p>
+            <p><strong>How to get imgur URL:</strong> Go to imgur.com → Upload image → Copy "Direct Link"</p>
+          </div>
+        </div>
         <div className="flex gap-2 mb-4">
           {sections.map((s) => (
             <button
@@ -297,18 +307,18 @@ export default function AdminPage() {
                             className="w-full border rounded p-1 text-xs"
                             placeholder={
                               f.key === "image"
-                                ? "Google Drive image link / Upload file"
+                                ? "Image URL (imgur.com) or Upload file"
                                 : f.key === "artwork"
-                                ? "Google Drive image link / Upload file"
+                                ? "Image URL (imgur.com) or Upload file"
                                 : f.key === "embedUrl"
-                                ? "Google Drive /preview URL / Upload file"
+                                ? "Google Drive /preview URL or Upload file"
                                 : f.key === "spotifyUrl"
-                                ? "Spotify URL / Upload file"
+                                ? "Spotify URL or Upload file"
                                 : f.key === "src"
-                                ? "Google Drive image link / Upload file"
+                                ? "Image URL (imgur.com) or Upload file"
                                 : f.key === "downloadUrl"
-                                ? "File URL / Upload file"
-                                : "Paste URL / Upload files"
+                                ? "File URL or Upload file"
+                                : "Paste URL or Upload files"
                             }
                             value={it[f.key] || ""}
                             onChange={(e) => updateField(idx, f.key, e.target.value)}
