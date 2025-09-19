@@ -77,7 +77,7 @@ const PhotoGallery = () => {
   }, [])
 
   // Prefer admin items over defaults when IDs collide
-  const photos = [...(external || []), ...defaults].filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
+  const photos = [...defaults, ...(external || [])].filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
 
   return (
     <section className="py-16 px-4">
@@ -91,10 +91,10 @@ const PhotoGallery = () => {
               key={photo.id}
               className="aspect-square relative overflow-hidden rounded-lg cursor-pointer group animate-fade-in-up"
               style={{ animationDelay: `${0.2 + (index * 0.1)}s` }}
-              onClick={() => setSelectedImage(encodeURI(photo.src))}
+              onClick={() => setSelectedImage(photo.src)}
             >
               <img
-                src={encodeURI(photo.src) || "/placeholder.svg"}
+                src={photo.src || "/placeholder.svg"}
                 alt={photo.alt}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />

@@ -118,7 +118,7 @@ const DiscographyCarousel = () => {
                     <div className="relative overflow-hidden rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 max-w-48 mx-auto">
                       {/* Blurred background */}
                       <img
-                        src={encodeURI(album.image)}
+                        src={album.image}
                         alt=""
                         className="absolute inset-0 w-full h-full object-cover filter blur-md scale-110"
                         onError={(e) => {
@@ -128,7 +128,7 @@ const DiscographyCarousel = () => {
                       />
                       {/* Main image */}
                       <img
-                        src={encodeURI(album.image)}
+                        src={album.image}
                         alt={album.title}
                         className="relative w-full aspect-square object-contain z-10 transition-all duration-500"
                         style={index === 2 ? { objectPosition: "center 0%" } : undefined}
