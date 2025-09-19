@@ -97,17 +97,14 @@ const NewsSection = () => {
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="aspect-[3/4] relative overflow-hidden">
-                  {item.type === "instagram" ? (
-                    <>
-                      {/* Instagram post - show image with Instagram styling */}
-                      <div className="w-full h-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center">
-                        <div className="text-center text-white p-4">
-                          <div className="text-2xl mb-2">📸</div>
-                          <div className="text-sm font-medium">Instagram Post</div>
-                          <div className="text-xs opacity-80 mt-1">Click to view on Instagram</div>
-                        </div>
+                  {item.type === "instagram" && item.link && item.link.includes("instagram.com") ? (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                      <div className="text-center p-4">
+                        <div className="text-4xl mb-2">📸</div>
+                        <div className="text-sm font-medium text-gray-700">Instagram Post</div>
+                        <div className="text-xs text-gray-500 mt-1">Click to view on Instagram</div>
                       </div>
-                    </>
+                    </div>
                   ) : (
                     <>
                       {/* Blurred background */}
