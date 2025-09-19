@@ -70,7 +70,7 @@ const BioSection = () => {
                   <div className="animate-fade-in-left" style={{ animationDelay: "0.1s" }}>
                     <div className="relative overflow-hidden shadow-3xl max-w-md mx-auto rounded-2xl transform hover:scale-105 hover:shadow-4xl transition-all duration-500 group">
                       <img
-                        src="/bio/1_photo_by_Martin_Heinmets.jpg"
+                        src="/uploads/1_photo_by_Martin_Heinmets.webp"
                         alt="Photo by Martin Heinmets"
                         className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
                       />
@@ -89,7 +89,7 @@ const BioSection = () => {
                   <div className="lg:col-start-2 animate-fade-in-left" style={{ animationDelay: "0.4s" }}>
                     <div className="relative overflow-hidden shadow-3xl max-w-md mx-auto rounded-2xl transform hover:scale-105 hover:shadow-4xl transition-all duration-500 group">
                       <img
-                        src="/bio/2_photo_by_Harri_Rospu.JPG"
+                        src="/uploads/2_photo_by_Harri_Rospu.webp"
                         alt="Photo by Harri Rospu"
                         className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
                       />
@@ -113,7 +113,7 @@ const BioSection = () => {
                   <div className="animate-fade-in-left" style={{ animationDelay: "0.7s" }}>
                     <div className="relative overflow-hidden shadow-3xl max-w-md mx-auto rounded-2xl transform hover:scale-105 hover:shadow-4xl transition-all duration-500 group">
                       <img
-                        src="/bio/3_photo_by_Martin_Heinmets.jpg"
+                        src="/uploads/3_photo_by_Martin_Heinmets.webp"
                         alt="Photo by Martin Heinmets"
                         className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
                       />
@@ -140,9 +140,9 @@ const BioSection = () => {
                     <div className="relative overflow-hidden shadow-3xl max-w-md mx-auto rounded-2xl transform hover:scale-105 hover:shadow-4xl transition-all duration-500 group">
                       <img
                         src={
-                          index === 0 ? "/bio/1_photo_by_Martin_Heinmets.jpg" :
-                          index === 1 ? "/bio/2_photo_by_Harri_Rospu.JPG" :
-                          "/bio/3_photo_by_Martin_Heinmets.jpg"
+                          index === 0 ? "/uploads/1_photo_by_Martin_Heinmets.webp" :
+                          index === 1 ? "/uploads/2_photo_by_Harri_Rospu.webp" :
+                          "/uploads/3_photo_by_Martin_Heinmets.webp"
                         }
                         alt={
                           index === 0 ? "Photo by Martin Heinmets" :

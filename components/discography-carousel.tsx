@@ -9,77 +9,56 @@ const discography = [
     id: 1,
     title: "Peedu Kass Momentum",
     year: "2016",
-    image: "/Discographythumbnails/Discography thumbnails/Peedu Kass Momentum_Peedu Kass Momentum.jpg",
+    image: "/uploads/Peedu Kass Momentum_Peedu Kass Momentum.webp",
     link: "#"
   },
   {
     id: 2,
     title: "Armada",
     year: "2012",
-    image: "/Discographythumbnails/Discography thumbnails/Armada_Peedu Kass Raun Juurikas Andre Maaker.jpg",
+    image: "/uploads/Armada_Peedu Kass Raun Juurikas Andre Maaker.webp",
     link: "#"
   },
   {
     id: 3,
     title: "Home",
     year: "2010",
-    image: "/Discographythumbnails/Discography thumbnails/Home_Peedu Kass 005.jpg",
-    link: "#"
-  },
-  {
-    id: 4,
-    title: "Kunagi läänes",
-    year: "2018",
-    image: "/Discographythumbnails/Discography thumbnails/Kunagi Läänes_Miljardid.jpg",
+    image: "/uploads/Home_Peedu Kass 005.webp",
     link: "#"
   },
   {
     id: 5,
     title: "Ma luban, et ma muutun",
     year: "2021",
-    image: "/Discographythumbnails/Discography thumbnails/Ma luban, et ma muutun_Miljardid.jpg",
-    link: "#"
-  },
-  {
-    id: 6,
-    title: "Efterglow",
-    year: "2019",
-    image: "/Discographythumbnails/Discography thumbnails/Efterglow_Erki Pärnoja.png",
-    link: "#"
-  },
-  {
-    id: 7,
-    title: "Saja lugu",
-    year: "2020",
-    image: "/Discographythumbnails/Discography thumbnails/Saja lugu_Erki Pärnoja.jpeg",
+    image: "/uploads/Ma luban, et ma muutun_Miljardid.webp",
     link: "#"
   },
   {
     id: 8,
     title: "Anna Kaneelina",
     year: "2018",
-    image: "/Discographythumbnails/Discography thumbnails/Anna Kaneelina_Anna Kaneelina.jpg",
+    image: "/uploads/Anna Kaneelina_Anna Kaneelina.webp",
     link: "#"
   },
   {
     id: 9,
     title: "Baltic Sketches",
     year: "2017",
-    image: "/Discographythumbnails/Discography thumbnails/Baltic Sketches_Tree Stones Quartet.jpg",
+    image: "/uploads/Baltic Sketches_Tree Stones Quartet.webp",
     link: "#"
   },
   {
     id: 10,
     title: "Imeline",
     year: "2019",
-    image: "/Discographythumbnails/Discography thumbnails/Imeline_Miljardid.jpg",
+    image: "/uploads/Imeline_Miljardid.webp",
     link: "#"
   },
   {
     id: 11,
     title: "Ood metsale",
     year: "2021",
-    image: "/Discographythumbnails/Discography thumbnails/Ood metsale_Joel Remmel Peedu Kass.jpg",
+    image: "/uploads/Ood metsale_Joel Remmel Peedu Kass.webp",
     link: "#"
   }
 ]
