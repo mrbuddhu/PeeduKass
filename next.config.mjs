@@ -10,15 +10,11 @@ const nextConfig = {
     unoptimized: true,
   },
   experimental: {
-    outputFileTracingExcludes: {
-      '*': [
-        'public/uploads/**/*.mp3',
-        'public/uploads/**/*.m4a',
-        'public/uploads/**/*.wav',
-        'public/uploads/**/*.aac',
-        'public/uploads/**/*.ogg',
-      ],
-    },
+        outputFileTracingExcludes: {
+          '*': [
+            'public/uploads/**',
+          ],
+        },
   },
 }
 
