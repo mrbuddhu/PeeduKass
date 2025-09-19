@@ -117,15 +117,11 @@ const translations = {
     "calendar.gigs.tickets": "Tickets",
 
     // Gallery Section
-    "gallery.photos.title": "Photos",
-    "gallery.videos.title": "Videos",
     "gallery.videos.more": "For more videos, visit our YouTube channel",
     "gallery.videos.visit": "Visit YouTube Channel",
 
     // Audio Section
-    "audio.player.title": "Featured Tracks",
     "audio.player.allTracks": "All Tracks",
-    "audio.streaming.title": "Listen on Your Favorite Platform",
     "audio.streaming.subtitle": "Stream and download music on all major platforms",
 
     // Press Kit Section
@@ -151,7 +147,6 @@ const translations = {
     "press.kit.experienceValue": "20+ Years",
     "press.kit.languagesValue": "Estonian, English, Russian, Finnish, German",
     "press.kit.contactValue": "info@peedukass.com",
-    "press.photos.title": "Press Photos",
     "press.photos.downloadAll": "Download All Photos",
     "press.photos.contact": "For additional photos or specific requirements, please contact us directly.",
   },
@@ -261,15 +256,11 @@ const translations = {
     "calendar.gigs.tickets": "Piletid",
 
     // Gallery Section
-    "gallery.photos.title": "Fotod",
-    "gallery.videos.title": "Videod",
     "gallery.videos.more": "Rohkem videoid leiad meie YouTube kanalist",
     "gallery.videos.visit": "Külasta YouTube Kanalit",
 
     // Audio Section
-    "audio.player.title": "Esitletud Lood",
     "audio.player.allTracks": "Kõik Lood",
-    "audio.streaming.title": "Kuula Oma Lemmikplatvormil",
     "audio.streaming.subtitle": "Kuula ja lae alla muusikat kõigil peamistel platvormidel",
 
     // Press Kit Section
@@ -295,7 +286,6 @@ const translations = {
     "press.kit.experienceValue": "20+ Aastat",
     "press.kit.languagesValue": "Eesti, Inglise, Vene, Soome, Saksa",
     "press.kit.contactValue": "info@peedukass.com",
-    "press.photos.title": "Pressifotod",
     "press.photos.downloadAll": "Lae Kõik Fotod Alla",
     "press.photos.contact": "Täiendavate fotode või spetsiifiliste nõuete puhul võtke palun otse ühendust.",
   },
