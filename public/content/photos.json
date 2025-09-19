@@ -1,49 +1,49 @@
 [
   {
     "id": 1,
-    "src": "/uploads/1758265829938-1.jpg",
+    "src": "https://i.imgur.com/abc123.jpg",
     "alt": "Live performance at Tallinn Jazz Club",
     "caption": "Live performance at Tallinn Jazz Club"
   },
   {
     "id": 2,
-    "src": "/uploads/1758265835769-2.jpg",
+    "src": "https://i.imgur.com/def456.jpg",
     "alt": "Recording session in the studio",
     "caption": "Recording session in the studio"
   },
   {
     "id": 3,
-    "src": "/uploads/1758265841028-3.jpg",
+    "src": "https://i.imgur.com/ghi789.jpg",
     "alt": "Collaboration with fellow musicians",
     "caption": "Collaboration with fellow musicians"
   },
   {
     "id": 4,
-    "src": "/uploads/1758265848488-4.jpg",
+    "src": "https://i.imgur.com/jkl012.jpg",
     "alt": "Close-up of bass guitar",
     "caption": "Close-up of bass guitar"
   },
   {
     "id": 5,
-    "src": "/uploads/1758265862683-5.jpg",
+    "src": "https://i.imgur.com/mno345.jpg",
     "alt": "Performance at Tartu Music Hall",
     "caption": "Performance at Tartu Music Hall"
   },
   {
     "id": 6,
-    "src": "/uploads/1758265868671-6.jpg",
+    "src": "https://i.imgur.com/pqr678.jpg",
     "alt": "Teaching masterclass",
     "caption": "Teaching masterclass"
   },
   {
     "id": 7,
-    "src": "/uploads/1758265875027-7.jpg",
+    "src": "https://i.imgur.com/stu901.jpg",
     "alt": "Backstage preparation",
     "caption": "Backstage preparation"
   },
   {
     "id": 8,
-    "src": "/uploads/1758265880511-8.jpg",
+    "src": "https://i.imgur.com/vwx234.jpg",
     "alt": "Performing with ensemble",
     "caption": "Performing with ensemble"
   }
