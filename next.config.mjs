@@ -19,7 +19,7 @@ const nextConfig = {
             'public/uploads/*.ogg',
             'public/bio/**',
             'public/Discographythumbnails/**',
-            'public/press-kit/**',
+            'public/press-kit/HIGH-RES PHOTOS/**',
           ],
         },
   },
