@@ -107,7 +107,7 @@ const AudioPlayer = () => {
     if (!audio) return
 
     // Set the audio source to the current track (prefer uploaded file over Spotify)
-    const trackSrc = effectiveTracks[currentTrack].spotifyUrl || effectiveTracks[currentTrack].src
+    const trackSrc = (effectiveTracks[currentTrack] as any).spotifyUrl || effectiveTracks[currentTrack].src
     audio.src = trackSrc
 
     const updateTime = () => {
