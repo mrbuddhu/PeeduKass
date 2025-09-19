@@ -20,7 +20,7 @@ const NewsSection = () => {
     setExpandedCards(newExpanded)
   }
 
-  const newsItems = [
+  const defaults = [
     {
       id: 1,
       date: t("news.item1.date"),
@@ -49,6 +49,26 @@ const NewsSection = () => {
       type: "news",
     },
   ]
+
+  const [external, setExternal] = useState<typeof defaults | null>(null)
+  useEffect(() => {
+    let mounted = true
+    const load = () => fetch("/content/news.json", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (mounted && Array.isArray(data)) setExternal(data) })
+      .catch(() => {})
+    load()
+    const handler = () => load()
+    window.addEventListener("cms:content-updated", handler as EventListener)
+    try {
+      const bc = new BroadcastChannel("cms")
+      bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
+    } catch {}
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+  }, [])
+
+  // Prefer admin items over defaults when IDs collide
+  const newsItems = [...(external || []), ...defaults].filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
 
   // Load external JSON with state so UI updates immediately after save
   const [externalItems, setExternalItems] = useState<typeof newsItems | null>(null)
