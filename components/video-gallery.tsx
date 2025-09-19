@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { useLanguage } from "./language-context"
 
 const VideoGallery = () => {
@@ -37,13 +38,32 @@ const VideoGallery = () => {
     },
   ]
 
+  // Load external videos if available
+  const [externalVideos, setExternalVideos] = useState<typeof videos | null>(null)
+  useEffect(() => {
+    let mounted = true
+    const load = () => fetch("/content/videos.json", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (mounted && Array.isArray(data)) setExternalVideos(data) })
+      .catch(() => {})
+    load()
+    const handler = () => load()
+    window.addEventListener("cms:content-updated", handler as EventListener)
+    try {
+      const bc = new BroadcastChannel("cms")
+      bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
+    } catch {}
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+  }, [])
+  const list = externalVideos || []
+
   return (
     <section className="py-16 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <h2 className="font-playfair text-3xl md:text-4xl font-bold text-black mb-8 text-center animate-fade-in-up">{t("gallery.videos.title")}</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {videos.map((video, index) => (
+          {list.map((video, index) => (
             <div key={video.id} className="bg-white rounded-lg overflow-hidden shadow-lg animate-fade-in-up" style={{ animationDelay: `${0.2 + (index * 0.2)}s` }}>
               {/* Google Drive Embed */}
               <div className="aspect-video relative">

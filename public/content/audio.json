@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "title": "Force Minor",
+    "album": "Peedu Kass Momentum",
+    "duration": "8:12",
+    "src": "https://open.spotify.com/track/3LQ7NfhrdPJmIeWYmZU5TX/preview",
+    "artwork": "/placeholder.svg?height=300&width=300&text=Force+Minor",
+    "artist": "Peedu Kass Momentum",
+    "spotifyUrl": "/uploads/1758278904319-1_force-minor_peedu-kass-momentum.m4a"
+  },
+  {
+    "id": 2,
+    "title": "Cinema Paradiso",
+    "album": "Peedu Kass Momentum",
+    "duration": "6:18",
+    "src": "https://open.spotify.com/track/6OJCISe0NqEd85q0d0UKb5/preview",
+    "artwork": "/placeholder.svg?height=300&width=300&text=Cinema+Paradiso",
+    "artist": "Peedu Kass Momentum",
+    "spotifyUrl": "/uploads/1758278909101-2_cinema-paradiso_peedu-kass-momentum.m4a"
+  },
+  {
+    "id": 3,
+    "title": "Kunagi läänes",
+    "album": "Miljardid",
+    "duration": "4:32",
+    "src": "https://open.spotify.com/track/053STjejOXP08rrYCfvZAC/preview",
+    "artwork": "/placeholder.svg?height=300&width=300&text=Kunagi+läänes",
+    "artist": "Miljardid",
+    "spotifyUrl": "/uploads/1758278915557-3_kunagi-laanes_miljardid.m4a"
+  },
+  {
+    "id": 4,
+    "title": "Efterglow",
+    "album": "Erki Pärnoja",
+    "duration": "5:45",
+    "src": "https://open.spotify.com/track/0iAYVJSh1v2OcMEEePAIp7/preview",
+    "artwork": "/placeholder.svg?height=300&width=300&text=Efterglow",
+    "artist": "Erki Pärnoja",
+    "spotifyUrl": "/uploads/1758278922522-4_efterglow_erki-parnoja.mp3"
+  },
+  {
+    "id": 5,
+    "title": "Reprise: Armada",
+    "album": "Peedu Kass, Raun Juurikas, Andre Maaker",
+    "duration": "7:23",
+    "src": "https://open.spotify.com/track/2hmwyxyLzfgHLhM5NQfeqG/preview",
+    "artwork": "/placeholder.svg?height=300&width=300&text=Reprise+Armada",
+    "artist": "Peedu Kass, Raun Juurikas, Andre Maaker",
+    "spotifyUrl": "/uploads/1758278928632-5_reprise-armada_peedu-kass-raun-juurikas-andre-maaker.mp3"
+  },
+  {
+    "id": 6,
+    "title": "When The Floods Are Over",
+    "album": "European Jazz Orchestra 2011",
+    "duration": "6:55",
+    "src": "https://open.spotify.com/track/082c4n6twzKmQvGpcw9KAi/preview",
+    "artwork": "/placeholder.svg?height=300&width=300&text=Jäälõhkuja+poeg",
+    "artist": "Peedu Kass 005",
+    "spotifyUrl": "/uploads/1758278938388-6_when-the-floods-are-over_peedu-kass-005.mp3"
+  },
+  {
+    "id": 7,
+    "title": "Jäälõhkuja poeg",
+    "album": "Erki Pärnoja Saja lugu",
+    "duration": "4:18",
+    "src": "https://open.spotify.com/track/2mKKweW2doNssevKXIlXBc/preview",
+    "artwork": "/placeholder.svg?height=300&width=300&text=Vihm+Haapsalu",
+    "artist": "European Jazz Orchestra 2011",
+    "spotifyUrl": "/uploads/1758278944754-7_jaaalohkuja-poeg_european-jazz-orchestra.mp3"
+  },
+  {
+    "id": 8,
+    "title": "Vihm/Haapsalu",
+    "album": "Anna Kaneelina",
+    "duration": "5:12",
+    "src": "https://open.spotify.com/track/6AUpKzXXVjDxkeiWqys3aE/preview",
+    "artwork": "/placeholder.svg?height=300&width=300&text=Apple+Tree",
+    "artist": "Erki Pärnoja Saja lugu",
+    "spotifyUrl": "/uploads/1758278952270-8_vihmhaapsalu_erki-parnoja-saja-lugu.mp3"
+  },
+  {
+    "id": 9,
+    "title": "Apple Tree",
+    "album": "Anna Kaneelina",
+    "duration": "4:20",
+    "src": "https://open.spotify.com/track/6AUpKzXXVjDxkeiWqys3aE/preview",
+    "artwork": "/placeholder.svg?height=300&width=300&text=Apple+Tree",
+    "artist": "Anna Kaneelina",
+    "spotifyUrl": "/uploads/1758278957911-9_apple-tree_anna-kaneelina.mp3"
+  }
+]

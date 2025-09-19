@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Calendar, ExternalLink, ChevronDown, ChevronUp } from "lucide-react"
 import { useLanguage } from "./language-context"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const NewsSection = () => {
   const { t } = useLanguage()
@@ -48,49 +48,59 @@ const NewsSection = () => {
       link: t("news.item2.link"),
       type: "news",
     },
-    {
-      id: 4,
-      date: t("news.item4.date"),
-      title: t("news.item4.title"),
-      content: t("news.item4.content"),
-      image: "/placeholder-ta3cn.png",
-      link: t("news.item4.link"),
-      type: "instagram",
-    },
-    {
-      id: 5,
-      date: t("news.item5.date"),
-      title: t("news.item5.title"),
-      content: t("news.item5.content"),
-      image: "/placeholder-logo.png",
-      link: t("news.item5.link"),
-      type: "instagram",
-    },
   ]
+
+  // Load external JSON with state so UI updates immediately after save
+  const [externalItems, setExternalItems] = useState<typeof newsItems | null>(null)
+  useEffect(() => {
+    let mounted = true
+    const load = () => {
+      fetch("/content/news.json", { cache: "no-store" })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data) => {
+          if (mounted && Array.isArray(data) && data.length > 0) {
+            setExternalItems(data)
+          }
+        })
+        .catch(() => {})
+    }
+    load()
+    const handler = () => load()
+    window.addEventListener("cms:content-updated", handler as EventListener)
+    try {
+      const bc = new BroadcastChannel("cms")
+      bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
+    } catch {}
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+  }, [])
+  // Always show all 3 default news items + any additional ones from admin panel (remove duplicates by ID)
+  const allItems = [...newsItems, ...(externalItems || [])]
+  const itemsToRender = allItems.filter((item, index, self) => 
+    index === self.findIndex(i => i.id === item.id)
+  )
 
   return (
     <section className="py-24 px-6">
       <div className="bg-gray-50">
         <div className="max-w-7xl mx-auto py-16">
 
-          {/* First Row - 3 cards */}
+          {/* Render all cards; grid auto-wraps in 3 columns on desktop */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
-            {newsItems.slice(0, 3).map((item, index) => (
+            {itemsToRender.map((item, index) => (
               <Card
                 key={item.id}
                 className="overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 bg-white group p-0 animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="aspect-[3/4] relative overflow-hidden">
-                  {item.type === "instagram" ? (
+                  {item.type === "instagram" && item.link && item.link.includes("instagram.com") ? (
                     <iframe
                       src={`${item.link}/embed/`}
                       className="w-full h-full border-0"
                       scrolling="no"
-                      allowTransparency={true}
+                      allow="encrypted-media"
                       title={item.title}
                       frameBorder="0"
-                      allow="encrypted-media"
                     />
                   ) : (
                     <>
@@ -138,7 +148,7 @@ const NewsSection = () => {
                       onClick={() => {
                         if (item.type === "instagram") {
                           window.open("https://www.instagram.com/peedu07", '_blank')
-                        } else if (item.content) {
+                        } else if (item.type === "news") {
                           toggleCard(item.id)
                         } else {
                           window.open(item.link, '_blank')
@@ -148,14 +158,14 @@ const NewsSection = () => {
                       <span>
                         {item.type === "instagram" 
                           ? "Visit Profile" 
-                          : item.content 
+                          : item.type === "news"
                             ? (expandedCards.has(item.id) ? "Show Less" : t("news.readMore"))
                             : t("news.readMore")
                         }
                       </span>
                       {item.type === "instagram" ? (
                         <ExternalLink className="h-4 w-4" />
-                      ) : item.content ? (
+                      ) : item.type === "news" ? (
                         expandedCards.has(item.id) ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />
                       ) : (
                         <ExternalLink className="h-4 w-4" />
@@ -167,7 +177,7 @@ const NewsSection = () => {
             ))}
           </div>
 
-          {/* Second Row hidden per request */}
+          {/* End cards */}
         </div>
       </div>
     </section>
