@@ -112,11 +112,15 @@ const AudioPlayer = () => {
 
     const updateTime = () => {
       setCurrentTime(audio.currentTime)
-      setProgress((audio.currentTime / audio.duration) * 100)
+      if (isFinite(audio.duration) && audio.duration > 0) {
+        setProgress((audio.currentTime / audio.duration) * 100)
+      }
     }
 
     const updateDuration = () => {
-      setDuration(audio.duration)
+      if (isFinite(audio.duration) && audio.duration > 0) {
+        setDuration(audio.duration)
+      }
     }
 
     const handleEnded = () => {
@@ -166,13 +170,15 @@ const AudioPlayer = () => {
 
   const handleWaveformClick = (e: React.MouseEvent) => {
     const audio = audioRef.current
-    if (!audio) return
+    if (!audio || !isFinite(audio.duration) || audio.duration <= 0) return
 
     const rect = e.currentTarget.getBoundingClientRect()
     const clickX = e.clientX - rect.left
     const width = rect.width
     const clickTime = (clickX / width) * audio.duration
-    audio.currentTime = clickTime
+    if (isFinite(clickTime) && clickTime >= 0) {
+      audio.currentTime = clickTime
+    }
   }
 
   // Don't render if no tracks loaded yet
