@@ -4,9 +4,19 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type, X-Admin-Secret');
 
-// Simple auth check
-$adminSecret = $_SERVER['HTTP_X_ADMIN_SECRET'] ?? '';
+// For debugging 500s, uncomment the next two lines temporarily
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+
+// Simple auth check - try header first, then body
+$adminSecret = isset($_SERVER['HTTP_X_ADMIN_SECRET']) ? $_SERVER['HTTP_X_ADMIN_SECRET'] : '';
 $expectedSecret = 'peedukass-admin-2024';
+
+// If no header, try to get from body
+if (empty($adminSecret)) {
+    $input = json_decode(file_get_contents('php://input'), true);
+    $adminSecret = isset($input['secret']) ? $input['secret'] : '';
+}
 
 if ($adminSecret !== $expectedSecret) {
     http_response_code(401);
@@ -20,7 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$input = json_decode(file_get_contents('php://input'), true);
+// Get input (already decoded above if no header auth)
+if (!isset($input)) {
+    $input = json_decode(file_get_contents('php://input'), true);
+}
 
 if (!$input || !isset($input['path']) || !isset($input['contents'])) {
     http_response_code(400);
@@ -31,23 +44,44 @@ if (!$input || !isset($input['path']) || !isset($input['contents'])) {
 $relPath = $input['path'];
 $contents = $input['contents'];
 
-// Security: only allow writing to content directory
-$allowedPath = '../content/';
-$fullPath = realpath($allowedPath . $relPath);
-
-if (!$fullPath || !str_starts_with($fullPath, realpath($allowedPath))) {
-    http_response_code(403);
-    echo json_encode(['error' => 'Path not allowed']);
+// Base content directory (../content relative to this file)
+$baseDir = realpath(__DIR__ . '/../');
+if ($baseDir === false) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Base path resolution failed']);
     exit;
 }
 
-// Create content directory if it doesn't exist
-if (!is_dir($allowedPath)) {
-    mkdir($allowedPath, 0755, true);
+$contentDir = $baseDir . '/content';
+if (!is_dir($contentDir)) {
+    if (!mkdir($contentDir, 0755, true)) {
+        http_response_code(500);
+        echo json_encode(['error' => 'Failed to create content directory']);
+        exit;
+    }
+}
+
+// Normalize and validate the requested relative path
+$safeRel = '/' . ltrim($relPath, '/');
+if (strpos($safeRel, '..') !== false) {
+    http_response_code(403);
+    echo json_encode(['error' => 'Path traversal not allowed']);
+    exit;
+}
+
+$targetPath = $contentDir . $safeRel;
+$targetDir = dirname($targetPath);
+if (!is_dir($targetDir)) {
+    if (!mkdir($targetDir, 0755, true)) {
+        http_response_code(500);
+        echo json_encode(['error' => 'Failed to create target directory']);
+        exit;
+    }
 }
 
 // Write file
-if (file_put_contents($fullPath, $contents) !== false) {
+$bytes = @file_put_contents($targetPath, $contents);
+if ($bytes !== false) {
     echo json_encode(['success' => true]);
 } else {
     http_response_code(500);

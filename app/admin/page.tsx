@@ -137,7 +137,7 @@ export default function AdminPage() {
             "Content-Type": "application/json",
             "X-Admin-Secret": "peedukass-admin-2024",
           },
-          body: JSON.stringify({ path: backupPath, contents: pretty }),
+          body: JSON.stringify({ path: backupPath, contents: pretty, secret: "peedukass-admin-2024" }),
         })
       } catch {}
 
@@ -148,7 +148,7 @@ export default function AdminPage() {
           "Content-Type": "application/json",
           "X-Admin-Secret": "peedukass-admin-2024",
         },
-        body: JSON.stringify({ path: section.file, contents: pretty }),
+        body: JSON.stringify({ path: section.file, contents: pretty, secret: "peedukass-admin-2024" }),
       })
       if (!res.ok) throw new Error(await res.text())
       setMessage("Saved ✓ (backup created)")
