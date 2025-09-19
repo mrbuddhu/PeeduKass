@@ -303,41 +303,21 @@ export default function AdminPage() {
                             className="w-full border rounded p-1 text-xs"
                             placeholder={
                               f.key === "image"
-                                ? "Image URL (imgur.com) or Upload file"
+                                ? "Image URL (imgur.com or peedukass.com/uploads)"
                                 : f.key === "artwork"
-                                ? "Image URL (imgur.com) or Upload file"
+                                ? "Artwork URL (imgur.com or peedukass.com/uploads)"
                                 : f.key === "embedUrl"
-                                ? "Google Drive /preview URL or Upload file"
+                                ? "Google Drive /preview URL"
                                 : f.key === "spotifyUrl"
-                                ? "Spotify URL or Upload file"
+                                ? "Audio URL (peedukass.com/uploads) or Spotify URL"
                                 : f.key === "src"
-                                ? "Image URL (imgur.com) or Upload file"
+                                ? "Image/Audio URL (peedukass.com/uploads)"
                                 : f.key === "downloadUrl"
-                                ? "File URL or Upload file"
-                                : "Paste URL or Upload files"
+                                ? "File URL"
+                                : "Paste URL"
                             }
                             value={it[f.key] || ""}
                             onChange={(e) => updateField(idx, f.key, e.target.value)}
-                          />
-                          <input
-                            type="file"
-                            className="w-full text-xs border-2 border-dashed border-blue-400 bg-blue-50 p-2 rounded cursor-pointer hover:bg-blue-100 file:mr-4 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-medium file:bg-blue-600 file:text-white hover:file:bg-blue-700"
-                            accept={f.key === "embedUrl" ? "video/*" : f.key === "spotifyUrl" ? "audio/*" : f.key === "downloadUrl" ? ".pdf,.zip,application/pdf,application/zip" : "image/*"}
-                            onChange={(e) => {
-                              const file = e.target.files?.[0]
-                              if (file) {
-                                const fd = new FormData()
-                                fd.append("file", file)
-                                fetch("https://peedukass.com/api/upload.php?secret=peedukass-admin-2024", {
-                                  method: "POST",
-                                  body: fd,
-                                })
-                                  .then((res) => res.json())
-                                  .then((data) => {
-                                    updateField(idx, f.key, data.url)
-                                  })
-                              }
-                            }}
                           />
                         </div>
                       ) : (
