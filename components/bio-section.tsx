@@ -1,10 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
-import { useLanguage } from "./language-context"
 
 const BioSection = () => {
-  const { language, setLanguage } = useLanguage()
+  const [language, setLanguage] = useState<"en" | "est">("en")
 
   const bioContent = {
     en: {
