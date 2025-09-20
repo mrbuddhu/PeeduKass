@@ -22,7 +22,9 @@ const BandsSection = () => {
     {
       name: "Peedu Kass Solo",
       members: [
-        "kontrabass, basskitarr, elektroonika"
+        "kontrabass",
+        "basskitarr", 
+        "elektroonika"
       ],
       image: "/placeholder.svg?height=400&width=400&text=Peedu+Kass+Solo",
       link: "#" // You can provide the actual link
