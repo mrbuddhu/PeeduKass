@@ -1,3 +1,0 @@
-[33m4c583fa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfresh-main[m[33m)[m refactor: replace logo images with text representation in footer and navigation for improved accessibility and consistency
-[33mdbdb3e2[m[33m ([m[1;31morigin/fresh-main[m[33m)[m refactor: remove weekday formatting from date display in GigsSection for simplified date presentation
-[33m11fb780[m refactor: adjust layout and component styles for improved spacing, add logo to footer and navigation, and enhance hero section responsiveness
