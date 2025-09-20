@@ -39,7 +39,7 @@ const AudioPlayer = () => {
     const audio = audioRef.current
     if (!audio || effectiveTracks.length === 0) return
 
-    // Set the audio source to the current track (prefer uploaded file over Spotify)
+    // Set the audio source to the current track (prefer local file over Spotify preview)
     const trackSrc = (effectiveTracks[currentTrack] as any)?.spotifyUrl || effectiveTracks[currentTrack]?.src
     if (trackSrc) {
       audio.src = trackSrc
@@ -167,6 +167,20 @@ const AudioPlayer = () => {
                     <SkipForward className="h-3 w-3" />
                   </Button>
                 </div>
+
+                {/* Listen on Spotify Button - only show for tracks without local files */}
+                {!(effectiveTracks[currentTrack] as any)?.spotifyUrl?.startsWith('/uploads/') && (
+                  <div className="mb-4">
+                    <Button 
+                      variant="default" 
+                      size="sm" 
+                      onClick={() => window.open((effectiveTracks[currentTrack] as any)?.spotifyUrl, '_blank')}
+                      className="bg-green-600 hover:bg-green-700 text-white font-vietnam text-xs px-4 py-2"
+                    >
+                      🎵 Listen Full Track on Spotify
+                    </Button>
+                  </div>
+                )}
 
                 {/* Time Display */}
                 <div className="flex items-center justify-between text-xs text-gray-500 mb-3 max-w-xs mx-auto">
