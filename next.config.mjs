@@ -12,7 +12,7 @@ const nextConfig = {
   experimental: {
         outputFileTracingExcludes: {
           '*': [
-            'public/uploads/*.mp3',
+            // Exclude large M4A files (32MB each) - keep smaller MP3 files
             'public/uploads/*.m4a',
             'public/uploads/*.wav',
             'public/uploads/*.aac',

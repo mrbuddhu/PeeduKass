@@ -27,7 +27,7 @@
     "src": "https://open.spotify.com/track/053STjejOXP08rrYCfvZAC/preview",
     "artwork": "/placeholder.svg?height=300&width=300&text=Kunagi+läänes",
     "artist": "Miljardid",
-    "spotifyUrl": "/uploads/1758278915557-3_kunagi-laanes_miljardid.m4a"
+    "spotifyUrl": "https://open.spotify.com/track/053STjejOXP08rrYCfvZAC"
   },
   {
     "id": 4,
@@ -47,7 +47,7 @@
     "src": "https://open.spotify.com/track/2hmwyxyLzfgHLhM5NQfeqG/preview",
     "artwork": "/placeholder.svg?height=300&width=300&text=Reprise+Armada",
     "artist": "Peedu Kass, Raun Juurikas, Andre Maaker",
-    "spotifyUrl": "/uploads/1758278928632-5_reprise-armada_peedu-kass-raun-juurikas-andre-maaker.mp3"
+    "spotifyUrl": "https://open.spotify.com/track/2hmwyxyLzfgHLhM5NQfeqG"
   },
   {
     "id": 6,
@@ -67,7 +67,7 @@
     "src": "https://open.spotify.com/track/2mKKweW2doNssevKXIlXBc/preview",
     "artwork": "/placeholder.svg?height=300&width=300&text=Vihm+Haapsalu",
     "artist": "European Jazz Orchestra 2011",
-    "spotifyUrl": "/uploads/1758278944754-7_jaaalohkuja-poeg_european-jazz-orchestra.mp3"
+    "spotifyUrl": "https://open.spotify.com/track/2mKKweW2doNssevKXIlXBc"
   },
   {
     "id": 8,

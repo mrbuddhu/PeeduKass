@@ -15,75 +15,8 @@ const AudioPlayer = () => {
   const audioRef = useRef<HTMLAudioElement>(null)
   const { t } = useLanguage()
 
-  const tracks = [
-    {
-      id: 1,
-      title: "Force Minor",
-      album: "Peedu Kass Momentum",
-      duration: "8:12",
-      src: "https://open.spotify.com/track/3LQ7NfhrdPJmIeWYmZU5TX/preview",
-      artwork: "/placeholder.svg?height=300&width=300&text=Force+Minor",
-    },
-    {
-      id: 2,
-      title: "Cinema Paradiso",
-      album: "Peedu Kass Momentum",
-      duration: "6:18",
-      src: "https://open.spotify.com/track/6OJCISe0NqEd85q0d0UKb5/preview",
-      artwork: "/placeholder.svg?height=300&width=300&text=Cinema+Paradiso",
-    },
-    {
-      id: 3,
-      title: "Kunagi läänes",
-      album: "Miljardid",
-      duration: "4:32",
-      src: "https://open.spotify.com/track/053STjejOXP08rrYCfvZAC/preview",
-      artwork: "/placeholder.svg?height=300&width=300&text=Kunagi+Läänes",
-    },
-    {
-      id: 4,
-      title: "Efterglow",
-      album: "Erki Pärnoja",
-      duration: "7:22",
-      src: "https://open.spotify.com/track/0iAYVJSh1v2OcMEEePAIp7/preview",
-      artwork: "/placeholder.svg?height=300&width=300&text=Efterglow",
-    },
-    {
-      id: 5,
-      title: "Reprise: Armada",
-      album: "Peedu Kass, Raun Juurikas, Andre Maaker",
-      duration: "5:45",
-      src: "https://open.spotify.com/track/2hmwyxyLzfgHLhM5NQfeqG/preview",
-      artwork: "/placeholder.svg?height=300&width=300&text=Reprise+Armada",
-    },
-    {
-      id: 6,
-      title: "Jäälõhkuja poeg",
-      album: "European Jazz Orchestra 2011",
-      duration: "6:30",
-      src: "https://open.spotify.com/track/082c4n6twzKmQvGpcw9KAi/preview",
-      artwork: "/placeholder.svg?height=300&width=300&text=Jäälõhkuja+Poeg",
-    },
-    {
-      id: 7,
-      title: "Vihm/Haapsalu",
-      album: "Erki Pärnoja Saja lugu",
-      duration: "5:15",
-      src: "https://open.spotify.com/track/2mKKweW2doNssevKXIlXBc/preview",
-      artwork: "/placeholder.svg?height=300&width=300&text=Vihm+Haapsalu",
-    },
-    {
-      id: 8,
-      title: "Apple Tree",
-      album: "Anna Kaneelina",
-      duration: "4:20",
-      src: "https://open.spotify.com/track/6AUpKzXXVjDxkeiWqys3aE/preview",
-      artwork: "/placeholder.svg?height=300&width=300&text=Apple+Tree",
-    },
-  ]
-
   // Load external audio list if available
-  const [externalTracks, setExternalTracks] = useState<typeof tracks | null>(null)
+  const [externalTracks, setExternalTracks] = useState<any[] | null>(null)
   useEffect(() => {
     let mounted = true
     const load = () => fetch("/content/audio.json", { cache: "no-store" })
@@ -104,11 +37,13 @@ const AudioPlayer = () => {
   // Audio event handlers for native HTML5 playback
   useEffect(() => {
     const audio = audioRef.current
-    if (!audio) return
+    if (!audio || effectiveTracks.length === 0) return
 
-    // Set the audio source to the current track (prefer uploaded file over Spotify)
-    const trackSrc = (effectiveTracks[currentTrack] as any).spotifyUrl || effectiveTracks[currentTrack].src
-    audio.src = trackSrc
+    // Set the audio source to the current track (prefer local file over Spotify preview)
+    const trackSrc = (effectiveTracks[currentTrack] as any)?.spotifyUrl || effectiveTracks[currentTrack]?.src
+    if (trackSrc) {
+      audio.src = trackSrc
+    }
 
     const updateTime = () => {
       setCurrentTime(audio.currentTime)
@@ -136,7 +71,7 @@ const AudioPlayer = () => {
       audio.removeEventListener('loadedmetadata', updateDuration)
       audio.removeEventListener('ended', handleEnded)
     }
-  }, [currentTrack])
+  }, [currentTrack, effectiveTracks])
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60)
@@ -159,12 +94,12 @@ const AudioPlayer = () => {
   }
 
   const nextTrack = () => {
-    setCurrentTrack((prev) => (prev + 1) % tracks.length)
+    setCurrentTrack((prev) => (prev + 1) % effectiveTracks.length)
     setIsPlaying(true)
   }
 
   const prevTrack = () => {
-    setCurrentTrack((prev) => (prev - 1 + tracks.length) % tracks.length)
+    setCurrentTrack((prev) => (prev - 1 + effectiveTracks.length) % effectiveTracks.length)
     setIsPlaying(true)
   }
 
@@ -203,9 +138,9 @@ const AudioPlayer = () => {
             <div className="max-w-md mx-auto">
               {/* Track Info & Controls */}
               <div className="animate-fade-in-up text-center" style={{ animationDelay: "0.2s" }}>
-                <h3 className="font-playfair text-xl font-bold text-black mb-1">{effectiveTracks[currentTrack].title}</h3>
-                <p className="font-vietnam text-gray-600 mb-1 text-sm">{effectiveTracks[currentTrack].album}</p>
-                <p className="font-vietnam text-xs text-gray-500 mb-4">{effectiveTracks[currentTrack].duration}</p>
+                <h3 className="font-playfair text-xl font-bold text-black mb-1">{effectiveTracks[currentTrack]?.title}</h3>
+                <p className="font-vietnam text-gray-600 mb-1 text-sm">{effectiveTracks[currentTrack]?.album}</p>
+                <p className="font-vietnam text-xs text-gray-500 mb-4">{effectiveTracks[currentTrack]?.duration}</p>
 
                 {/* Play Controls */}
                 <div className="flex items-center justify-center gap-3 mb-4">
@@ -232,6 +167,20 @@ const AudioPlayer = () => {
                     <SkipForward className="h-3 w-3" />
                   </Button>
                 </div>
+
+                {/* Listen on Spotify Button - only show for tracks without local files */}
+                {!(effectiveTracks[currentTrack] as any)?.spotifyUrl?.startsWith('/uploads/') && (
+                  <div className="mb-4">
+                    <Button 
+                      variant="default" 
+                      size="sm" 
+                      onClick={() => window.open((effectiveTracks[currentTrack] as any)?.spotifyUrl, '_blank')}
+                      className="bg-green-600 hover:bg-green-700 text-white font-vietnam text-xs px-4 py-2"
+                    >
+                      🎵 Listen Full Track on Spotify
+                    </Button>
+                  </div>
+                )}
 
                 {/* Time Display */}
                 <div className="flex items-center justify-between text-xs text-gray-500 mb-3 max-w-xs mx-auto">
