@@ -100,7 +100,7 @@ const DiscographyCarousel = () => {
               {discography.map((album, index) => (
                 <div key={album.id} className="flex-shrink-0 px-2" style={{ width: `${100 / itemsToShow}%` }}>
                   <div className="group cursor-pointer">
-                    <div className="relative overflow-hidden rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 max-w-48 mx-auto">
+                    <div className="relative overflow-hidden transition-all duration-300 transform hover:scale-110 max-w-48 mx-auto">
                       {/* Blurred background */}
                       <img
                         src={album.image}
