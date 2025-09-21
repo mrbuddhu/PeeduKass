@@ -72,7 +72,7 @@ const BioSection = () => {
                       <img
                         src="/uploads/1_photo_by_Martin_Heinmets.webp"
                         alt="Photo by Martin Heinmets"
-                        className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                        className="w-full h-auto object-cover transition-all duration-700"
                       />
                       <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-300" />
                     </div>
@@ -91,7 +91,7 @@ const BioSection = () => {
                       <img
                         src="/uploads/2_photo_by_Harri_Rospu.webp"
                         alt="Photo by Harri Rospu"
-                        className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                        className="w-full h-auto object-cover transition-all duration-700"
                       />
                       <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-300" />
                     </div>
@@ -115,7 +115,7 @@ const BioSection = () => {
                       <img
                         src="/uploads/3_photo_by_Martin_Heinmets.webp"
                         alt="Photo by Martin Heinmets"
-                        className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                        className="w-full h-auto object-cover transition-all duration-700"
                       />
                       <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-300" />
                     </div>
@@ -149,7 +149,7 @@ const BioSection = () => {
                           index === 1 ? "Photo by Harri Rospu" :
                           "Photo by Martin Heinmets"
                         }
-                        className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                        className="w-full h-auto object-cover transition-all duration-700"
                       />
                       <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-300" />
                     </div>

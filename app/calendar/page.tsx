@@ -9,7 +9,7 @@ export const metadata = {
     description: "View upcoming performances, concerts, and events by Peedu Kass. Stay updated with his latest shows, tours, and musical appearances.",
     images: [
       {
-        url: "https://peedukass.com/logo.png",
+        url: "https://peedukass.com/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Peedu Kass - Calendar",
@@ -19,7 +19,7 @@ export const metadata = {
   twitter: {
     title: "Calendar - Peedu Kass | Upcoming Performances",
     description: "View upcoming performances, concerts, and events by Peedu Kass. Stay updated with his latest shows, tours, and musical appearances.",
-    images: ["https://peedukass.com/logo.png"],
+    images: ["https://peedukass.com/og-image.webp"],
   },
 }
 
