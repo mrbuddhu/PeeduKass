@@ -9,7 +9,7 @@ export const metadata = {
     description: "Get in touch with Peedu Kass for bookings, collaborations, and inquiries. Contact information for musical projects, performances, and partnerships.",
     images: [
       {
-        url: "https://peedukass.com/logo.png",
+        url: "https://peedukass.com/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Peedu Kass - Contact",
@@ -19,7 +19,7 @@ export const metadata = {
   twitter: {
     title: "Contact - Peedu Kass | Bookings & Inquiries",
     description: "Get in touch with Peedu Kass for bookings, collaborations, and inquiries. Contact information for musical projects, performances, and partnerships.",
-    images: ["https://peedukass.com/logo.png"],
+    images: ["https://peedukass.com/og-image.webp"],
   },
 }
 

@@ -12,7 +12,9 @@ const AudioPlayer = () => {
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [progress, setProgress] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
+  const preloadRefs = useRef<HTMLAudioElement[]>([])
   const { t } = useLanguage()
 
   // Load external audio list if available
@@ -34,15 +36,46 @@ const AudioPlayer = () => {
   }, [])
   const effectiveTracks = externalTracks || []
 
+  // Preload next track for instant playback
+  useEffect(() => {
+    if (effectiveTracks.length === 0) return
+
+    // Create preload audio elements for next few tracks
+    const nextTrackIndex = (currentTrack + 1) % effectiveTracks.length
+    const nextTrackSrc = effectiveTracks[nextTrackIndex]?.src
+
+    if (nextTrackSrc) {
+      // Create a hidden audio element to preload the next track
+      const preloadAudio = document.createElement('audio')
+      preloadAudio.preload = 'auto'
+      preloadAudio.src = nextTrackSrc
+      preloadAudio.load()
+      
+      // Store reference to prevent garbage collection
+      preloadRefs.current.push(preloadAudio)
+      
+      // Clean up old preload elements (keep only last 2)
+      if (preloadRefs.current.length > 2) {
+        const oldAudio = preloadRefs.current.shift()
+        if (oldAudio) {
+          oldAudio.src = ''
+          oldAudio.load()
+        }
+      }
+    }
+  }, [currentTrack, effectiveTracks])
+
   // Audio event handlers for native HTML5 playback
   useEffect(() => {
     const audio = audioRef.current
     if (!audio || effectiveTracks.length === 0) return
 
-    // Set the audio source to the current track (prefer local file over Spotify preview)
-    const trackSrc = (effectiveTracks[currentTrack] as any)?.spotifyUrl || effectiveTracks[currentTrack]?.src
+    // Set the audio source to the current track (use local file only)
+    const trackSrc = effectiveTracks[currentTrack]?.src
     if (trackSrc) {
+      setIsLoading(true)
       audio.src = trackSrc
+      audio.load() // Force reload
     }
 
     const updateTime = () => {
@@ -55,6 +88,7 @@ const AudioPlayer = () => {
     const updateDuration = () => {
       if (isFinite(audio.duration) && audio.duration > 0) {
         setDuration(audio.duration)
+        setIsLoading(false)
       }
     }
 
@@ -62,14 +96,41 @@ const AudioPlayer = () => {
       nextTrack()
     }
 
+    const handleLoadStart = () => {
+      setIsLoading(true)
+    }
+
+    const handleCanPlay = () => {
+      setIsLoading(false)
+      // Auto-play when track is ready (if it was selected by clicking a card)
+      if (!isPlaying) {
+        audio.play().then(() => {
+          setIsPlaying(true)
+        }).catch((error) => {
+          console.log('Auto-play failed:', error)
+        })
+      }
+    }
+
+    const handleError = () => {
+      setIsLoading(false)
+      console.error('Audio loading error')
+    }
+
     audio.addEventListener('timeupdate', updateTime)
     audio.addEventListener('loadedmetadata', updateDuration)
     audio.addEventListener('ended', handleEnded)
+    audio.addEventListener('loadstart', handleLoadStart)
+    audio.addEventListener('canplay', handleCanPlay)
+    audio.addEventListener('error', handleError)
 
     return () => {
       audio.removeEventListener('timeupdate', updateTime)
       audio.removeEventListener('loadedmetadata', updateDuration)
       audio.removeEventListener('ended', handleEnded)
+      audio.removeEventListener('loadstart', handleLoadStart)
+      audio.removeEventListener('canplay', handleCanPlay)
+      audio.removeEventListener('error', handleError)
     }
   }, [currentTrack, effectiveTracks])
 
@@ -81,26 +142,31 @@ const AudioPlayer = () => {
 
   const togglePlay = () => {
     const audio = audioRef.current
-    if (!audio) return
+    if (!audio || isLoading) return
 
     if (isPlaying) {
       audio.pause()
+      setIsPlaying(false)
     } else {
-      audio.play().catch((error) => {
+      setIsLoading(true)
+      audio.play().then(() => {
+        setIsPlaying(true)
+        setIsLoading(false)
+      }).catch((error) => {
         console.log('Audio play failed:', error)
+        setIsLoading(false)
       })
     }
-    setIsPlaying(!isPlaying)
   }
 
   const nextTrack = () => {
     setCurrentTrack((prev) => (prev + 1) % effectiveTracks.length)
-    setIsPlaying(true)
+    // Auto-play will be handled by the track change effect
   }
 
   const prevTrack = () => {
     setCurrentTrack((prev) => (prev - 1 + effectiveTracks.length) % effectiveTracks.length)
-    setIsPlaying(true)
+    // Auto-play will be handled by the track change effect
   }
 
   const handleWaveformClick = (e: React.MouseEvent) => {
@@ -131,7 +197,7 @@ const AudioPlayer = () => {
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Hidden Audio Element */}
-        <audio ref={audioRef} preload="metadata" />
+        <audio ref={audioRef} preload="auto" />
         {/* Current Track Player */}
         <Card className="mb-8 overflow-hidden animate-fade-in-up">
           <CardContent className="p-4">
@@ -151,9 +217,15 @@ const AudioPlayer = () => {
                     variant="outline" 
                     size="sm" 
                     onClick={togglePlay}
+                    disabled={isLoading}
                     className="w-10 h-10 rounded-full p-0"
                   >
-                    {isPlaying ? (
+                    {isLoading ? (
+                      <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                      </svg>
+                    ) : isPlaying ? (
                       <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
                       </svg>
@@ -168,19 +240,6 @@ const AudioPlayer = () => {
                   </Button>
                 </div>
 
-                {/* Listen on Spotify Button - only show for tracks without local files */}
-                {!(effectiveTracks[currentTrack] as any)?.spotifyUrl?.startsWith('/uploads/') && (
-                  <div className="mb-4">
-                    <Button 
-                      variant="default" 
-                      size="sm" 
-                      onClick={() => window.open((effectiveTracks[currentTrack] as any)?.spotifyUrl, '_blank')}
-                      className="bg-green-600 hover:bg-green-700 text-white font-vietnam text-xs px-4 py-2"
-                    >
-                      🎵 Listen Full Track on Spotify
-                    </Button>
-                  </div>
-                )}
 
                 {/* Time Display */}
                 <div className="flex items-center justify-between text-xs text-gray-500 mb-3 max-w-xs mx-auto">
@@ -234,7 +293,33 @@ const AudioPlayer = () => {
                   index === currentTrack ? "bg-gray-50 border-black" : "hover:bg-gray-50"
                 }`}
                 style={{ animationDelay: `${0.5 + (index * 0.1)}s` }}
-                onClick={() => { setCurrentTrack(index) }}
+                onClick={() => { 
+                  setCurrentTrack(index)
+                  // Auto-play when track is selected
+                  const playTrack = () => {
+                    const audio = audioRef.current
+                    if (audio && !isLoading) {
+                      setIsLoading(true)
+                      audio.play().then(() => {
+                        setIsPlaying(true)
+                        setIsLoading(false)
+                      }).catch((error) => {
+                        console.log('Auto-play failed:', error)
+                        setIsLoading(false)
+                      })
+                    }
+                  }
+                  
+                  // Wait for audio to be ready, then play
+                  const audio = audioRef.current
+                  if (audio) {
+                    if (audio.readyState >= 2) { // HAVE_CURRENT_DATA
+                      playTrack()
+                    } else {
+                      audio.addEventListener('canplay', playTrack, { once: true })
+                    }
+                  }
+                }}
               >
                 <CardContent className="p-3">
                   <div className="flex items-center gap-3">

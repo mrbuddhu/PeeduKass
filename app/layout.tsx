@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     description: "Official website of Peedu Kass - Estonian bassist, composer, and musician. Explore music, performances, press kit, and more.",
     images: [
       {
-        url: "https://peedukass.com/logo.png",
+        url: "https://peedukass.com/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Peedu Kass - Bassist, Composer & Musician",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Peedu Kass - Bassist, Composer & Musician",
     description: "Official website of Peedu Kass - Estonian bassist, composer, and musician. Explore music, performances, press kit, and more.",
-    images: ["https://peedukass.com/logo.png"],
+    images: ["https://peedukass.com/og-image.webp"],
     creator: "@peedukass",
   },
   robots: {

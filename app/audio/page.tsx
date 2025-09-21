@@ -10,7 +10,7 @@ export const metadata = {
     description: "Listen to compositions and recordings by Peedu Kass. Explore his discography, albums, and musical works including jazz, contemporary, and experimental pieces.",
     images: [
       {
-        url: "https://peedukass.com/uploads/Peedu Kass Momentum_Peedu Kass Momentum.webp",
+        url: "https://peedukass.com/uploads/Peedu%20Kass%20Momentum_Peedu%20Kass%20Momentum.webp",
         width: 1200,
         height: 630,
         alt: "Peedu Kass - Audio & Discography",
@@ -20,7 +20,7 @@ export const metadata = {
   twitter: {
     title: "Audio - Peedu Kass | Music & Discography",
     description: "Listen to compositions and recordings by Peedu Kass. Explore his discography, albums, and musical works including jazz, contemporary, and experimental pieces.",
-    images: ["https://peedukass.com/uploads/Peedu Kass Momentum_Peedu Kass Momentum.webp"],
+    images: ["https://peedukass.com/uploads/Peedu%20Kass%20Momentum_Peedu%20Kass%20Momentum.webp"],
   },
 }
 
