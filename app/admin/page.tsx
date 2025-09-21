@@ -36,14 +36,14 @@ const fieldConfigs: Record<SectionKey, { key: string; label: string; type: "text
   videos: [
     { key: "id", label: "ID", type: "text" },
     { key: "title", label: "Title", type: "text" },
-    { key: "embedUrl", label: "Google Drive /preview URL / Upload file", type: "text" },
+    { key: "embedUrl", label: "Video URL (Google Drive /preview, YouTube, Vimeo)", type: "text" },
     { key: "description", label: "Description", type: "textarea" },
   ],
   audio: [
     { key: "id", label: "ID", type: "text" },
     { key: "title", label: "Title", type: "text" },
     { key: "artist", label: "Artist", type: "text" },
-    { key: "spotifyUrl", label: "Spotify URL / Upload file", type: "text" },
+    { key: "spotifyUrl", label: "Audio URL (Spotify, SoundCloud, external hosting)", type: "text" },
     { key: "artwork", label: "Artwork URL (postimages.org/imgbb.com)", type: "text" },
   ],
   bands: [
@@ -55,7 +55,7 @@ const fieldConfigs: Record<SectionKey, { key: string; label: string; type: "text
   ],
   photos: [
     { key: "id", label: "ID", type: "text" },
-    { key: "src", label: "Image URL / Upload file", type: "text" },
+    { key: "src", label: "Image URL (postimages.org/imgbb.com)", type: "text" },
     { key: "alt", label: "Alt text", type: "text" },
     { key: "caption", label: "Caption", type: "text" },
   ],
@@ -63,12 +63,12 @@ const fieldConfigs: Record<SectionKey, { key: string; label: string; type: "text
     { key: "id", label: "ID", type: "text" },
     { key: "title", label: "Title", type: "text" },
     { key: "type", label: "Type (PDF/ZIP)", type: "text" },
-    { key: "downloadUrl", label: "File URL / Upload file", type: "text" },
+    { key: "downloadUrl", label: "File URL (Google Drive, Dropbox, etc.)", type: "text" },
     { key: "description", label: "Description", type: "textarea" },
   ],
   pressPhotos: [
     { key: "id", label: "ID", type: "text" },
-    { key: "src", label: "Image URL / Upload file", type: "text" },
+    { key: "src", label: "Image URL (postimages.org/imgbb.com)", type: "text" },
     { key: "alt", label: "Alt text", type: "text" },
     { key: "title", label: "Credit/Title", type: "text" },
     { key: "resolution", label: "Resolution text", type: "text" },
@@ -132,6 +132,8 @@ export default function AdminPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "x-admin-user": process.env.NEXT_PUBLIC_ADMIN_USER || "peedukas",
+          "x-admin-pass": process.env.NEXT_PUBLIC_ADMIN_PASS || "kaks4Xmx",
         },
         body: JSON.stringify({ path: section.file, contents: pretty }),
       })
@@ -205,17 +207,48 @@ export default function AdminPage() {
         
         {/* Instructions */}
     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-      <h3 className="font-semibold text-blue-800 mb-2">📸 Media URL Instructions:</h3>
-      <div className="text-sm text-blue-700 space-y-1">
-        <p><strong>For Images:</strong></p>
-        <ul className="list-disc list-inside ml-2 space-y-1">
-          <li><strong>Postimages.org</strong> - Free, reliable, direct links</li>
-          <li><strong>ImgBB.com</strong> - Free, no registration needed</li>
-          <li><strong>Cloudinary.com</strong> - Free tier available</li>
-        </ul>
-        <p className="mt-2"><strong>For Videos:</strong> Use Google Drive embed URLs</p>
-        <p><strong>For Audio:</strong> Use Spotify preview URLs or external hosting</p>
-        <p className="mt-2 text-green-600"><strong>✅ All changes save directly to the website!</strong></p>
+      <h3 className="font-semibold text-blue-800 mb-3">📋 How to Add Content:</h3>
+      <div className="text-sm text-blue-700 space-y-3">
+        
+        <div>
+          <p className="font-semibold text-blue-800 mb-1">📸 Images:</p>
+          <ul className="list-disc list-inside ml-4 space-y-1">
+            <li><strong>Postimages.org</strong> - Upload image → Copy direct link</li>
+            <li><strong>ImgBB.com</strong> - Upload image → Copy BBCode or direct link</li>
+            <li><strong>Google Drive</strong> - Share image → Copy direct link</li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-semibold text-blue-800 mb-1">🎥 Videos:</p>
+          <ul className="list-disc list-inside ml-4 space-y-1">
+            <li><strong>Google Drive</strong> - Upload video → Share → Copy /preview URL</li>
+            <li><strong>YouTube</strong> - Copy embed URL or video ID</li>
+            <li><strong>Vimeo</strong> - Copy embed URL</li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-semibold text-blue-800 mb-1">🎵 Audio:</p>
+          <ul className="list-disc list-inside ml-4 space-y-1">
+            <li><strong>Spotify</strong> - Copy track URL (works best)</li>
+            <li><strong>SoundCloud</strong> - Copy track URL</li>
+            <li><strong>External hosting</strong> - Any direct audio file URL</li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-semibold text-blue-800 mb-1">📰 News Cards:</p>
+          <ul className="list-disc list-inside ml-4 space-y-1">
+            <li><strong>Regular news</strong> - Add title, content, image URL</li>
+            <li><strong>Instagram posts</strong> - Paste Instagram URL, type: "instagram"</li>
+            <li><strong>External links</strong> - Add title, link URL, type: "link"</li>
+          </ul>
+        </div>
+
+        <div className="mt-3 p-2 bg-green-100 rounded border border-green-300">
+          <p className="text-green-700 font-semibold">✅ All changes appear instantly on the live website!</p>
+        </div>
       </div>
     </div>
         <div className="flex gap-2 mb-4">
@@ -296,17 +329,17 @@ export default function AdminPage() {
                             className="w-full border rounded p-1 text-xs"
                             placeholder={
                               f.key === "image"
-                                ? "Image URL (postimages.org/imgbb.com)"
+                                ? "Paste image URL (postimages.org/imgbb.com)"
                                 : f.key === "artwork"
-                                ? "Artwork URL (postimages.org/imgbb.com)"
+                                ? "Paste artwork URL (postimages.org/imgbb.com)"
                                 : f.key === "embedUrl"
-                                ? "Google Drive /preview URL"
+                                ? "Paste video URL (Google Drive /preview, YouTube, Vimeo)"
                                 : f.key === "spotifyUrl"
-                                ? "Audio URL (Spotify/external hosting)"
+                                ? "Paste audio URL (Spotify, SoundCloud, external hosting)"
                                 : f.key === "src"
-                                ? "Image URL (postimages.org/imgbb.com)"
+                                ? "Paste image URL (postimages.org/imgbb.com)"
                                 : f.key === "downloadUrl"
-                                ? "File URL"
+                                ? "Paste file URL (Google Drive, Dropbox, etc.)"
                                 : "Paste URL"
                             }
                             value={it[f.key] || ""}
@@ -355,7 +388,7 @@ export default function AdminPage() {
                       ) : (
                         <input
                           className="w-full border rounded p-1 text-xs"
-                          placeholder={f.key === "id" ? "Enter ID" : f.key === "date" ? "Enter date" : f.key === "title" ? "Enter title" : f.key === "location" ? "Enter location" : f.key === "venue" ? "Enter venue" : f.key === "link" ? "Enter link URL" : f.key === "artist" ? "Enter artist name" : f.key === "spotifyUrl" ? "Enter Spotify URL" : f.key === "name" ? "Enter band name" : "Enter text"}
+                          placeholder={f.key === "id" ? "Enter ID" : f.key === "date" ? "Enter date" : f.key === "title" ? "Enter title" : f.key === "location" ? "Enter location" : f.key === "venue" ? "Enter venue" : f.key === "link" ? "Enter link URL" : f.key === "artist" ? "Enter artist name" : f.key === "name" ? "Enter band name" : f.key === "alt" ? "Enter alt text" : f.key === "caption" ? "Enter caption" : f.key === "description" ? "Enter description" : f.key === "type" ? "Enter type (PDF/ZIP)" : f.key === "resolution" ? "Enter resolution text" : "Enter text"}
                           value={it[f.key] || ""}
                           onChange={(e) => updateField(idx, f.key, e.target.value)}
                         />
