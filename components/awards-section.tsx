@@ -15,13 +15,13 @@ const awards = {
   ],
   est: [
     "2006 — Grand Prix 'Sony Jazz Stage' Riia, Läti",
-    "2010 — Eesti Jazz Awards — Noor Jazz Talent",
-    "2010 — Uno Naissoo Laulukirjutamise Konkurss",
-    "2017 — Eesti Jazz Awards — Jazz Ansambel Aasta — Peedu Kass Momentum",
-    "2018 — Eesti Muusikaauhind — Debüütalbum Aasta, Rock Album Aasta, Album Aasta — Miljardid 'Kunagi läänes'",
-    "2018 — Eesti Muusikaauhind — Jazz Album Aasta — Reigo Ahven Trio 'Remember'",
-    "2021 — Eesti Muusikaauhind — Rock Album Aasta — Miljardid 'Ma luban, et ma muutun'",
-    "2022 — Eesti Jazz Awards — Jazz Helilooja Aasta",
+    "2010 — Eesti Jazziauhinnad - Noor Jazzitalent",
+    "2010 — Uno Naissoo nimeline heliloomingu konkurss",
+    "2017 — Eesti Jazziauhinnad - Aasta Jazzansambel - Peedu Kass Momentum",
+    "2018 — Eesti Muusikaauhinnad - Aasta debüütalbum, Aasta rockalbum, Aasta album - Miljardid \"Kunagi läänes\"",
+    "2018 — Eesti Muusikaauhinnad - Aasta jazzalbum - Reigo Ahven Trio \"Remember\"",
+    "2021 — Eesti Muusikaauhinnad - Aasta rockalbum - Miljardid \"Ma luban, et ma muutun\"",
+    "2022 — Eesti Jazziauhinnad - Aasta Jazzihelilooja",
   ]
 }
 
@@ -33,11 +33,11 @@ const AwardsSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-black tracking-wide">
-            {language === "en" ? "Awards" : "Auhinnad"}
+            {language === "en" ? "Awards" : "Tunnustused"}
           </h2>
           <div className="w-24 h-px bg-black/90 mx-auto mt-6" />
           <p className="text-gray-600 mt-4 text-sm font-vietnam">
-            {language === "en" ? "Selected recognitions and prizes" : "Valitud tunnustused ja auhinnad"}
+            {language === "en" ? "Selected recognitions and prizes" : ""}
           </p>
         </div>
         <div className="max-w-3xl mx-auto">

@@ -86,7 +86,7 @@ const DiscographyCarousel = () => {
           </h2>
           <div className="w-24 h-px bg-black mx-auto mb-4" />
           <p className="font-vietnam text-gray-600 text-sm">
-            {language === "en" ? "Selected releases" : "Valitud väljaanded"}
+            {language === "en" ? "Selected releases" : "Valik avaldatud plaate ja albumeid"}
           </p>
         </div>
 

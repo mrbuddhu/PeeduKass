@@ -217,9 +217,9 @@ const NewsSection = () => {
                     >
                       <span>
                         {item.type === "instagram" 
-                          ? "Visit Profile" 
+                          ? t("news.visitProfile")
                           : item.type === "news"
-                            ? (expandedCards.has(item.id) ? "Show Less" : t("news.readMore"))
+                            ? (expandedCards.has(item.id) ? t("news.showLess") : t("news.readMore"))
                             : t("news.readMore")
                         }
                       </span>

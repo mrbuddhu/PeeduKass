@@ -26,6 +26,7 @@ const nextConfig = {
             'public/uploads/*.wav',
             'public/uploads/*.aac',
             'public/uploads/*.ogg',
+            'public/uploads/AudioOriginals/**',
             'public/bio/**',
             'public/Discographythumbnails/**',
             'public/press-kit/HIGH-RES PHOTOS/**',
