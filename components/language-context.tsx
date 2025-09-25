@@ -36,6 +36,8 @@ const translations = {
     "news.title": "Latest News",
     "news.subtitle": "Stay updated with recent performances, releases, and musical journeys",
     "news.readMore": "Read More",
+    "news.showLess": "Show Less",
+    "news.visitProfile": "Visit Profile",
     "news.instagram": "Instagram",
     "news.item1.date": "4th Sep 2025",
     "news.item1.title": "WOMEX Showcase Performance",
@@ -148,22 +150,23 @@ const translations = {
     "press.kit.languagesValue": "Estonian, English, Russian, Finnish, German",
     "press.kit.contactValue": "info@peedukass.com",
     "press.photos.downloadAll": "Download All Photos",
+    "press.photos.downloadAllZip": "Download All Press Photos (ZIP)",
     "press.photos.contact": "For additional photos or specific requirements, please contact us directly.",
   },
   est: {
     // Footer
-    "footer.tagline": "kontrabass, elektribass, helilooming, seaded, kunstiline juhtimine, pedagoog",
+    "footer.tagline": "kontrabass, basskitarr, helilooming, seaded, kunstiline juhtimine, pedagoog",
     "footer.navigation": "Navigeerimine",
     "footer.contact": "Kontakt",
     "footer.location": "Tallinn, Eesti",
     "footer.rights": "Kõik õigused kaitstud",
     // Navigation
     "nav.home": "Avaleht",
-    "nav.about": "Meist",
+    "nav.about": "Bio",
     "nav.calendar": "Kontserdid",
-    "nav.gallery": "Meedia",
-    "nav.audio": "Audio",
-    "nav.press": "Pressikomplekt",
+    "nav.gallery": "Galerii",
+    "nav.audio": "Kuula",
+    "nav.press": "Press Kit",
     "nav.contact": "Kontakt",
 
     // Hero Section
@@ -174,7 +177,9 @@ const translations = {
     // News Section
     "news.title": "Viimased Uudised",
     "news.subtitle": "Ole kursis esinemiste, väljalasete ja muusikaliste rännakutega",
-    "news.readMore": "Loe Veel",
+    "news.readMore": "loe veel",
+    "news.showLess": "sulge",
+    "news.visitProfile": "külasta profiili",
     "news.instagram": "Instagram",
     "news.item1.date": "4.09.2025",
     "news.item1.title": "WOMEX Festivali Esinemine",
@@ -184,7 +189,7 @@ const translations = {
     "news.item2.date": "16.06.2023",
     "news.item2.title": "Uus Plaat Joel Remmeliga",
     "news.item2.content":
-      "Festivali Jazzkaar 2022 avateosena kõlanud pianist Joel Remmeli ja bassist Peedu Kassi ühisteos Ood metsale ilmus vinüülil. Teose teistkordne ettekanne ja plaadi esitluskontsert toimub 16. juunil Sõru Jazzil Hiiumaal. Eesti metsale, selle väele ja hoidmise vajalikkusele pühendatud teos Ood metsale puudutas Jazzkaarel kuulajate hingi ja sai tunnustust ka rahvusvahelisest meediast, mistõttu otsustati anda kontsertsalvestus välja ka plaadina.",
+      "Festivali Jazzkaar 2022 avateosena kõlanud pianist Joel Remmeli ja bassist Peedu Kassi ühisteos \"Ood metsale\" ilmus vinüülil. Teose teistkordne ettekanne ja plaadi esitluskontsert toimub 16. juunil Sõru Jazzil Hiiumaal. Eesti metsale, selle väele ja hoidmise vajalikkusele pühendatud teos \"Ood metsale\" puudutas Jazzkaarel kuulajate hingi ja sai tunnustust ka rahvusvahelisest meediast, mistõttu otsustati anda kontsertsalvestus välja ka plaadina.",
     "news.item2.link": "https://www.instagram.com/reel/DGiJt3MtWfT",
     "news.item3.date": "16.06.2023",
     "news.item3.title": "Ood Metsale",
@@ -202,11 +207,11 @@ const translations = {
     // About Page
     "about.hero.title": "Peedu Kassist",
     "about.hero.subtitle": "Teekond Läbi Muusika",
-    "about.bio.title": "Elulugu",
+    "about.bio.title": "Biograafia",
     "about.bio.content":
       "Peedu Kass on tunnustatud Eesti bassimängija, helilooja ja õpetaja, kelle muusikaline teekond ulatub üle kahe aastakümne. Eestis sündinud ja kasvanud Peedu arendas oma kirge muusika vastu varajases eas, saades lõpuks üheks austatuimaks bassimängijaks Põhjamaade muusikaskeenes.\n\nTema ainulaadne lähenemine bassgitarrile ühendab traditsioonilisi Eesti rahvamuusika mõjutusi kaasaegse džässi ja progressiivse rokiga. See eripärane stiil on toonud talle tunnustuse nii kohalikul kui ka rahvusvahelisel tasandil, viies koostööni tuntud artistidega üle Euroopa.\n\nÕpetajana on Peedu pühendunud järgmise muusikupõlvkonna kasvatamisele. Ta viib regulaarselt läbi meistriklasse ja töötube, jagades oma teadmisi ja kirge muusika vastu kõigi tasemete õpilastega.",
-    "about.bands.title": "Ansamblid ja Projektid",
-    "about.bands.subtitle": "Muusikalised koostööd ja projektid",
+    "about.bands.title": "Koosseisud",
+    "about.bands.subtitle": "Erinevad bändid ja projektid",
     "about.bands.current": "Praegused Projektid",
     "about.bands.past": "Varasemad Koostööd",
 
@@ -218,8 +223,8 @@ const translations = {
     // Gallery Page
     "gallery.hero.title": "Meedia",
     "gallery.hero.subtitle": "Hetked Lavalt",
-    "gallery.photos.title": "Fotogalerii",
-    "gallery.videos.title": "Videogalerii",
+    "gallery.photos.title": "Fotod",
+    "gallery.videos.title": "Videod",
 
     // Audio Page
     "audio.hero.title": "Kuula",
@@ -251,16 +256,16 @@ const translations = {
     "contact.form.send": "Saada Sõnum",
 
     // Calendar/Gigs Section
-    "calendar.gigs.upcoming": "Tulevased Kontserdid",
+    "calendar.gigs.upcoming": "Kontserdid",
     "calendar.gigs.past": "Möödunud Kontserdid",
     "calendar.gigs.tickets": "Piletid",
 
     // Gallery Section
-    "gallery.videos.more": "Rohkem videoid leiad meie YouTube kanalist",
+    "gallery.videos.more": "Rohkem videoid leiad Youtube'i kanalist",
     "gallery.videos.visit": "Külasta YouTube Kanalit",
 
     // Audio Section
-    "audio.player.allTracks": "Kõik Lood",
+    "audio.player.allTracks": "Helinäited",
     "audio.streaming.subtitle": "Kuula ja lae alla muusikat kõigil peamistel platvormidel",
 
     // Press Kit Section
@@ -287,6 +292,7 @@ const translations = {
     "press.kit.languagesValue": "Eesti, Inglise, Vene, Soome, Saksa",
     "press.kit.contactValue": "info@peedukass.com",
     "press.photos.downloadAll": "Lae Kõik Fotod Alla",
+    "press.photos.downloadAllZip": "Kõrge resoga promopildid (ZIP)",
     "press.photos.contact": "Täiendavate fotode või spetsiifiliste nõuete puhul võtke palun otse ühendust.",
   },
 }

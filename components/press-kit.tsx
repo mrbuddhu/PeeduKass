@@ -7,7 +7,7 @@ import { useLanguage } from "./language-context"
 import { useEffect, useState } from "react"
 
 const PressKit = () => {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [sizes, setSizes] = useState<Record<string, string>>({})
   const defaults = [
     {
@@ -125,38 +125,40 @@ const PressKit = () => {
           ))}
         </div>
 
-        {/* Quick Facts */}
-        <Card className="bg-gray-50 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-          <CardContent className="p-8">
-            <h3 className="font-playfair text-2xl font-bold text-black mb-6 text-center">{t("press.kit.quickFacts")}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="text-center animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-                <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.genre")}</h4>
-                <p className="font-vietnam text-gray-600">{t("press.kit.genreValue")}</p>
+        {/* Quick Facts - Hidden for Estonian */}
+        {language === "en" && (
+          <Card className="bg-gray-50 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+            <CardContent className="p-8">
+              <h3 className="font-playfair text-2xl font-bold text-black mb-6 text-center">{t("press.kit.quickFacts")}</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="text-center animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+                  <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.genre")}</h4>
+                  <p className="font-vietnam text-gray-600">{t("press.kit.genreValue")}</p>
+                </div>
+                <div className="text-center animate-fade-in-up" style={{ animationDelay: "0.7s" }}>
+                  <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.instrument")}</h4>
+                  <p className="font-vietnam text-gray-600">{t("press.kit.instrumentValue")}</p>
+                </div>
+                <div className="text-center animate-fade-in-up" style={{ animationDelay: "0.8s" }}>
+                  <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.location")}</h4>
+                  <p className="font-vietnam text-gray-600">{t("press.kit.locationValue")}</p>
+                </div>
+                <div className="text-center animate-fade-in-up" style={{ animationDelay: "0.9s" }}>
+                  <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.experience")}</h4>
+                  <p className="font-vietnam text-gray-600">{t("press.kit.experienceValue")}</p>
+                </div>
+                <div className="text-center animate-fade-in-up" style={{ animationDelay: "1.0s" }}>
+                  <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.languages")}</h4>
+                  <p className="font-vietnam text-gray-600">{t("press.kit.languagesValue")}</p>
+                </div>
+                <div className="text-center animate-fade-in-up" style={{ animationDelay: "1.1s" }}>
+                  <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.contact")}</h4>
+                  <p className="font-vietnam text-gray-600">{t("press.kit.contactValue")}</p>
+                </div>
               </div>
-              <div className="text-center animate-fade-in-up" style={{ animationDelay: "0.7s" }}>
-                <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.instrument")}</h4>
-                <p className="font-vietnam text-gray-600">{t("press.kit.instrumentValue")}</p>
-              </div>
-              <div className="text-center animate-fade-in-up" style={{ animationDelay: "0.8s" }}>
-                <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.location")}</h4>
-                <p className="font-vietnam text-gray-600">{t("press.kit.locationValue")}</p>
-              </div>
-              <div className="text-center animate-fade-in-up" style={{ animationDelay: "0.9s" }}>
-                <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.experience")}</h4>
-                <p className="font-vietnam text-gray-600">{t("press.kit.experienceValue")}</p>
-              </div>
-              <div className="text-center animate-fade-in-up" style={{ animationDelay: "1.0s" }}>
-                <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.languages")}</h4>
-                <p className="font-vietnam text-gray-600">{t("press.kit.languagesValue")}</p>
-              </div>
-              <div className="text-center animate-fade-in-up" style={{ animationDelay: "1.1s" }}>
-                <h4 className="font-vietnam font-semibold text-black mb-2">{t("press.kit.contact")}</h4>
-                <p className="font-vietnam text-gray-600">{t("press.kit.contactValue")}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </section>
   )

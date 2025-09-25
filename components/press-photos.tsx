@@ -97,23 +97,6 @@ const PressPhotos = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="font-vietnam text-gray-600 mb-4">Need high-resolution versions or additional photos?</p>
-          <button
-            onClick={() => {
-              const link = document.createElement('a')
-              link.href = "/press-kit/HIGH-RES PHOTOS.zip"
-              link.download = "Peedu_Kass_Press_Photos.zip"
-              document.body.appendChild(link)
-              link.click()
-              document.body.removeChild(link)
-            }}
-            className="inline-flex items-center gap-2 bg-gray-800 text-white px-8 py-3 rounded-full hover:bg-black transition-colors duration-200 font-vietnam"
-          >
-            <Download className="w-5 h-5" />
-            Download All Press Photos (ZIP)
-          </button>
-        </div>
       </div>
     </section>
   )
