@@ -7,7 +7,7 @@ import { useLanguage } from "./language-context"
 import { useEffect, useState } from "react"
 
 const NewsSection = () => {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set())
   const [instagramLoaded, setInstagramLoaded] = useState<Set<number>>(new Set())
   const [instagramFailed, setInstagramFailed] = useState<Set<number>>(new Set())
@@ -82,8 +82,8 @@ const NewsSection = () => {
     }
   }, [])
 
-  // Use external data if available, otherwise use defaults
-  const itemsToRender = external || defaults
+  // Use external data only for English; for Estonian always use translated defaults
+  const itemsToRender = language === "en" && external ? external : defaults
 
   // Monitor Instagram embeds and switch to fallback if they disappear
   useEffect(() => {
