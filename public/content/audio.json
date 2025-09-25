@@ -4,7 +4,7 @@
     "title": "Force Minor",
     "album": "Peedu Kass Momentum",
     "duration": "8:12",
-    "src": "/uploads/compressed/1758278904319-1_force-minor_peedu-kass-momentum_compressed.mp3",
+    "src": "/uploads/compressed-correct/01_force-minor_peedu-kass-momentum_compressed.mp3",
     "artwork": "/placeholder.svg?height=300&width=300&text=Force+Minor",
     "artist": "Peedu Kass Momentum"
   },
@@ -13,7 +13,7 @@
     "title": "Cinema Paradiso",
     "album": "Peedu Kass Momentum",
     "duration": "6:18",
-    "src": "/uploads/compressed/1758278909101-2_cinema-paradiso_peedu-kass-momentum_compressed.mp3",
+    "src": "/uploads/compressed-correct/02_cinema-paradiso_peedu-kass-momentum_compressed.mp3",
     "artwork": "/placeholder.svg?height=300&width=300&text=Cinema+Paradiso",
     "artist": "Peedu Kass Momentum"
   },
@@ -22,7 +22,7 @@
     "title": "Kunagi läänes",
     "album": "Miljardid",
     "duration": "4:32",
-    "src": "/uploads/compressed/1758278915557-3_kunagi-laanes_miljardid_compressed.mp3",
+    "src": "/uploads/compressed-correct/03_kunagi-laanes_miljardid_compressed.mp3",
     "artwork": "/placeholder.svg?height=300&width=300&text=Kunagi+läänes",
     "artist": "Miljardid"
   },
@@ -31,7 +31,7 @@
     "title": "Efterglow",
     "album": "Erki Pärnoja",
     "duration": "5:45",
-    "src": "/uploads/compressed/1758278922522-4_efterglow_erki-parnoja_compressed.mp3",
+    "src": "/uploads/compressed-correct/04_efterglow_erki-parnoja_compressed.mp3",
     "artwork": "/placeholder.svg?height=300&width=300&text=Efterglow",
     "artist": "Erki Pärnoja"
   },
@@ -40,35 +40,35 @@
     "title": "Reprise: Armada",
     "album": "Peedu Kass, Raun Juurikas, Andre Maaker",
     "duration": "7:23",
-    "src": "/uploads/compressed/1758278928632-5_reprise-armada_peedu-kass-raun-juurikas-andre-maaker_compressed.mp3",
+    "src": "/uploads/compressed-correct/05_reprise-armada_peedu-kass-raun-juurikas-andre-maaker_compressed.mp3",
     "artwork": "/placeholder.svg?height=300&width=300&text=Reprise+Armada",
     "artist": "Peedu Kass, Raun Juurikas, Andre Maaker"
   },
   {
     "id": 6,
     "title": "When The Floods Are Over",
-    "album": "European Jazz Orchestra 2011",
+    "album": "Peedu Kass 005",
     "duration": "6:55",
-    "src": "/uploads/compressed/1758278938388-6_when-the-floods-are-over_peedu-kass-005_compressed.mp3",
-    "artwork": "/placeholder.svg?height=300&width=300&text=Jäälõhkuja+poeg",
+    "src": "/uploads/compressed-correct/06_when-the-floods-are-over_peedu-kass-005_compressed.mp3",
+    "artwork": "/placeholder.svg?height=300&width=300&text=When+The+Floods+Are+Over",
     "artist": "Peedu Kass 005"
   },
   {
     "id": 7,
     "title": "Jäälõhkuja poeg",
-    "album": "Erki Pärnoja Saja lugu",
+    "album": "European Jazz Orchestra 2011",
     "duration": "4:18",
-    "src": "/uploads/compressed/1758278944754-7_jaaalohkuja-poeg_european-jazz-orchestra_compressed.mp3",
-    "artwork": "/placeholder.svg?height=300&width=300&text=Vihm+Haapsalu",
+    "src": "/uploads/compressed-correct/07_jaaalohkuja-poeg_european-jazz-orchestra-2011_compressed.mp3",
+    "artwork": "/placeholder.svg?height=300&width=300&text=Jäälõhkuja+poeg",
     "artist": "European Jazz Orchestra 2011"
   },
   {
     "id": 8,
     "title": "Vihm/Haapsalu",
-    "album": "Anna Kaneelina",
+    "album": "Erki Pärnoja Saja lugu",
     "duration": "5:12",
-    "src": "/uploads/compressed/1758278952270-8_vihmhaapsalu_erki-parnoja-saja-lugu_compressed.mp3",
-    "artwork": "/placeholder.svg?height=300&width=300&text=Apple+Tree",
+    "src": "/uploads/compressed-correct/08_vihm-haapsalu_erki-parnoja-saja-lugu_compressed.mp3",
+    "artwork": "/placeholder.svg?height=300&width=300&text=Vihm+Haapsalu",
     "artist": "Erki Pärnoja Saja lugu"
   },
   {
@@ -76,7 +76,7 @@
     "title": "Apple Tree",
     "album": "Anna Kaneelina",
     "duration": "4:20",
-    "src": "/uploads/compressed/1758278957911-9_apple-tree_anna-kaneelina_compressed.mp3",
+    "src": "/uploads/compressed-correct/09_apple-tree_anna-kaneelina_compressed.mp3",
     "artwork": "/placeholder.svg?height=300&width=300&text=Apple+Tree",
     "artist": "Anna Kaneelina"
   }

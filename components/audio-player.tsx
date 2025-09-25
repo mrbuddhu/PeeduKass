@@ -102,14 +102,6 @@ const AudioPlayer = () => {
 
     const handleCanPlay = () => {
       setIsLoading(false)
-      // Auto-play when track is ready (if it was selected by clicking a card)
-      if (!isPlaying) {
-        audio.play().then(() => {
-          setIsPlaying(true)
-        }).catch((error) => {
-          console.log('Auto-play failed:', error)
-        })
-      }
     }
 
     const handleError = () => {
@@ -161,12 +153,10 @@ const AudioPlayer = () => {
 
   const nextTrack = () => {
     setCurrentTrack((prev) => (prev + 1) % effectiveTracks.length)
-    // Auto-play will be handled by the track change effect
   }
 
   const prevTrack = () => {
     setCurrentTrack((prev) => (prev - 1 + effectiveTracks.length) % effectiveTracks.length)
-    // Auto-play will be handled by the track change effect
   }
 
   const handleWaveformClick = (e: React.MouseEvent) => {
@@ -295,30 +285,6 @@ const AudioPlayer = () => {
                 style={{ animationDelay: `${0.5 + (index * 0.1)}s` }}
                 onClick={() => { 
                   setCurrentTrack(index)
-                  // Auto-play when track is selected
-                  const playTrack = () => {
-                    const audio = audioRef.current
-                    if (audio && !isLoading) {
-                      setIsLoading(true)
-                      audio.play().then(() => {
-                        setIsPlaying(true)
-                        setIsLoading(false)
-                      }).catch((error) => {
-                        console.log('Auto-play failed:', error)
-                        setIsLoading(false)
-                      })
-                    }
-                  }
-                  
-                  // Wait for audio to be ready, then play
-                  const audio = audioRef.current
-                  if (audio) {
-                    if (audio.readyState >= 2) { // HAVE_CURRENT_DATA
-                      playTrack()
-                    } else {
-                      audio.addEventListener('canplay', playTrack, { once: true })
-                    }
-                  }
                 }}
               >
                 <CardContent className="p-3">
