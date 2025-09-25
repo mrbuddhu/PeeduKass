@@ -12,6 +12,7 @@ public/uploads/1758278957911-9_apple-tree_anna-kaneelina.mp3
 public/uploads/*.wav
 public/uploads/*.aac
 public/uploads/*.ogg
+public/uploads/AudioOriginals/*
 public/bio/*
 public/Discographythumbnails/*
 public/press-kit/HIGH-RES PHOTOS/*
