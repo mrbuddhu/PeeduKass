@@ -5,10 +5,13 @@ import Link from "next/link"
 import { Menu, X, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "./language-context"
+import { usePathname } from "next/navigation"
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { language, setLanguage, t } = useLanguage()
+  const pathname = usePathname()
+  const isHome = pathname === "/"
 
   const navItems = [
     { href: "/", label: "nav.home" },
@@ -25,7 +28,7 @@ const Navigation = () => {
   }
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white border-b border-black/10 shadow-sm">
+    <nav className={`fixed top-0 w-full z-50 bg-white border-b border-black/10 shadow-sm ${isHome ? "lg:bg-transparent lg:border-transparent lg:shadow-none" : ""}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center h-16 md:h-20">
           <Link
@@ -33,8 +36,10 @@ const Navigation = () => {
             className="flex items-center"
             aria-label="Go to homepage"
           >
-            <span className="font-playfair text-2xl md:text-4xl font-bold text-black tracking-wide" style={{fontFamily: 'Playfair Display, serif'}}>
+            <span className="relative inline-block leading-none font-playfair text-2xl md:text-4xl font-bold text-black lg:text-white tracking-wide" style={{fontFamily: 'Playfair Display, serif'}}>
               Peedu Kass
+              <span className="pointer-events-none absolute left-0 w-full h-[2px] bg-black lg:bg-white bottom-0"></span>
+              <span className="pointer-events-none absolute left-0 w-full h-[2px] bg-black lg:bg-white -bottom-[3px]"></span>
             </span>
           </Link>
 
@@ -43,10 +48,10 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="font-vietnam text-sm font-medium text-black hover:text-gray-600 transition-colors uppercase tracking-wider relative group"
+                className={`font-vietnam text-sm font-medium transition-colors uppercase tracking-wider relative group ${isHome ? "text-white hover:text-white/80" : "text-black hover:text-gray-600"}`}
               >
                 {t(item.label)}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full"></span>
+                <span className={`absolute -bottom-1 left-0 w-0 h-px transition-all duration-300 group-hover:w-full ${isHome ? "bg-white" : "bg-black"}`}></span>
               </Link>
             ))}
 
@@ -54,7 +59,7 @@ const Navigation = () => {
               variant="outline"
               size="sm"
               onClick={toggleLanguage}
-              className="flex items-center gap-2 text-black border-black hover:bg-black hover:text-white transition-all duration-300 uppercase tracking-wide font-vietnam bg-transparent"
+              className={`flex items-center gap-2 transition-all duration-300 uppercase tracking-wide font-vietnam bg-transparent ${isHome ? "text-white border-white hover:bg-white hover:text-black" : "text-black border-black hover:bg-black hover:text-white"}`}
             >
               <Globe className="h-4 w-4" />
               {language}
