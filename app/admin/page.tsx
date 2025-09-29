@@ -1,12 +1,15 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 
-type SectionKey = "news" | "gigs" | "videos" | "audio" | "bands" | "photos" | "pressKit" | "pressPhotos"
+type SectionKey = "news" | "gigs" | "videos" | "audio" | "bands" | "photos" | "pressKit" | "pressPhotos" | "awards" | "bio"
 
+// Order aligned with site navigation: Home, About (Bio, Bands, Awards), Calendar, Gallery (Photos, Videos), Audio, Press (Kit, Photos)
 const sections: { key: SectionKey; label: string; file: string }[] = [
   { key: "news", label: "Home – News", file: "/content/news.json" },
+  { key: "bio", label: "About – Bio", file: "/content/bio.json" },
   { key: "bands", label: "About – Bands", file: "/content/bands.json" },
+  { key: "awards", label: "About – Awards", file: "/content/awards.json" },
   { key: "gigs", label: "Calendar – Concerts", file: "/content/gigs.json" },
   { key: "photos", label: "Gallery – Photos", file: "/content/photos.json" },
   { key: "videos", label: "Gallery – Videos", file: "/content/videos.json" },
@@ -73,6 +76,14 @@ const fieldConfigs: Record<SectionKey, { key: string; label: string; type: "text
     { key: "title", label: "Credit/Title", type: "text" },
     { key: "resolution", label: "Resolution text", type: "text" },
   ],
+  awards: [
+    { key: "id", label: "ID", type: "text" },
+    { key: "text", label: "Award text", type: "textarea" },
+  ],
+  bio: [
+    { key: "id", label: "ID", type: "text" },
+    { key: "text", label: "Paragraph", type: "textarea" },
+  ],
 }
 
 export default function AdminPage() {
@@ -80,6 +91,7 @@ export default function AdminPage() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [active, setActive] = useState<SectionKey>("news")
+  const [adminLang, setAdminLang] = useState<"en" | "est">("en")
   const [content, setContent] = useState<Record<SectionKey, string>>({
     news: "",
     gigs: "",
@@ -89,25 +101,52 @@ export default function AdminPage() {
     photos: "",
     pressKit: "",
     pressPhotos: "",
+    awards: "",
+    bio: "",
   })
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState("")
-  const [items, setItems] = useState<Record<SectionKey, any[]>>({ news: [], gigs: [], videos: [], audio: [], bands: [], photos: [], pressKit: [], pressPhotos: [] })
+  const [items, setItems] = useState<Record<SectionKey, any[]>>({ news: [], gigs: [], videos: [], audio: [], bands: [], photos: [], pressKit: [], pressPhotos: [], awards: [], bio: [] })
+
+  const getFileForLang = (file: string): string => {
+    if (adminLang === "en") return file
+    // insert _est before .json
+    return file.replace(/\.json$/, "_est.json")
+  }
+
+  const labeledSections = useMemo(() => sections.map(s => ({
+    ...s,
+    label: `${s.label} (${adminLang.toUpperCase()})`
+  })), [adminLang])
 
   useEffect(() => {
     if (!authed) return
     sections.forEach(async (s) => {
       try {
-        const res = await fetch(s.file, { cache: "no-store" })
+        const res = await fetch(getFileForLang(s.file), { cache: "no-store" })
+        if (!res.ok) {
+          setContent((c) => ({ ...c, [s.key]: "[]" }))
+          setItems((i) => ({ ...i, [s.key]: [] }))
+          return
+        }
         const txt = await res.text()
         setContent((c) => ({ ...c, [s.key]: txt }))
         try {
           const parsed = JSON.parse(txt)
-          if (Array.isArray(parsed)) setItems((i) => ({ ...i, [s.key]: parsed }))
-        } catch {}
-      } catch {}
+          if (Array.isArray(parsed)) {
+            setItems((i) => ({ ...i, [s.key]: parsed }))
+          } else {
+            setItems((i) => ({ ...i, [s.key]: [] }))
+          }
+        } catch {
+          setItems((i) => ({ ...i, [s.key]: [] }))
+        }
+      } catch {
+        setContent((c) => ({ ...c, [s.key]: "[]" }))
+        setItems((i) => ({ ...i, [s.key]: [] }))
+      }
     })
-  }, [authed])
+  }, [authed, adminLang])
 
   const doLogin = () => {
     const u = process.env.NEXT_PUBLIC_ADMIN_USER || "peedukas"
@@ -135,7 +174,7 @@ export default function AdminPage() {
           "x-admin-user": process.env.NEXT_PUBLIC_ADMIN_USER || "peedukas",
           "x-admin-pass": process.env.NEXT_PUBLIC_ADMIN_PASS || "kaks4Xmx",
         },
-        body: JSON.stringify({ path: section.file, contents: pretty }),
+        body: JSON.stringify({ path: getFileForLang(section.file), contents: pretty }),
       })
       if (!res.ok) throw new Error(await res.text())
       setMessage("Saved ✓")
@@ -251,16 +290,29 @@ export default function AdminPage() {
         </div>
       </div>
     </div>
-        <div className="flex gap-2 mb-4">
+        <div className="flex items-center gap-2 mb-4 flex-wrap">
+          <div className="flex items-center gap-2 mr-4">
+            <span className="text-sm text-gray-600">Language:</span>
+            <button
+              className={`px-3 py-1 rounded ${adminLang === 'en' ? 'bg-black text-white' : 'bg-gray-200'}`}
+              onClick={() => setAdminLang('en')}
+            >EN</button>
+            <button
+              className={`px-3 py-1 rounded ${adminLang === 'est' ? 'bg-black text-white' : 'bg-gray-200'}`}
+              onClick={() => setAdminLang('est')}
+            >EST</button>
+          </div>
+          <div className="flex gap-2">
           {sections.map((s) => (
             <button
               key={s.key}
               className={`px-4 py-2 rounded ${active === s.key ? "bg-black text-white" : "bg-gray-200"}`}
               onClick={() => setActive(s.key)}
             >
-              {s.label}
+              {labeledSections.find(ls => ls.key === s.key)?.label || s.label}
             </button>
           ))}
+          </div>
         </div>
 
         <div className="space-y-4">

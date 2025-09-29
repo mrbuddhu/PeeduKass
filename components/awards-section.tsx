@@ -1,6 +1,7 @@
 "use client"
 
 import { useLanguage } from "./language-context"
+import { useEffect, useState } from "react"
 
 const awards = {
   en: [
@@ -27,6 +28,21 @@ const awards = {
 
 const AwardsSection = () => {
   const { language } = useLanguage()
+  const [cmsAwards, setCmsAwards] = useState<string[] | null>(null)
+
+  useEffect(() => {
+    let mounted = true
+    const path = language === "en" ? "/content/awards.json" : "/content/awards_est.json"
+    const load = () => fetch(path, { cache: "no-store" })
+      .then(r => (r.ok ? r.json() : null))
+      .then(data => { if (mounted && Array.isArray(data)) setCmsAwards(data.map((x: any) => x.text || "")) })
+      .catch(() => {})
+    load()
+    const handler = () => load()
+    window.addEventListener("cms:content-updated", handler as EventListener)
+    try { const bc = new BroadcastChannel("cms"); bc.onmessage = (e) => { if (e?.data?.type === "updated") load() } } catch {}
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+  }, [language])
   
   return (
     <section className="py-24 px-6 bg-gray-50">
@@ -42,7 +58,7 @@ const AwardsSection = () => {
         </div>
         <div className="max-w-3xl mx-auto">
         <ul className="list-disc pl-6 space-y-3 text-black tracking-wide text-base md:text-lg font-vietnam marker:text-gray-400">
-          {awards[language].map((item, idx) => (
+          {(cmsAwards || awards[language]).map((item, idx) => (
             <li
               key={idx}
               className="leading-relaxed opacity-0 animate-fade-in-up"

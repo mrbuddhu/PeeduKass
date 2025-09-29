@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { useLanguage } from "./language-context"
 
 const BandsSection = () => {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const bands = [
     {
       name: "Kass-Talsi-Sink-Minn",
@@ -73,7 +73,7 @@ const BandsSection = () => {
   useEffect(() => {
     let mounted = true
     const load = () => {
-      fetch("/content/bands.json", { cache: "no-store" })
+      fetch(language === "est" ? "/content/bands_est.json" : "/content/bands.json", { cache: "no-store" })
         .then((r) => (r.ok ? r.json() : null))
         .then((data) => {
           if (mounted && Array.isArray(data) && data.length > 0) {
@@ -97,7 +97,7 @@ const BandsSection = () => {
       bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
     } catch {}
     return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
-  }, [])
+  }, [language])
   const effectiveBands = externalBands || []
 
   return (

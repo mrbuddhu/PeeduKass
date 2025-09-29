@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { useLanguage } from "./language-context"
+import { useEffect as useReactEffect } from "react"
 
 const BioSection = () => {
   const { language: siteLanguage } = useLanguage()
   const [bioLanguage, setBioLanguage] = useState<"en" | "est">(siteLanguage)
+  const [cmsParagraphs, setCmsParagraphs] = useState<string[] | null>(null)
 
   // Ensure initial toggle matches site language after mount (avoids SSR/hydration timing issues)
   useEffect(() => {
@@ -14,6 +16,21 @@ const BioSection = () => {
     // run only once on mount; we intentionally don't track siteLanguage changes afterward
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // Load CMS bio paragraphs for current toggle language
+  useReactEffect(() => {
+    let mounted = true
+    const path = bioLanguage === "en" ? "/content/bio.json" : "/content/bio_est.json"
+    const load = () => fetch(path, { cache: "no-store" })
+      .then(r => (r.ok ? r.json() : null))
+      .then(data => { if (mounted && Array.isArray(data)) setCmsParagraphs(data.map((x: any) => x.text || "")) })
+      .catch(() => {})
+    load()
+    const handler = () => load()
+    window.addEventListener("cms:content-updated", handler as EventListener)
+    try { const bc = new BroadcastChannel("cms"); bc.onmessage = (e) => { if (e?.data?.type === "updated") load() } } catch {}
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+  }, [bioLanguage])
 
   const bioContent = {
     en: {
@@ -88,7 +105,7 @@ const BioSection = () => {
                   </div>
                   <div className="animate-fade-in-right" style={{ animationDelay: "0.2s" }}>
                     <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                      {bioContent[bioLanguage].paragraphs[0]}
+                      {(cmsParagraphs || bioContent[bioLanguage].paragraphs)[0]}
                     </p>
                   </div>
                 </div>
@@ -108,10 +125,10 @@ const BioSection = () => {
                   <div className="lg:col-start-1 animate-fade-in-right" style={{ animationDelay: "0.5s" }}>
               <div className="space-y-8">
                       <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                        {bioContent[bioLanguage].paragraphs[1]}
+                        {(cmsParagraphs || bioContent[bioLanguage].paragraphs)[1]}
                       </p>
                       <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                        {bioContent[bioLanguage].paragraphs[2]}
+                        {(cmsParagraphs || bioContent[bioLanguage].paragraphs)[2]}
                       </p>
                     </div>
                   </div>
@@ -131,14 +148,14 @@ const BioSection = () => {
                   </div>
                   <div className="animate-fade-in-right" style={{ animationDelay: "0.8s" }}>
                     <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                      {bioContent[bioLanguage].paragraphs[3]}
+                      {(cmsParagraphs || bioContent[bioLanguage].paragraphs)[3]}
                     </p>
                   </div>
                 </div>
               </>
             ) : (
               // Estonian layout: original alternating pattern
-              bioContent[bioLanguage].paragraphs.slice(0, 3).map((paragraph, index) => (
+              (cmsParagraphs || bioContent[bioLanguage].paragraphs).slice(0, 3).map((paragraph, index) => (
                 <div 
                     key={index}
                   className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''} animate-fade-in-up`}

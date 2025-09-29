@@ -15,13 +15,13 @@ const AudioPlayer = () => {
   const [isLoading, setIsLoading] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
   const preloadRefs = useRef<HTMLAudioElement[]>([])
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
 
   // Load external audio list if available
   const [externalTracks, setExternalTracks] = useState<any[] | null>(null)
   useEffect(() => {
     let mounted = true
-    const load = () => fetch("/content/audio.json", { cache: "no-store" })
+    const load = () => fetch(language === "est" ? "/content/audio_est.json" : "/content/audio.json", { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => { if (mounted && Array.isArray(data)) setExternalTracks(data) })
       .catch(() => {})
@@ -33,7 +33,7 @@ const AudioPlayer = () => {
       bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
     } catch {}
     return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
-  }, [])
+  }, [language])
   const effectiveTracks = externalTracks || []
 
   // Preload next track for instant playback

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useLanguage } from "./language-context"
 
 const VideoGallery = () => {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const videos = [
     {
       id: 1,
@@ -42,7 +42,7 @@ const VideoGallery = () => {
   const [externalVideos, setExternalVideos] = useState<typeof videos | null>(null)
   useEffect(() => {
     let mounted = true
-    const load = () => fetch("/content/videos.json", { cache: "no-store" })
+    const load = () => fetch(language === "est" ? "/content/videos_est.json" : "/content/videos.json", { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => { if (mounted && Array.isArray(data)) setExternalVideos(data) })
       .catch(() => {})
@@ -54,7 +54,7 @@ const VideoGallery = () => {
       bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
     } catch {}
     return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
-  }, [])
+  }, [language])
   const list = externalVideos || []
 
   return (

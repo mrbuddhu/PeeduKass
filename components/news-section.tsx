@@ -57,7 +57,8 @@ const NewsSection = () => {
   useEffect(() => {
     let mounted = true
     const load = () => {
-      fetch("/content/news.json", { cache: "no-store" })
+      const path = language === "est" ? "/content/news_est.json" : "/content/news.json"
+      fetch(path, { cache: "no-store" })
         .then((r) => (r.ok ? r.json() : null))
         .then((data) => { 
           if (mounted && Array.isArray(data)) {
@@ -80,10 +81,10 @@ const NewsSection = () => {
       mounted = false
       window.removeEventListener("cms:content-updated", handler as EventListener) 
     }
-  }, [])
+  }, [language])
 
-  // Use external data only for English; for Estonian always use translated defaults
-  const itemsToRender = language === "en" && external ? external : defaults
+  // Use language-specific external data when available, otherwise fall back to translated defaults
+  const itemsToRender = external || defaults
 
   // Monitor Instagram embeds and switch to fallback if they disappear
   useEffect(() => {
