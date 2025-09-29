@@ -194,7 +194,7 @@ const NewsSection = () => {
                       </span>
                     )}
                   </div>
-                  <h3 className="font-playfair text-2xl md:text-3xl font-semibold text-black mb-4 leading-tight">
+                  <h3 className="font-playfair text-xl md:text-2xl font-semibold text-black mb-4 leading-tight">
                     {item.title}
                   </h3>
                   {item.content && expandedCards.has(item.id) && (
