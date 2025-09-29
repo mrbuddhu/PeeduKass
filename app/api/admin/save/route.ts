@@ -26,17 +26,26 @@ export async function POST(req: NextRequest) {
       return new NextResponse("Forbidden", { status: 403 })
     }
 
-    await fs.mkdir(path.dirname(target), { recursive: true })
-    await fs.writeFile(target, contents, "utf8")
+    let localOk = false
+    try {
+      await fs.mkdir(path.dirname(target), { recursive: true })
+      await fs.writeFile(target, contents, "utf8")
+      localOk = true
+    } catch {}
 
-    // Optional: auto-commit to GitHub for free persistence
+    // Optional: auto-commit to GitHub for free persistence (works on read-only hosts)
+    let ghOk = false
     const ghToken = process.env.GITHUB_TOKEN
     const ghRepo = process.env.GITHUB_REPO // e.g. "username/peedu-kass-portfolio"
     const ghBranch = process.env.GITHUB_BRANCH || "main"
     if (ghToken && ghRepo) {
       try {
+        const repoPath = relPath.replace(/^\/+/, "")
+        // Only allow committing under public/content/** as extra safety
+        if (!/^public\/content\//.test(repoPath)) {
+          return new NextResponse("Forbidden", { status: 403 })
+        }
         const apiBase = `https://api.github.com/repos/${ghRepo}/contents`
-        const repoPath = relPath.replace(/^\/+/, "").replace(/^public\//, "public/")
         const url = `${apiBase}/${repoPath}`
         // Get existing file SHA (if any)
         let sha: string | undefined
@@ -62,13 +71,12 @@ export async function POST(req: NextRequest) {
             branch: ghBranch,
           }),
         })
-        if (!commitRes.ok) {
-          // Silently ignore commit failures; local write already succeeded
-        }
+        ghOk = commitRes.ok
       } catch {}
     }
 
-    return NextResponse.json({ ok: true })
+    if (localOk || ghOk) return NextResponse.json({ ok: true, localOk, ghOk })
+    return new NextResponse("Write failed", { status: 500 })
   } catch (e: any) {
     return new NextResponse("Write failed", { status: 500 })
   }
