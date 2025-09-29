@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "date": "4.09.2025",
+    "title": "WOMEX Festivali Esinemine",
+    "content": "Maailma suurimal globaalmuusika esitlusfestivalil WOMEX astub üles trio Kass-Talsi-Minn. 25ndal oktoobril avaneb Tampere-talo väikeses saalis võimalus kuulda värsket kooslust, mis põimib omavahel jazz-, folk- ja barokkmuusika nüansse.",
+    "image": "/wmx25_Kass-Talsi-Minn_Northern_Connections_post_1080x1350.png",
+    "link": "https://www.womex.com/programme/showcases",
+    "type": "news"
+  },
+  {
+    "id": 2,
+    "date": "16.06.2023",
+    "title": "Uus Plaat Joel Remmeliga",
+    "content": "Festivali Jazzkaar 2022 avateosena kõlanud pianist Joel Remmeli ja bassist Peedu Kassi ühisteos \"Ood metsale\" ilmus vinüülil. Teose teistkordne ettekanne ja plaadi esitluskontsert toimub 16. juunil Sõru Jazzil Hiiumaal. Eesti metsale, selle väele ja hoidmise vajalikkusele pühendatud teos \"Ood metsale\" puudutas Jazzkaarel kuulajate hingi ja sai tunnustust ka rahvusvahelisest meediast, mistõttu otsustati anda kontsertsalvestus välja ka plaadina.",
+    "image": "/ood metsale mockup.jpeg",
+    "link": "https://www.instagram.com/reel/DGiJt3MtWfT",
+    "type": "news"
+  },
+  {
+    "id": 3,
+    "date": "16.06.2023",
+    "title": "Ood Metsale",
+    "content": "",
+    "image": "/placeholder-e024j.png",
+    "link": "https://www.instagram.com/reel/DGiJt3MtWfT",
+    "type": "instagram"
+  }
+]
