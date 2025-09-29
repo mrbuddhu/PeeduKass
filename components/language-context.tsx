@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, type ReactNode } from "react"
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react"
 
 type Language = "en" | "est"
 
@@ -301,6 +301,29 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>("en")
+
+  // Load initial language from localStorage on mount (supports direct page loads)
+  useEffect(() => {
+    try {
+      const stored = typeof window !== "undefined" ? window.localStorage.getItem("siteLanguage") : null
+      if (stored === "en" || stored === "est") {
+        setLanguage(stored)
+      }
+    } catch (_) {
+      // ignore storage errors
+    }
+  }, [])
+
+  // Persist language changes for future direct visits
+  useEffect(() => {
+    try {
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("siteLanguage", language)
+      }
+    } catch (_) {
+      // ignore storage errors
+    }
+  }, [language])
 
   const t = (key: string): string => {
     return translations[language][key as keyof (typeof translations)["en"]] || key

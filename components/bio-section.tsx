@@ -1,10 +1,19 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import { useLanguage } from "./language-context"
 
 const BioSection = () => {
-  const [language, setLanguage] = useState<"en" | "est">("en")
+  const { language: siteLanguage } = useLanguage()
+  const [bioLanguage, setBioLanguage] = useState<"en" | "est">(siteLanguage)
+
+  // Ensure initial toggle matches site language after mount (avoids SSR/hydration timing issues)
+  useEffect(() => {
+    setBioLanguage(siteLanguage)
+    // run only once on mount; we intentionally don't track siteLanguage changes afterward
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const bioContent = {
     en: {
@@ -33,12 +42,12 @@ const BioSection = () => {
           {/* Header with title and language toggle */}
           <div className="flex items-center gap-6 mb-16">
                 <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-black tracking-wide">
-                  {bioContent[language].title}
+                  {bioContent[bioLanguage].title}
                 </h2>
                 <ToggleGroup
                   type="single"
-                  value={language}
-                  onValueChange={(v) => v && setLanguage(v as "en" | "est")}
+                  value={bioLanguage}
+                  onValueChange={(v) => v && setBioLanguage(v as "en" | "est")}
                   className="rounded-full border border-black/20 overflow-hidden"
                 >
                   <ToggleGroupItem
@@ -62,7 +71,7 @@ const BioSection = () => {
 
           {/* Alternating layout - only first 3 paragraphs with photos */}
           <div className="space-y-24">
-            {language === "en" ? (
+            {bioLanguage === "en" ? (
               // English layout: para 1 with photo 1, para 2+3 with photo 2, para 4 with photo 3
               <>
                 {/* Paragraph 1 with Photo 1 */}
@@ -79,7 +88,7 @@ const BioSection = () => {
                   </div>
                   <div className="animate-fade-in-right" style={{ animationDelay: "0.2s" }}>
                     <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                      {bioContent[language].paragraphs[0]}
+                      {bioContent[bioLanguage].paragraphs[0]}
                     </p>
                   </div>
                 </div>
@@ -99,10 +108,10 @@ const BioSection = () => {
                   <div className="lg:col-start-1 animate-fade-in-right" style={{ animationDelay: "0.5s" }}>
               <div className="space-y-8">
                       <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                        {bioContent[language].paragraphs[1]}
+                        {bioContent[bioLanguage].paragraphs[1]}
                       </p>
                       <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                        {bioContent[language].paragraphs[2]}
+                        {bioContent[bioLanguage].paragraphs[2]}
                       </p>
                     </div>
                   </div>
@@ -122,14 +131,14 @@ const BioSection = () => {
                   </div>
                   <div className="animate-fade-in-right" style={{ animationDelay: "0.8s" }}>
                     <p className="font-vietnam text-gray-700 leading-relaxed text-xl first-letter:text-6xl first-letter:font-playfair first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1">
-                      {bioContent[language].paragraphs[3]}
+                      {bioContent[bioLanguage].paragraphs[3]}
                     </p>
                   </div>
                 </div>
               </>
             ) : (
               // Estonian layout: original alternating pattern
-              bioContent[language].paragraphs.slice(0, 3).map((paragraph, index) => (
+              bioContent[bioLanguage].paragraphs.slice(0, 3).map((paragraph, index) => (
                 <div 
                     key={index}
                   className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''} animate-fade-in-up`}
