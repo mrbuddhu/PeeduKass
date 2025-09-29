@@ -38,8 +38,8 @@ const Navigation = () => {
           >
             <span className="relative inline-block leading-none font-playfair text-2xl md:text-4xl font-bold text-black lg:text-white tracking-wide" style={{fontFamily: 'Playfair Display, serif'}}>
               Peedu Kass
-              <span className="pointer-events-none absolute left-0 w-full h-[2px] bg-black lg:bg-white bottom-0"></span>
-              <span className="pointer-events-none absolute left-0 w-full h-[2px] bg-black lg:bg-white -bottom-[3px]"></span>
+              <span className="hidden lg:block pointer-events-none absolute left-0 w-full h-[2px] bg-black lg:bg-white bottom-0"></span>
+              <span className="hidden lg:block pointer-events-none absolute left-0 w-full h-[2px] bg-black lg:bg-white -bottom-[3px]"></span>
             </span>
           </Link>
 
