@@ -189,16 +189,21 @@ const GigsSection = () => {
           {pastEvents.map((gig, index) => (
             <div 
               key={gig.id} 
-              className="py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-2 animate-fade-in-up"
+              className="py-3 grid grid-cols-1 md:grid-cols-[200px_max-content_1fr] gap-6 animate-fade-in-up"
               style={{ animationDelay: `${0.6 + (index * 0.1)}s` }}
             >
-              <div className="flex items-center gap-3 text-gray-600">
+              <div className="flex items-center gap-3 text-gray-600 justify-center text-center md:justify-start md:text-left">
                 <Calendar className="h-4 w-4 text-gray-400" />
                 <span className="font-vietnam text-sm">{formatDate(gig.date)}</span>
                 <Clock className="h-4 w-4 text-gray-300 hidden md:inline" />
                 <span className="font-vietnam text-sm hidden md:inline">{gig.time}</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-700">
+              <div className="flex items-center justify-center text-center md:justify-start md:text-left">
+                <span className="font-vietnam text-xs md:text-sm bg-gray-200 text-gray-800 rounded px-3 py-1 whitespace-nowrap">
+                  {gig.title}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-700 min-w-0 justify-center text-center md:justify-end md:text-right">
                 <MapPin className="h-4 w-4 text-gray-400" />
                 <span className="font-vietnam text-sm">
                   {gig.city} — {gig.venue}
