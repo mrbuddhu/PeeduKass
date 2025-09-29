@@ -14,13 +14,13 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10 lg:py-12">
         {/* Main footer content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-8">
-          <div className="col-span-1 text-center">
+          <div className="col-span-1 text-center lg:text-left">
             <div className="mb-3">
               <span className="font-playfair text-2xl md:text-4xl font-bold text-black tracking-wide" style={{fontFamily: 'Playfair Display, serif'}}>
                 Peedu Kass
               </span>
             </div>
-            <p className="font-vietnam text-sm text-gray-600 leading-relaxed max-w-md md:max-w-lg lg:max-w-xl mx-auto">
+            <p className="font-vietnam text-sm text-gray-600 leading-relaxed max-w-md md:max-w-lg lg:max-w-xl mx-auto lg:mx-0">
               {language === "en" && artisticIdx > -1 ? (
                 <>
                   {tagline.slice(0, artisticIdx).trim()}
@@ -33,11 +33,11 @@ const Footer = () => {
               )}
             </p>
           </div>
-          <div className="col-span-1 text-center">
+          <div className="col-span-1 text-center lg:text-left">
             <h4 className="font-vietnam text-[11px] font-semibold uppercase tracking-[0.18em] text-black/80 mb-3">
               {t("footer.navigation")}
             </h4>
-            <ul className="grid grid-cols-2 gap-y-2 gap-x-6 font-vietnam text-sm max-w-xs mx-auto">
+            <ul className="grid grid-cols-2 gap-y-2 gap-x-6 font-vietnam text-sm max-w-xs mx-auto lg:mx-0">
               <li>
                 <Link href="/about" className="text-gray-700 hover:text-black hover:underline underline-offset-4">
                   {t("nav.about")}
@@ -70,7 +70,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="col-span-1 text-center">
+          <div className="col-span-1 text-center lg:text-left">
             <h4 className="font-vietnam text-[11px] font-semibold uppercase tracking-[0.18em] text-black/80 mb-3">
               {t("footer.contact")}
             </h4>
@@ -84,7 +84,7 @@ const Footer = () => {
         
         {/* Copyright at bottom */}
         <div className="border-t border-gray-200 pt-6">
-          <div className="text-center">
+          <div className="text-center lg:text-left">
             <p className="font-vietnam text-xs text-gray-500">© {new Date().getFullYear()} Peedu Kass • {t("footer.rights")}</p>
           </div>
         </div>
