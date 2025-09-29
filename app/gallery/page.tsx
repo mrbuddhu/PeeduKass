@@ -27,8 +27,8 @@ export const metadata = {
 export default function GalleryPage() {
   return (
     <div className="min-h-screen">
-      <VideoGallery />
       <PhotoGallery />
+      <VideoGallery />
     </div>
   )
 }
