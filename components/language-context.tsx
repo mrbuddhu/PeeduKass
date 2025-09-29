@@ -257,7 +257,7 @@ const translations = {
 
     // Calendar/Gigs Section
     "calendar.gigs.upcoming": "Kontserdid",
-    "calendar.gigs.past": "Möödunud Kontserdid",
+    "calendar.gigs.past": "Möödunud kontserdid",
     "calendar.gigs.tickets": "Piletid",
 
     // Gallery Section
