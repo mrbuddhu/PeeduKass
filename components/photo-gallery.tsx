@@ -6,7 +6,7 @@ import { useLanguage } from "./language-context"
 
 const PhotoGallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
 
   const defaults = [
     {
@@ -62,7 +62,7 @@ const PhotoGallery = () => {
   const [external, setExternal] = useState<typeof defaults | null>(null)
   useEffect(() => {
     let mounted = true
-    const load = () => fetch("/content/photos.json", { cache: "no-store" })
+    const load = () => fetch(language === "est" ? "/content/photos_est.json" : "/content/photos.json", { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => { if (mounted && Array.isArray(data)) setExternal(data) })
       .catch(() => {})
@@ -74,7 +74,7 @@ const PhotoGallery = () => {
       bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
     } catch {}
     return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
-  }, [])
+  }, [language])
 
   // Prefer admin items over defaults when IDs collide
   const photos = [...(external || []), ...defaults].filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
