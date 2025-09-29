@@ -22,7 +22,7 @@ const beVietnam = Be_Vietnam_Pro({
 })
 
 export const metadata: Metadata = {
-  title: "Peedu Kass - Bassist, Composer & Musician",
+  title: "Peedu Kass - Bassist, Composer & Educator",
   description: "Official website of Peedu Kass - Estonian bassist, composer, and musician. Explore music, performances, press kit, and more.",
   keywords: "Peedu Kass, bassist, composer, musician, Estonian music, jazz, bass guitar, performances, discography",
   authors: [{ name: "Peedu Kass" }],
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://peedukass.com",
     siteName: "Peedu Kass",
-    title: "Peedu Kass - Bassist, Composer & Musician",
+    title: "Peedu Kass - Bassist, Composer & Educator",
     description: "Official website of Peedu Kass - Estonian bassist, composer, and musician. Explore music, performances, press kit, and more.",
     images: [
       {
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Peedu Kass - Bassist, Composer & Musician",
+    title: "Peedu Kass - Bassist, Composer & Educator",
     description: "Official website of Peedu Kass - Estonian bassist, composer, and musician. Explore music, performances, press kit, and more.",
     images: ["https://peedukass.com/og-image.webp"],
     creator: "@peedukass",
