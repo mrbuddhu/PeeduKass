@@ -9,6 +9,15 @@
     "type": "news"
   },
   {
+    "id": 3,
+    "date": "16.06.2023",
+    "title": "",
+    "content": "",
+    "image": "/placeholder-e024j.png",
+    "link": "https://www.instagram.com/reel/DGiJt3MtWfT",
+    "type": "instagram"
+  },
+  {
     "id": 2,
     "date": "16.06.2023",
     "title": "Uus Plaat Joel Remmeliga",
@@ -16,14 +25,5 @@
     "image": "/ood metsale mockup.jpeg",
     "link": "https://www.instagram.com/reel/DGiJt3MtWfT",
     "type": "news"
-  },
-  {
-    "id": 3,
-    "date": "16.06.2023",
-    "title": "Ood Metsale",
-    "content": "",
-    "image": "/placeholder-e024j.png",
-    "link": "https://www.instagram.com/reel/DGiJt3MtWfT",
-    "type": "instagram"
   }
 ]

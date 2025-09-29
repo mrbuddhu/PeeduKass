@@ -31,8 +31,9 @@ const fieldConfigs: Record<SectionKey, { key: string; label: string; type: "text
   gigs: [
     { key: "id", label: "ID", type: "text" },
     { key: "date", label: "Date", type: "text" },
+    { key: "time", label: "Time (HH:mm)", type: "text" },
     { key: "title", label: "Title", type: "text" },
-    { key: "location", label: "Location", type: "text" },
+    { key: "city", label: "City", type: "text" },
     { key: "venue", label: "Venue", type: "text" },
     { key: "link", label: "Link", type: "text" },
   ],
@@ -114,10 +115,8 @@ export default function AdminPage() {
     return file.replace(/\.json$/, "_est.json")
   }
 
-  const labeledSections = useMemo(() => sections.map(s => ({
-    ...s,
-    label: `${s.label} (${adminLang.toUpperCase()})`
-  })), [adminLang])
+  // Keep original labels; language is chosen via the toggle above
+  const labeledSections = useMemo(() => sections, [])
 
   useEffect(() => {
     if (!authed) return
@@ -290,23 +289,23 @@ export default function AdminPage() {
         </div>
       </div>
     </div>
-        <div className="flex items-center gap-2 mb-4 flex-wrap">
+        <div className="flex items-center gap-4 mb-6 flex-wrap">
           <div className="flex items-center gap-2 mr-4">
             <span className="text-sm text-gray-600">Language:</span>
             <button
-              className={`px-3 py-1 rounded ${adminLang === 'en' ? 'bg-black text-white' : 'bg-gray-200'}`}
+              className={`px-3 py-1 rounded-full border transition ${adminLang === 'en' ? 'bg-black text-white border-black shadow-sm' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'}`}
               onClick={() => setAdminLang('en')}
             >EN</button>
             <button
-              className={`px-3 py-1 rounded ${adminLang === 'est' ? 'bg-black text-white' : 'bg-gray-200'}`}
+              className={`px-3 py-1 rounded-full border transition ${adminLang === 'est' ? 'bg-black text-white border-black shadow-sm' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'}`}
               onClick={() => setAdminLang('est')}
             >EST</button>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
           {sections.map((s) => (
             <button
               key={s.key}
-              className={`px-4 py-2 rounded ${active === s.key ? "bg-black text-white" : "bg-gray-200"}`}
+              className={`px-4 py-2 rounded-full border whitespace-nowrap transition ${active === s.key ? "bg-black text-white border-black shadow-sm" : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"}`}
               onClick={() => setActive(s.key)}
             >
               {labeledSections.find(ls => ls.key === s.key)?.label || s.label}
