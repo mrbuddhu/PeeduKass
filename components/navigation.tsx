@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Menu, X, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -12,6 +12,16 @@ const Navigation = () => {
   const { language, setLanguage, t } = useLanguage()
   const pathname = usePathname()
   const isHome = pathname === "/"
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8)
+    }
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   const navItems = [
     { href: "/", label: "nav.home" },
@@ -28,7 +38,7 @@ const Navigation = () => {
   }
 
   return (
-    <nav className={`fixed top-0 w-full z-50 bg-white border-b border-black/10 shadow-sm ${isHome ? "lg:bg-transparent lg:border-transparent lg:shadow-none" : ""}`}>
+    <nav className={`fixed top-0 w-full z-50 bg-white border-b border-black/10 shadow-sm ${isHome ? (scrolled ? "lg:bg-black/30 lg:backdrop-blur-md lg:border-white/10 lg:shadow-sm" : "lg:bg-transparent lg:border-transparent lg:shadow-none") : ""}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center h-16 md:h-20">
           <Link
