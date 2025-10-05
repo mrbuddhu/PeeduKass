@@ -176,7 +176,13 @@ export default function AdminPage() {
         body: JSON.stringify({ path: getFileForLang(section.file), contents: pretty }),
       })
       if (!res.ok) throw new Error(await res.text())
-      setMessage("Saved ✓")
+      const info = await res.json().catch(() => ({})) as any
+      const parts = [
+        info?.supaOk ? "db ✓" : "db –",
+        info?.localOk ? "file ✓" : "file –",
+        info?.ghOk ? "git ✓" : "git –",
+      ]
+      setMessage(`Saved (${parts.join(", ")})`)
       // notify open pages to refetch this section
       if (typeof window !== "undefined") {
         try {

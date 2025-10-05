@@ -1,6 +1,22 @@
 [
-  { "id": 1, "text": "Bassist Peedu Kass moves and grooves with the top names on the Estonian jazz scene and beyond. After garnering the prestigious Young Talent prize (2010) at Estonia's annual Jazzkaar festival, Kass quickly established a reputation as Tallinn's first-call bassist, and his entrée onto the wider European scene was anticipated by his win, at age twenty, of the Sony Jazz Stage award in Riga, Latvia, in a year (2006) in which the competition was focused on his instrument. He has since shared the bandstand with the likes of Django Bates, Marilyn Mazur, Seamus Blake, Tony Allen, Lonnie Liston Smith, Antonio Hart, and the European Jazz Orchestra. His tours have taken him all over Europe and to the United States, Canada, Japan, and Australia, and he has thrilled to the view from the stage of storied jazz festivals (London, Kongsberg, Pori) and clubs (Smalls, New York City; Pit Inn, Tokyo; Vortex, London)." },
-  { "id": 2, "text": "Kass received his bachelor's degree from the Estonian Academy of Music and Theatre and a master's in jazz performance (2014) from the renowned Sibelius Academy in Helsinki, Finland. In addition to lessons with Estonian greats, he has been coached by Matt Penman, Mats Eilertsen, Thomas Morgan, and Anders Jormin. Kass teaches at the Viljandi Culture Academy of Tartu University and is a former chairman of the Estonian Jazz Union." },
-  { "id": 3, "text": "Renowned for his electric-, acoustic- and synth-bass skills—in performance and in the studio and with ensembles ranging from small groups to full orchestras—Kass has also been expanding into arrangement and composition. Studies with composer Tõnu Kõrvits led to settings for strings and horns, pieces for chamber ensemble, and a commission from the Estonian National Symphony Orchestra, premiered in 2012 at the annual Estonian Music Days festival." },
-  { "id": 4, "text": "Kass leads several bands, including the piano trio \"Peedu Kass Momentum,\" which won Jazzkaar's \"Jazz Ensemble of the Year\" award in 2017. The first album under his own name, a quintet effort, Home, was released in 2010, followed shortly by Armada in 2012. His latest, Peedu Kass Momentum, was released in April 2016 and was nominated for jazz album of the year at the Estonian Music Awards. When not pursuing music, Kass can be found mountaineering or hiking forgotten trails. He strives for the legibility of strong natural forms in his playing and writing, a legibility always affected, of course, by the ever-changing atmosphere of day and season." }
+  {
+    "id": 1,
+    "text": "Bassist Peedu Kass moves and grooves with the top names on the Estonian jazz scene and beyond. After garnering the prestigious Young Talent prize (2010) at Estonia's annual Jazzkaar festival, Kass quickly established a reputation as Tallinn's first-call bassist, and his entrée onto the wider European scene was anticipated by his win, at age twenty, of the Sony Jazz Stage award in Riga, Latvia, in a year (2006) in which the competition was focused on his instrument. He has since shared the bandstand with the likes of Django Bates, Marilyn Mazur, Seamus Blake, Tony Allen, Lonnie Liston Smith, Antonio Hart, and the European Jazz Orchestra. His tours have taken him all over Europe and to the United States, Canada, Japan, and Australia, and he has thrilled to the view from the stage of storied jazz festivals (London, Kongsberg, Pori) and clubs (Smalls, New York City; Pit Inn, Tokyo; Vortex, London)."
+  },
+  {
+    "id": 2,
+    "text": "Kass received his bachelor's degree from the Estonian Academy of Music and Theatre and a master's in jazz performance (2014) from the renowned Sibelius Academy in Helsinki, Finland. In addition to lessons with Estonian greats, he has been coached by Matt Penman, Mats Eilertsen, Thomas Morgan, and Anders Jormin. Kass teaches at the Viljandi Culture Academy of Tartu University and is a former chairman of the Estonian Jazz Union."
+  },
+  {
+    "id": 3,
+    "text": "Renowned for his electric-, acoustic- and synth-bass skills—in performance and in the studio and with ensembles ranging from small groups to full orchestras—Kass has also been expanding into arrangement and composition. Studies with composer Tõnu Kõrvits led to settings for strings and horns, pieces for chamber ensemble, and a commission from the Estonian National Symphony Orchestra, premiered in 2012 at the annual Estonian Music Days festival."
+  },
+  {
+    "id": 4,
+    "text": "Kass leads several bands, including the piano trio \"Peedu Kass Momentum,\" which won Jazzkaar's \"Jazz Ensemble of the Year\" award in 2017. The first album under his own name, a quintet effort, Home, was released in 2010, followed shortly by Armada in 2012. His latest, Peedu Kass Momentum, was released in April 2016 and was nominated for jazz album of the year at the Estonian Music Awards. When not pursuing music, Kass can be found mountaineering or hiking forgotten trails. He strives for the legibility of strong natural forms in his playing and writing, a legibility always affected, of course, by the ever-changing atmosphere of day and season."
+  },
+  {
+    "id": "",
+    "text": ""
+  }
 ]

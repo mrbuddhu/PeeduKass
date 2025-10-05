@@ -1,10 +1,34 @@
 [
-  { "id": 1, "text": "2006 — Grand Prix 'Sony Jazz Stage' Riga, Latvia" },
-  { "id": 2, "text": "2010 — Estonian Jazz Awards — Young Jazz Talent" },
-  { "id": 3, "text": "2010 — Uno Naissoo Song Writing Competition" },
-  { "id": 4, "text": "2017 — Estonian Jazz Awards — Jazz Ensemble of the Year — Peedu Kass Momentum" },
-  { "id": 5, "text": "2018 — Estonian Music Awards — Debut Album of the Year, Rock Album of the Year, Album of the Year — Miljardid 'Kunagi läänes'" },
-  { "id": 6, "text": "2018 — Estonian Music Awards — Jazz Album of the Year — Reigo Ahven Trio 'Remember'" },
-  { "id": 7, "text": "2021 — Estonian Music Awards — Rock Album of the Year — Miljardid 'Ma luban, et ma muutun'" },
-  { "id": 8, "text": "2022 — Estonian Jazz Awards — Jazz Composer of the Year" }
+  {
+    "id": 1,
+    "text": "2006 — Grand Prix 'Sony Jazz Stage' Riga, Latvia"
+  },
+  {
+    "id": 2,
+    "text": "2010 — Estonian Jazz Awards — Young Jazz Talent"
+  },
+  {
+    "id": 3,
+    "text": "2010 — Uno Naissoo Song Writing Competition"
+  },
+  {
+    "id": 4,
+    "text": "2017 — Estonian Jazz Awards — Jazz Ensemble of the Year — Peedu Kass Momentum"
+  },
+  {
+    "id": 5,
+    "text": "2018 — Estonian Music Awards — Debut Album of the Year, Rock Album of the Year, Album of the Year — Miljardid 'Kunagi läänes'"
+  },
+  {
+    "id": 6,
+    "text": "2018 — Estonian Music Awards — Jazz Album of the Year — Reigo Ahven Trio 'Remember'"
+  },
+  {
+    "id": 7,
+    "text": "2021 — Estonian Music Awards — Rock Album of the Year — Miljardid 'Ma luban, et ma muutun'"
+  },
+  {
+    "id": 8,
+    "text": "2022 — Estonian Jazz Awards — Jazz Composer of the Year"
+  }
 ]

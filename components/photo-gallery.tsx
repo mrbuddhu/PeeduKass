@@ -62,22 +62,25 @@ const PhotoGallery = () => {
   const [external, setExternal] = useState<typeof defaults | null>(null)
   useEffect(() => {
     let mounted = true
-    const load = () => fetch(language === "est" ? "/content/photos_est.json" : "/content/photos.json", { cache: "no-store" })
+    const load = () => fetch(`/api/content/photos/${language === "est" ? "est" : "en"}`, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => { if (mounted && Array.isArray(data)) setExternal(data) })
       .catch(() => {})
     load()
     const handler = () => load()
     window.addEventListener("cms:content-updated", handler as EventListener)
+    let bc: BroadcastChannel | null = null
     try {
-      const bc = new BroadcastChannel("cms")
-      bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
+      bc = new BroadcastChannel("cms")
+      bc.onmessage = (e) => { if (e?.data?.type === "updated" && e?.data?.section === "photos") load() }
     } catch {}
-    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener); if (bc) bc.close() }
   }, [language])
 
   // Prefer admin items over defaults when IDs collide
-  const photos = [...(external || []), ...defaults].filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
+  const photos = [...(external || []), ...defaults]
+    .filter((item) => item && typeof item.id !== 'undefined' && item.src && item.src.trim() !== "")
+    .filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
 
   return (
     <section className="py-16 px-4">

@@ -32,16 +32,16 @@ const AwardsSection = () => {
 
   useEffect(() => {
     let mounted = true
-    const path = language === "en" ? "/content/awards.json" : "/content/awards_est.json"
-    const load = () => fetch(path, { cache: "no-store" })
+    const load = () => fetch(`/api/content/awards/${language === "est" ? "est" : "en"}`, { cache: "no-store" })
       .then(r => (r.ok ? r.json() : null))
       .then(data => { if (mounted && Array.isArray(data)) setCmsAwards(data.map((x: any) => x.text || "")) })
       .catch(() => {})
     load()
     const handler = () => load()
     window.addEventListener("cms:content-updated", handler as EventListener)
-    try { const bc = new BroadcastChannel("cms"); bc.onmessage = (e) => { if (e?.data?.type === "updated") load() } } catch {}
-    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+    let bc: BroadcastChannel | null = null
+    try { bc = new BroadcastChannel("cms"); bc.onmessage = (e) => { if (e?.data?.type === "updated" && e?.data?.section === "awards") load() } } catch {}
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener); if (bc) bc.close() }
   }, [language])
   
   return (

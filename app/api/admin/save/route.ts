@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { promises as fs } from "fs"
 import path from "path"
 import crypto from "crypto"
+import { getSupabaseServer } from "@/lib/supabase-server"
 
 export async function POST(req: NextRequest) {
   // Quick auth check
@@ -33,6 +34,21 @@ export async function POST(req: NextRequest) {
       localOk = true
     } catch {}
 
+    // Upsert into Supabase cms_content (section + lang)
+    let supaOk = false
+    try {
+      const supa = getSupabaseServer()
+      if (supa) {
+        const lang = /_est\.json$/.test(relPath) ? "est" : "en"
+        const section = relPath.replace(/^\/+/, "").replace(/^public\//, "").replace(/^content\//, "").replace(/(_est)?\.json$/, "")
+        const parsed = JSON.parse(contents)
+        const { error } = await supa
+          .from("cms_content")
+          .upsert({ section, lang, data: parsed }, { onConflict: "section,lang" })
+        supaOk = !error
+      }
+    } catch {}
+
     // Optional: auto-commit to GitHub for free persistence (works on read-only hosts)
     let ghOk = false
     const ghToken = process.env.GITHUB_TOKEN
@@ -40,11 +56,14 @@ export async function POST(req: NextRequest) {
     const ghBranch = process.env.GITHUB_BRANCH || "main"
     if (ghToken && ghRepo) {
       try {
-        const repoPath = relPath.replace(/^\/+/, "")
-        // Only allow committing under public/content/** as extra safety
-        if (!/^public\/content\//.test(repoPath)) {
-          return new NextResponse("Forbidden", { status: 403 })
-        }
+        // Ensure repoPath is under public/content/** in the repo
+        // Accept incoming relPath like "/content/xyz.json" and prefix with "public/"
+        const cleaned = relPath.replace(/^\/+/, "") // e.g. content/news.json
+        const repoPath = cleaned.startsWith("public/") ? cleaned : `public/${cleaned}` // public/content/news.json
+        if (!repoPath.startsWith("public/content/")) {
+          // Skip GH commit if target is outside allowed area, but don't fail the request
+          // localOk/supaOk may still be true
+        } else {
         const apiBase = `https://api.github.com/repos/${ghRepo}/contents`
         const url = `${apiBase}/${repoPath}`
         // Get existing file SHA (if any)
@@ -72,10 +91,11 @@ export async function POST(req: NextRequest) {
           }),
         })
         ghOk = commitRes.ok
+        }
       } catch {}
     }
 
-    if (localOk || ghOk) return NextResponse.json({ ok: true, localOk, ghOk })
+    if (localOk || supaOk || ghOk) return NextResponse.json({ ok: true, localOk, supaOk, ghOk })
     return new NextResponse("Write failed", { status: 500 })
   } catch (e: any) {
     return new NextResponse("Write failed", { status: 500 })
