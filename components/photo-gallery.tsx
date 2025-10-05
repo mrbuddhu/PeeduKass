@@ -77,8 +77,9 @@ const PhotoGallery = () => {
     return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener); if (bc) bc.close() }
   }, [language])
 
-  // Prefer admin items over defaults when IDs collide
-  const photos = [...(external || []), ...defaults]
+  // Use Admin items if present; otherwise fallback to defaults
+  const base = (external && external.length ? external : defaults)
+  const photos = base
     .filter((item) => item && typeof item.id !== 'undefined' && item.src && item.src.trim() !== "")
     .filter((item, index, self) => index === self.findIndex(i => i.id === item.id))
 

@@ -56,7 +56,7 @@ const VideoGallery = () => {
     } catch {}
     return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener); if (bc) bc.close() }
   }, [language])
-  const list = externalVideos || []
+  const list = (externalVideos && externalVideos.length ? externalVideos : [])
 
   return (
     <section className="py-16 px-4 bg-gray-50">

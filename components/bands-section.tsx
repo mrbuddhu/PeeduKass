@@ -98,7 +98,7 @@ const BandsSection = () => {
     } catch {}
     return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
   }, [language])
-  const effectiveBands = externalBands || []
+  const effectiveBands = (externalBands && externalBands.length ? externalBands : [])
 
   return (
     <section className="py-24 px-6 bg-gradient-to-br from-[#0b1226] via-[#0a1a3a] to-black text-white">

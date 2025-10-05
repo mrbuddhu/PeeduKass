@@ -116,10 +116,8 @@ const GigsSection = () => {
     return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener); if (bc) bc.close() }
   }, [language])
   // Always show default gigs + any additional ones from admin panel (remove duplicates by ID)
-  const allGigs = [...upcomingGigs, ...(externalGigs || [])]
-  const gigs = allGigs.filter((gig, index, self) => 
-    index === self.findIndex(g => g.id === gig.id)
-  )
+  const gigsSource = (externalGigs && externalGigs.length ? externalGigs : [])
+  const gigs = gigsSource.filter((gig, index, self) => index === self.findIndex(g => g.id === gig.id))
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
