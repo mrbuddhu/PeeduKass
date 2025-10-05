@@ -57,8 +57,8 @@ const NewsSection = () => {
   useEffect(() => {
     let mounted = true
     const load = () => {
-      const path = language === "est" ? "/content/news_est.json" : "/content/news.json"
-      fetch(path, { cache: "no-store" })
+      const url = `/api/content/news/${language === "est" ? "est" : "en"}`
+      fetch(url, { cache: "no-store" })
         .then((r) => (r.ok ? r.json() : null))
         .then((data) => { 
           if (mounted && Array.isArray(data)) {
@@ -71,6 +71,11 @@ const NewsSection = () => {
     load()
     const handler = () => load()
     window.addEventListener("cms:content-updated", handler as EventListener)
+    let bc: BroadcastChannel | null = null
+    try {
+      bc = new BroadcastChannel("cms")
+      bc.onmessage = (e) => { if (e?.data?.type === "updated" && e?.data?.section === "news") load() }
+    } catch {}
     
     try {
       const bc = new BroadcastChannel("cms")
@@ -107,7 +112,7 @@ const NewsSection = () => {
     checkInstagramEmbeds()
     const interval = setInterval(checkInstagramEmbeds, 2000)
 
-    return () => clearInterval(interval)
+    return () => { clearInterval(interval) }
   }, [itemsToRender])
 
   return (

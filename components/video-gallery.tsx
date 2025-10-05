@@ -42,18 +42,19 @@ const VideoGallery = () => {
   const [externalVideos, setExternalVideos] = useState<typeof videos | null>(null)
   useEffect(() => {
     let mounted = true
-    const load = () => fetch(language === "est" ? "/content/videos_est.json" : "/content/videos.json", { cache: "no-store" })
+    const load = () => fetch(`/api/content/videos/${language === "est" ? "est" : "en"}`, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => { if (mounted && Array.isArray(data)) setExternalVideos(data) })
       .catch(() => {})
     load()
     const handler = () => load()
     window.addEventListener("cms:content-updated", handler as EventListener)
+    let bc: BroadcastChannel | null = null
     try {
-      const bc = new BroadcastChannel("cms")
-      bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
+      bc = new BroadcastChannel("cms")
+      bc.onmessage = (e) => { if (e?.data?.type === "updated" && e?.data?.section === "videos") load() }
     } catch {}
-    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener); if (bc) bc.close() }
   }, [language])
   const list = externalVideos || []
 

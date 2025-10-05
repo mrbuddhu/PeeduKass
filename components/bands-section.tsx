@@ -73,7 +73,7 @@ const BandsSection = () => {
   useEffect(() => {
     let mounted = true
     const load = () => {
-      fetch(language === "est" ? "/content/bands_est.json" : "/content/bands.json", { cache: "no-store" })
+      fetch(`/api/content/bands/${language === "est" ? "est" : "en"}`, { cache: "no-store" })
         .then((r) => (r.ok ? r.json() : null))
         .then((data) => {
           if (mounted && Array.isArray(data) && data.length > 0) {
@@ -113,20 +113,22 @@ const BandsSection = () => {
           </p>
         </div>
 
-        {/* First row - 3 cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-          {effectiveBands.slice(0, 3).map((band, index) => (
+        {/* All bands */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+          {effectiveBands.map((band, index) => {
+            const centerTwoLast = effectiveBands.length % 3 === 2 && index === effectiveBands.length - 2
+            return (
             <Card
-              key={index}
-              className="overflow-hidden bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-500 group backdrop-blur-sm animate-fade-in-up pt-0"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              key={`${band.name}-${index}`}
+              className={`overflow-hidden bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-500 group backdrop-blur-sm animate-fade-in-up pt-0 lg:col-span-2 ${centerTwoLast ? 'lg:col-start-2' : ''}`}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="aspect-square relative overflow-hidden">
                 <img
                   src={band.image || "/placeholder.svg"}
                   alt={band.name}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                  style={index === 2 ? { objectPosition: "center 10%" } : undefined}
+                  style={index === 2 ? { objectPosition: 'center 10%' } : undefined}
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
               </div>
@@ -144,46 +146,9 @@ const BandsSection = () => {
                     </p>
                   ))}
                 </div>
-                
               </CardContent>
             </Card>
-          ))}
-        </div>
-
-        {/* Second row - 2 cards centered */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {effectiveBands.slice(3, 5).map((band, index) => (
-            <Card
-              key={index + 3}
-              className="overflow-hidden bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-500 group backdrop-blur-sm animate-fade-in-up pt-0"
-              style={{ animationDelay: `${(index + 3) * 0.2}s` }}
-            >
-              <div className="aspect-square relative overflow-hidden">
-                <img
-                  src={band.image || "/placeholder.svg"}
-                  alt={band.name}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-              </div>
-              <CardContent className="p-6 text-center">
-                <h3 className="font-playfair text-xl md:text-2xl font-bold text-white mb-4 tracking-wide">
-                  {band.name}
-                </h3>
-                <div className="space-y-2 mb-6">
-                  {band.members.map((member, memberIndex) => (
-                    <p
-                      key={memberIndex}
-                      className="font-vietnam text-sm text-white/70 leading-relaxed"
-                    >
-                      {member}
-                    </p>
-                  ))}
-                </div>
-                
-              </CardContent>
-            </Card>
-          ))}
+          )})}
         </div>
       </div>
     </section>

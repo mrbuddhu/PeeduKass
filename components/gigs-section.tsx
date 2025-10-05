@@ -101,18 +101,19 @@ const GigsSection = () => {
   const [externalGigs, setExternalGigs] = useState<typeof upcomingGigs | null>(null)
   useEffect(() => {
     let mounted = true
-    const load = () => fetch(language === "est" ? "/content/gigs_est.json" : "/content/gigs.json", { cache: "no-store" })
+    const load = () => fetch(`/api/content/gigs/${language === "est" ? "est" : "en"}`, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => { if (mounted && Array.isArray(data)) setExternalGigs(data) })
       .catch(() => {})
     load()
     const handler = () => load()
     window.addEventListener("cms:content-updated", handler as EventListener)
+    let bc: BroadcastChannel | null = null
     try {
-      const bc = new BroadcastChannel("cms")
-      bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
+      bc = new BroadcastChannel("cms")
+      bc.onmessage = (e) => { if (e?.data?.type === "updated" && e?.data?.section === "gigs") load() }
     } catch {}
-    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener); if (bc) bc.close() }
   }, [language])
   // Always show default gigs + any additional ones from admin panel (remove duplicates by ID)
   const allGigs = [...upcomingGigs, ...(externalGigs || [])]

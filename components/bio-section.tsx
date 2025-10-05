@@ -20,8 +20,7 @@ const BioSection = () => {
   // Load CMS bio paragraphs for current toggle language
   useReactEffect(() => {
     let mounted = true
-    const path = bioLanguage === "en" ? "/content/bio.json" : "/content/bio_est.json"
-    const load = () => fetch(path, { cache: "no-store" })
+    const load = () => fetch(`/api/content/bio/${bioLanguage === "est" ? "est" : "en"}`, { cache: "no-store" })
       .then(r => (r.ok ? r.json() : null))
       .then(data => { if (mounted && Array.isArray(data)) setCmsParagraphs(data.map((x: any) => x.text || "")) })
       .catch(() => {})

@@ -21,18 +21,19 @@ const AudioPlayer = () => {
   const [externalTracks, setExternalTracks] = useState<any[] | null>(null)
   useEffect(() => {
     let mounted = true
-    const load = () => fetch(language === "est" ? "/content/audio_est.json" : "/content/audio.json", { cache: "no-store" })
+    const load = () => fetch(`/api/content/audio/${language === "est" ? "est" : "en"}`, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => { if (mounted && Array.isArray(data)) setExternalTracks(data) })
       .catch(() => {})
     load()
     const handler = () => load()
     window.addEventListener("cms:content-updated", handler as EventListener)
+    let bc: BroadcastChannel | null = null
     try {
-      const bc = new BroadcastChannel("cms")
-      bc.onmessage = (e) => { if (e?.data?.type === "updated") load() }
+      bc = new BroadcastChannel("cms")
+      bc.onmessage = (e) => { if (e?.data?.type === "updated" && e?.data?.section === "audio") load() }
     } catch {}
-    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener) }
+    return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener); if (bc) bc.close() }
   }, [language])
   const effectiveTracks = externalTracks || []
 
