@@ -35,7 +35,7 @@ const AudioPlayer = () => {
     } catch {}
     return () => { mounted = false; window.removeEventListener("cms:content-updated", handler as EventListener); if (bc) bc.close() }
   }, [language])
-  const effectiveTracks = externalTracks || []
+  const effectiveTracks = (externalTracks && externalTracks.length ? externalTracks : [])
 
   // Preload next track for instant playback
   useEffect(() => {
