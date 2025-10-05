@@ -25,5 +25,14 @@
     "image": "/ood metsale mockup.jpeg",
     "link": "https://open.spotify.com/album/",
     "type": "news"
+  },
+  {
+    "id": "4",
+    "date": "",
+    "title": "test",
+    "content": "ccccc",
+    "image": "",
+    "link": "",
+    "type": "news"
   }
 ]
