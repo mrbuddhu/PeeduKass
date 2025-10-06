@@ -86,5 +86,14 @@
     "description": "JÕULUJAZZ at Kumu auditorium.",
     "ticketLink": "",
     "status": "upcoming"
+  },
+  {
+    "id": "9",
+    "date": "2025-10-10",
+    "time": "20:00",
+    "title": "Egert Milder Trio",
+    "city": "Kiili, EE",
+    "venue": "Kiili rahvamaja",
+    "link": ""
   }
 ]
