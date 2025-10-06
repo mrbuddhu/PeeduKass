@@ -104,5 +104,14 @@
     "city": "Tallinn, EE",
     "venue": "Estonia kontserdisaal",
     "link": "https://concert.ee/kontsert/kute/"
+  },
+  {
+    "id": "11",
+    "date": "2025-11-20",
+    "time": "19:00",
+    "title": "Kass/Talsi/Minn",
+    "city": "Tallinn, EE",
+    "venue": "Estonia kontserdisaal",
+    "link": ""
   }
 ]
