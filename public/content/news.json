@@ -1,14 +1,5 @@
 [
   {
-    "id": "1",
-    "date": "4th Sep 2025",
-    "title": "WOMEX Showcase Performance",
-    "content": "I’m very exited to announce that Kass-Talsi-Minn has been chosen to perform at this year’s WOMEX showcase in Tampere, Finland. Come hear us play on 25th of October at the small hall of Tampere-talo.",
-    "image": "/wmx25_Kass-Talsi-Minn_Northern_Connections_post_1080x1350.png",
-    "link": "https://www.womex.com/virtual/piranha_arts_1/event/kass_talsi_minn",
-    "type": "news"
-  },
-  {
     "id": 2,
     "date": "",
     "title": "“Play with more rhythm” they said to me in school.",
@@ -16,6 +7,15 @@
     "image": "/placeholder-e024j.png",
     "link": "https://www.instagram.com/reel/DGiJt3MtWfT/",
     "type": "instagram"
+  },
+  {
+    "id": "1",
+    "date": "4th Sep 2025",
+    "title": "WOMEX Showcase Performance",
+    "content": "I’m very exited to announce that Kass-Talsi-Minn has been chosen to perform at this year’s WOMEX showcase in Tampere, Finland. Come hear us play on 25th of October at the small hall of Tampere-talo.",
+    "image": "/wmx25_Kass-Talsi-Minn_Northern_Connections_post_1080x1350.png",
+    "link": "https://www.womex.com/virtual/piranha_arts_1/event/kass_talsi_minn",
+    "type": "news"
   },
   {
     "id": 3,
