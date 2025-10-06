@@ -24,7 +24,7 @@
   {
     "id": 3,
     "date": "2025-10-25",
-    "time": "21:45",
+    "time": "20:00",
     "venue": "Tampere-talo, WOMEX",
     "city": "Tampere, FI",
     "title": "Kass/Talsi/Minn — WOMEX Showcase",
@@ -88,15 +88,6 @@
     "status": "upcoming"
   },
   {
-    "id": "10",
-    "date": "2025-11-20",
-    "time": "19:00",
-    "title": "Kass-Talsi-Minn",
-    "city": "Tallinn, EE",
-    "venue": "Estonia kontserdisaal",
-    "link": ""
-  },
-  {
     "id": "9",
     "date": "2025-10-10",
     "time": "20:00",
@@ -104,5 +95,14 @@
     "city": "Kiili, EE",
     "venue": "Kiili rahvamaja",
     "link": ""
+  },
+  {
+    "id": "10",
+    "date": "2025-11-20",
+    "time": "19:00",
+    "title": "Kass-Talsi-Minn",
+    "city": "Tallinn, EE",
+    "venue": "Estonia kontserdisaal",
+    "link": "https://concert.ee/kontsert/kute/"
   }
 ]
