@@ -105,5 +105,16 @@
     "venue": "Estonia kontserdisaal",
     "link": "",
     "ticketLink": "https://concert.ee/kontsert/kute/"
+  },
+  {
+    "id": "10",
+    "date": "2025-12-16",
+    "time": "19:00",
+    "venue": "JÕULUJAZZ, Kumu auditoorium",
+    "city": "Tallinn, EE",
+    "title": "Võigemast/Kaarnamets/Kass",
+    "description": "",
+    "ticketLink": "https://jazzkaar.ee/uritus/voigemast-kaarnamets-kass-3/",
+    "status": "upcoming"
   }
 ]
