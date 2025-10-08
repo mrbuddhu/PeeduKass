@@ -149,7 +149,7 @@ const GigsSection = () => {
           {upcomingEvents.map((gig, index) => (
             <div 
               key={gig.id} 
-              className="bg-white/95 backdrop-blur-sm rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-[200px_max-content_1fr] gap-6 animate-fade-in-up hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer group"
+              className="bg-white/95 backdrop-blur-sm rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-[200px_max-content_1fr] gap-6 animate-fade-in-up hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer group relative"
               style={{ animationDelay: `${(index + 1) * 0.1}s` }}
             >
               <div className="flex items-center gap-3 text-gray-700 justify-center text-center md:justify-start md:text-left">
@@ -179,6 +179,13 @@ const GigsSection = () => {
                   {t("calendar.gigs.tickets")} <ExternalLink className="h-3 w-3" />
                 </a>
               )}
+              
+              {/* Arrow indicator for ticket link - outside card */}
+              {gig.ticketLink && (
+                <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 z-10">
+                  <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-sm"></div>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -188,7 +195,7 @@ const GigsSection = () => {
           {pastEvents.map((gig, index) => (
             <div 
               key={gig.id} 
-              className="bg-white/90 backdrop-blur-sm rounded-lg shadow-md p-4 grid grid-cols-1 md:grid-cols-[200px_max-content_1fr] gap-6 animate-fade-in-up opacity-80 hover:opacity-100 hover:scale-102 hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer group"
+              className="bg-white/90 backdrop-blur-sm rounded-lg shadow-md p-4 grid grid-cols-1 md:grid-cols-[200px_max-content_1fr] gap-6 animate-fade-in-up opacity-80 hover:opacity-100 hover:scale-102 hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer group relative"
               style={{ animationDelay: `${0.6 + (index * 0.1)}s` }}
             >
               <div className="flex items-center gap-3 text-gray-600 justify-center text-center md:justify-start md:text-left">
@@ -219,6 +226,13 @@ const GigsSection = () => {
                   </a>
                 )}
               </div>
+              
+              {/* Arrow indicator for ticket link - outside card */}
+              {gig.ticketLink && (
+                <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 z-10">
+                  <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-sm"></div>
+                </div>
+              )}
             </div>
           ))}
         </div>

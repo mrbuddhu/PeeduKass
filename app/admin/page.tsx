@@ -21,7 +21,7 @@ const sections: { key: SectionKey; label: string; file: string }[] = [
 const fieldConfigs: Record<SectionKey, { key: string; label: string; type: "text" | "textarea" | "select"; options?: string[] }[]> = {
   news: [
     { key: "id", label: "ID", type: "text" },
-    { key: "date", label: "Date", type: "text" },
+    { key: "date", label: "Date (YYYY-MM-DD)", type: "text" },
     { key: "title", label: "Title", type: "text" },
     { key: "content", label: "Content", type: "textarea" },
     { key: "image", label: "Image URL (postimages.org/imgbb.com)", type: "text" },
@@ -30,7 +30,7 @@ const fieldConfigs: Record<SectionKey, { key: string; label: string; type: "text
   ],
   gigs: [
     { key: "id", label: "ID", type: "text" },
-    { key: "date", label: "Date", type: "text" },
+    { key: "date", label: "Date (YYYY-MM-DD)", type: "text" },
     { key: "time", label: "Time (HH:mm)", type: "text" },
     { key: "venue", label: "Venue", type: "text" },
     { key: "city", label: "City", type: "text" },
@@ -223,6 +223,18 @@ export default function AdminPage() {
     setItems({ ...items, [active]: list })
   }
 
+  const validateDateFormat = (date: string): boolean => {
+    if (!date) return true
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/
+    return dateRegex.test(date)
+  }
+
+  const validateTimeFormat = (time: string): boolean => {
+    if (!time) return true
+    const timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/
+    return timeRegex.test(time)
+  }
+
   const moveItem = (idx: number, dir: "up" | "down") => {
     const list = [...items[active]]
     const newIdx = dir === "up" ? idx - 1 : idx + 1
@@ -289,6 +301,15 @@ export default function AdminPage() {
             <li><strong>Regular news</strong> - Add title, content, image URL</li>
             <li><strong>Instagram posts</strong> - Paste Instagram URL, type: "instagram"</li>
             <li><strong>External links</strong> - Add title, link URL, type: "link"</li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-semibold text-blue-800 mb-1">📅 Date & Time Formats:</p>
+          <ul className="list-disc list-inside ml-4 space-y-1">
+            <li><strong>Date format:</strong> YYYY-MM-DD (e.g., 2024-03-15)</li>
+            <li><strong>Time format:</strong> HH:mm (e.g., 19:30, 14:00)</li>
+            <li><strong>Examples:</strong> 2024-12-25, 19:30, 14:00</li>
           </ul>
         </div>
 
@@ -445,12 +466,42 @@ export default function AdminPage() {
                           )}
                         </div>
                       ) : (
-                        <input
-                          className="w-full border rounded p-1 text-xs"
-                          placeholder={f.key === "id" ? "Enter ID" : f.key === "date" ? "Enter date" : f.key === "title" ? "Enter title" : f.key === "location" ? "Enter location" : f.key === "venue" ? "Enter venue" : f.key === "link" ? "Enter link URL" : f.key === "artist" ? "Enter artist name" : f.key === "name" ? "Enter band name" : f.key === "alt" ? "Enter alt text" : f.key === "caption" ? "Enter caption" : f.key === "description" ? "Enter description" : f.key === "type" ? "Enter type (PDF/ZIP)" : f.key === "resolution" ? "Enter resolution text" : "Enter text"}
-                          value={it[f.key] || ""}
-                          onChange={(e) => updateField(idx, f.key, e.target.value)}
-                        />
+                        <div className="space-y-1">
+                          <input
+                            className={`w-full border rounded p-1 text-xs ${
+                              (f.key === "date" && it[f.key] && !validateDateFormat(it[f.key])) ||
+                              (f.key === "time" && it[f.key] && !validateTimeFormat(it[f.key]))
+                                ? "border-red-300 bg-red-50" 
+                                : "border-gray-300"
+                            }`}
+                            placeholder={
+                              f.key === "id" ? "Enter ID" : 
+                              f.key === "date" ? "YYYY-MM-DD (e.g., 2024-03-15)" : 
+                              f.key === "time" ? "HH:mm (e.g., 19:30)" :
+                              f.key === "title" ? "Enter title" : 
+                              f.key === "location" ? "Enter location" : 
+                              f.key === "venue" ? "Enter venue" : 
+                              f.key === "link" ? "Enter link URL" : 
+                              f.key === "artist" ? "Enter artist name" : 
+                              f.key === "name" ? "Enter band name" : 
+                              f.key === "alt" ? "Enter alt text" : 
+                              f.key === "caption" ? "Enter caption" : 
+                              f.key === "description" ? "Enter description" : 
+                              f.key === "type" ? "Enter type (PDF/ZIP)" : 
+                              f.key === "resolution" ? "Enter resolution text" : 
+                              "Enter text"
+                            }
+                            value={it[f.key] || ""}
+                            onChange={(e) => updateField(idx, f.key, e.target.value)}
+                          />
+                          {/* Format validation messages */}
+                          {f.key === "date" && it[f.key] && !validateDateFormat(it[f.key]) && (
+                            <div className="text-xs text-red-600">⚠️ Use format: YYYY-MM-DD (e.g., 2024-03-15)</div>
+                          )}
+                          {f.key === "time" && it[f.key] && !validateTimeFormat(it[f.key]) && (
+                            <div className="text-xs text-red-600">⚠️ Use format: HH:mm (e.g., 19:30)</div>
+                          )}
+                        </div>
                       )}
                     </div>
                   ))}
