@@ -25,8 +25,22 @@ export const metadata = {
 
 export default function CalendarPage() {
   return (
-    <div className="min-h-screen">
-      <GigsSection />
+    <div className="min-h-screen relative">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/uploads/7_Martin_Heinmets.webp')",
+          backgroundAttachment: "fixed"
+        }}
+      />
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/20" />
+      
+      {/* Content */}
+      <div className="relative z-10">
+        <GigsSection />
+      </div>
     </div>
   )
 }

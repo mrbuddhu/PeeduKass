@@ -60,6 +60,69 @@ const discography = [
     year: "2021",
     image: "/uploads/Ood metsale_Joel Remmel Peedu Kass.webp",
     link: "#"
+  },
+  {
+    id: 12,
+    title: "Aerie",
+    year: "2023",
+    image: "/uploads/aerie.jpg",
+    link: "#"
+  },
+  {
+    id: 13,
+    title: "Animamea",
+    year: "2023",
+    image: "/uploads/animamea.jpg",
+    link: "#"
+  },
+  {
+    id: 14,
+    title: "Bad Habits",
+    year: "2023",
+    image: "/uploads/bad_habits.webp",
+    link: "#"
+  },
+  {
+    id: 15,
+    title: "Efterglow",
+    year: "2023",
+    image: "/uploads/Efterglow_Erki.jpg",
+    link: "#"
+  },
+  {
+    id: 16,
+    title: "Kreeka Tuli",
+    year: "2023",
+    image: "/uploads/kreeka_tuli.jpg",
+    link: "#"
+  },
+  {
+    id: 17,
+    title: "Kunagi Läänes",
+    year: "2023",
+    image: "/uploads/Kunagi.jpg",
+    link: "#"
+  },
+  {
+    id: 18,
+    title: "Praktiline Mees",
+    year: "2023",
+    image: "/uploads/praktiline_mees.jpeg",
+    link: "#"
+  },
+  {
+    id: 19,
+    title: "Reigo Ahven Remember",
+    year: "2023",
+    image: "/uploads/reigo_ahven_remember.jpg",
+    link: "#"
+  },
+  {
+    id: 20,
+    title: "Saja Lugu",
+    year: "2023",
+    image: "/uploads/Sajalugu.jpeg",
+    link: "#"
   }
 ]
 
