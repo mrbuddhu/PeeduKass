@@ -179,13 +179,6 @@ const GigsSection = () => {
                   {t("calendar.gigs.tickets")} <ExternalLink className="h-3 w-3" />
                 </a>
               )}
-              
-              {/* Arrow indicator for ticket link - outside card */}
-              {gig.ticketLink && (
-                <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 z-10">
-                  <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-sm"></div>
-                </div>
-              )}
             </div>
           ))}
         </div>
@@ -226,13 +219,6 @@ const GigsSection = () => {
                   </a>
                 )}
               </div>
-              
-              {/* Arrow indicator for ticket link - outside card */}
-              {gig.ticketLink && (
-                <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 z-10">
-                  <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-sm"></div>
-                </div>
-              )}
             </div>
           ))}
         </div>
