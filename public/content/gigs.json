@@ -24,7 +24,7 @@
   {
     "id": 3,
     "date": "2025-10-25",
-    "time": "20:00",
+    "time": "21:45",
     "venue": "Tampere-talo, WOMEX",
     "city": "Tampere, FI",
     "title": "Kass/Talsi/Minn — WOMEX Showcase",
@@ -86,5 +86,23 @@
     "description": "JÕULUJAZZ at Kumu auditorium.",
     "ticketLink": "",
     "status": "upcoming"
+  },
+  {
+    "id": "9",
+    "date": "2025-10-10",
+    "time": "20:00",
+    "title": "Egert Milder Trio",
+    "city": "Kiili, EE",
+    "venue": "Kiili rahvamaja",
+    "link": ""
+  },
+  {
+    "id": "11",
+    "date": "2025-11-20",
+    "time": "19:00",
+    "title": "Kass/Talsi/Minn",
+    "city": "Tallinn, EE",
+    "venue": "Estonia kontserdisaal",
+    "link": ""
   }
 ]

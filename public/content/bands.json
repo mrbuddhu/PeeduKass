@@ -12,11 +12,7 @@
   },
   {
     "name": "Peedu Kass Solo",
-    "members": [
-      "kontrabass",
-      "basskitarr",
-      "elektroonika"
-    ],
+    "members": "double bass,\nelectric bass,\nelectronics",
     "image": "/uploads/1758262892987-2_solo.webp",
     "link": "#"
   },
@@ -55,6 +51,13 @@
       "PK (bs)"
     ],
     "image": "/uploads/1758262919611-5_ajavali.webp",
+    "link": "#"
+  },
+  {
+    "id": "",
+    "name": "Egert Milder",
+    "members": "Egert Milder (voc,gtr),\nKarl Sander Saarik (voc, gtr),\nJoosep Kõrvits (kbd),\nKaspar Kalluste (drs),\nPK (bs)",
+    "image": "https://i.postimg.cc/K84xp0hN/egert-band.jpg",
     "link": "#"
   }
 ]
