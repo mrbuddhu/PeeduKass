@@ -66,34 +66,13 @@ export async function POST(req: NextRequest) {
           .upsert({ section, lang, data: parsed }, { onConflict: "section,lang" })
         supaOk = !error
 
-        // Special handling for gigs: sync core data between languages
+        // Special handling for gigs: mirror EXACT data to the other language
         if (section === "gigs" && Array.isArray(parsed)) {
           try {
             const otherLang = lang === "est" ? "en" : "est"
-            // For gigs, we sync the core data but preserve language-specific text fields
-            const syncData = parsed.map((gig: any) => {
-              // Keep core data that should be the same in both languages
-              const coreData = {
-                id: gig.id,
-                date: gig.date,
-                time: gig.time,
-                venue: gig.venue,
-                city: gig.city,
-                ticketLink: gig.ticketLink,
-                status: gig.status
-              }
-              
-              // For language-specific fields, we'll keep existing values or use defaults
-              return {
-                ...coreData,
-                title: gig.title || (otherLang === "est" ? gig.title : ""),
-                description: gig.description || (otherLang === "est" ? gig.description : "")
-              }
-            })
-            
             const { error: syncError } = await supa
               .from("cms_content")
-              .upsert({ section, lang: otherLang, data: syncData }, { onConflict: "section,lang" })
+              .upsert({ section, lang: otherLang, data: parsed }, { onConflict: "section,lang" })
             syncOk = !syncError
           } catch {}
         }
