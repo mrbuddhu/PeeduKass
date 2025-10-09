@@ -17,7 +17,7 @@
     "venue": "Salme Kultuurikeskus",
     "city": "Tallinn, EE",
     "title": "Miljardid",
-    "description": "Miljardid in concert.",
+    "description": "Miljardid in concert",
     "ticketLink": "",
     "status": "upcoming"
   },
@@ -29,7 +29,7 @@
     "city": "Tampere, FI",
     "title": "Kass/Talsi/Minn — WOMEX Showcase",
     "description": "WOMEX showcase performance.",
-    "ticketLink": "",
+    "ticketLink": "https://www.womex.com/virtual/piranha_arts_1/event/kass_talsi_minn",
     "status": "upcoming"
   },
   {
@@ -39,7 +39,7 @@
     "venue": "Haapsalu Kultuurikeskus",
     "city": "Haapsalu, EE",
     "title": "Võigemast/Kaarnamets/Kass",
-    "description": "JÕULUJAZZ concert.",
+    "description": "JÕULUJAZZ concert",
     "ticketLink": "",
     "status": "upcoming"
   },
@@ -50,7 +50,7 @@
     "venue": "Von Krahl",
     "city": "Tallinn, EE",
     "title": "Raivo Tafenau & Lauri Saatpalu",
-    "description": "JÕULUJAZZ at Von Krahl.",
+    "description": "JÕULUJAZZ at Von Krahl",
     "ticketLink": "",
     "status": "upcoming"
   },
@@ -61,7 +61,7 @@
     "venue": "JÕULUJAZZ",
     "city": "Jõgeva, EE",
     "title": "Maarja Aarma",
-    "description": "JÕULUJAZZ in Jõgeva.",
+    "description": "JÕULUJAZZ in Jõgeva",
     "ticketLink": "",
     "status": "upcoming"
   },
@@ -72,7 +72,7 @@
     "venue": "Kumu auditoorium",
     "city": "Tallinn, EE",
     "title": "Maarja Aarma",
-    "description": "JÕULUJAZZ at Kumu auditorium.",
+    "description": "JÕULUJAZZ at Kumu auditorium",
     "ticketLink": "",
     "status": "upcoming"
   },
@@ -83,7 +83,7 @@
     "venue": "Kumu auditoorium",
     "city": "Tallinn, EE",
     "title": "Võigemast/Kaarnamets/Kass",
-    "description": "JÕULUJAZZ at Kumu auditorium.",
+    "description": "JÕULUJAZZ at Kumu auditorium",
     "ticketLink": "",
     "status": "upcoming"
   },
@@ -103,6 +103,18 @@
     "title": "Kass/Talsi/Minn",
     "city": "Tallinn, EE",
     "venue": "Estonia kontserdisaal",
-    "link": ""
+    "link": "",
+    "ticketLink": "https://concert.ee/kontsert/kute/"
+  },
+  {
+    "id": "10",
+    "date": "2025-12-16",
+    "time": "19:00",
+    "venue": "JÕULUJAZZ, Kumu auditoorium",
+    "city": "Tallinn, EE",
+    "title": "Võigemast/Kaarnamets/Kass",
+    "description": "",
+    "ticketLink": "https://jazzkaar.ee/uritus/voigemast-kaarnamets-kass-3/",
+    "status": "upcoming"
   }
 ]
