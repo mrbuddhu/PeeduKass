@@ -101,7 +101,8 @@ const GigsSection = () => {
   const [externalGigs, setExternalGigs] = useState<typeof upcomingGigs | null>(null)
   useEffect(() => {
     let mounted = true
-    const load = () => fetch(`/api/content/gigs/${language === "est" ? "est" : "en"}`, { cache: "no-store" })
+    // Always load English concerts so both languages show identical data
+    const load = () => fetch(`/api/content/gigs/en`, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => { if (mounted && Array.isArray(data)) setExternalGigs(data) })
       .catch(() => {})
