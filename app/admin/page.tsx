@@ -35,7 +35,6 @@ const fieldConfigs: Record<SectionKey, { key: string; label: string; type: "text
     { key: "venue", label: "Venue", type: "text" },
     { key: "city", label: "City", type: "text" },
     { key: "title", label: "Title", type: "text" },
-    { key: "description", label: "Description", type: "textarea" },
     { key: "ticketLink", label: "Ticket Link", type: "text" },
     { key: "status", label: "Status", type: "select", options: ["upcoming", "past"] },
   ],
@@ -184,6 +183,16 @@ export default function AdminPage() {
         info?.localOk ? "file ✓" : "file –",
         info?.ghOk ? "git ✓" : "git –",
       ]
+      
+      // Add sync status for gigs
+      if (active === "gigs") {
+        const syncParts = [
+          info?.syncOk ? "sync ✓" : "sync –",
+          info?.localSyncOk ? "file-sync ✓" : "file-sync –",
+        ]
+        parts.push(...syncParts)
+      }
+      
       setMessage(`Saved (${parts.join(", ")})`)
       // notify open pages to refetch this section
       if (typeof window !== "undefined") {

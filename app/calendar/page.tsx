@@ -30,7 +30,7 @@ export default function CalendarPage() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/uploads/7_Martin_Heinmets.webp')",
+          backgroundImage: "url('/concerts_bkgr.webp')",
           backgroundAttachment: "fixed"
         }}
       />

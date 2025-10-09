@@ -28,14 +28,33 @@ export async function POST(req: NextRequest) {
     }
 
     let localOk = false
+    let localSyncOk = false
     try {
       await fs.mkdir(path.dirname(target), { recursive: true })
       await fs.writeFile(target, contents, "utf8")
       localOk = true
+
+      // Special handling for gigs: also sync to the other language file
+      const section = relPath.replace(/^\/+/, "").replace(/^public\//, "").replace(/^content\//, "").replace(/(_est)?\.json$/, "")
+      if (section === "gigs" && Array.isArray(JSON.parse(contents))) {
+        try {
+          const isEstFile = /_est\.json$/.test(relPath)
+          const otherLangFile = isEstFile 
+            ? relPath.replace("_est.json", ".json")
+            : relPath.replace(".json", "_est.json")
+          
+          const otherTarget = path.join(process.cwd(), "public", otherLangFile.replace(/^\/+/, ""))
+          if (otherTarget.startsWith(safeBase)) {
+            await fs.writeFile(otherTarget, contents, "utf8")
+            localSyncOk = true
+          }
+        } catch {}
+      }
     } catch {}
 
     // Upsert into Supabase cms_content (section + lang)
     let supaOk = false
+    let syncOk = false
     try {
       const supa = getSupabaseServer()
       if (supa) {
@@ -46,6 +65,38 @@ export async function POST(req: NextRequest) {
           .from("cms_content")
           .upsert({ section, lang, data: parsed }, { onConflict: "section,lang" })
         supaOk = !error
+
+        // Special handling for gigs: sync core data between languages
+        if (section === "gigs" && Array.isArray(parsed)) {
+          try {
+            const otherLang = lang === "est" ? "en" : "est"
+            // For gigs, we sync the core data but preserve language-specific text fields
+            const syncData = parsed.map((gig: any) => {
+              // Keep core data that should be the same in both languages
+              const coreData = {
+                id: gig.id,
+                date: gig.date,
+                time: gig.time,
+                venue: gig.venue,
+                city: gig.city,
+                ticketLink: gig.ticketLink,
+                status: gig.status
+              }
+              
+              // For language-specific fields, we'll keep existing values or use defaults
+              return {
+                ...coreData,
+                title: gig.title || (otherLang === "est" ? gig.title : ""),
+                description: gig.description || (otherLang === "est" ? gig.description : "")
+              }
+            })
+            
+            const { error: syncError } = await supa
+              .from("cms_content")
+              .upsert({ section, lang: otherLang, data: syncData }, { onConflict: "section,lang" })
+            syncOk = !syncError
+          } catch {}
+        }
       }
     } catch {}
 
@@ -95,7 +146,7 @@ export async function POST(req: NextRequest) {
       } catch {}
     }
 
-    if (localOk || supaOk || ghOk) return NextResponse.json({ ok: true, localOk, supaOk, ghOk })
+    if (localOk || supaOk || ghOk) return NextResponse.json({ ok: true, localOk, supaOk, ghOk, syncOk, localSyncOk })
     return new NextResponse("Write failed", { status: 500 })
   } catch (e: any) {
     return new NextResponse("Write failed", { status: 500 })
