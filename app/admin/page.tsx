@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useMemo, useState } from "react"
+import { ChevronDown } from "lucide-react"
 
 type SectionKey = "news" | "gigs" | "videos" | "audio" | "bands" | "photos" | "pressKit" | "pressPhotos" | "awards" | "bio"
 
@@ -109,6 +110,7 @@ export default function AdminPage() {
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState("")
   const [items, setItems] = useState<Record<SectionKey, any[]>>({ news: [], gigs: [], videos: [], audio: [], bands: [], photos: [], pressKit: [], pressPhotos: [], awards: [], bio: [] })
+  const [helpExpanded, setHelpExpanded] = useState(false)
 
   const getFileForLang = (file: string): string => {
     if (adminLang === "en") return file
@@ -272,10 +274,22 @@ export default function AdminPage() {
       <div className="max-w-5xl mx-auto">
         <h1 className="text-3xl font-bold mb-4">Content Admin (Staging)</h1>
         
-        {/* Instructions */}
-    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-      <h3 className="font-semibold text-blue-800 mb-3">📋 How to Add Content:</h3>
-      <div className="text-sm text-blue-700 space-y-3">
+        {/* Instructions - Collapsible */}
+    <div className="bg-blue-50 border border-blue-200 rounded-lg mb-6">
+      <button
+        onClick={() => setHelpExpanded(!helpExpanded)}
+        className="w-full flex items-center justify-between p-4 text-left hover:bg-blue-100 transition-colors"
+      >
+        <h3 className="font-semibold text-blue-800">📋 How to Add Content:</h3>
+        <ChevronDown 
+          className={`h-5 w-5 text-blue-600 transition-transform duration-200 ${
+            helpExpanded ? 'rotate-180' : ''
+          }`} 
+        />
+      </button>
+      {helpExpanded && (
+        <div className="px-4 pb-4">
+          <div className="text-sm text-blue-700 space-y-3">
         
         <div>
           <p className="font-semibold text-blue-800 mb-1">📸 Images:</p>
@@ -325,7 +339,9 @@ export default function AdminPage() {
         <div className="mt-3 p-2 bg-green-100 rounded border border-green-300">
           <p className="text-green-700 font-semibold">✅ All changes appear instantly on the live website!</p>
         </div>
-      </div>
+          </div>
+        </div>
+      )}
     </div>
         <div className="flex items-center gap-4 mb-6 flex-wrap">
           <div className="flex items-center gap-2 mr-4">
