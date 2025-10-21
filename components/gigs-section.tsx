@@ -144,29 +144,28 @@ const GigsSection = () => {
   return (
     <section className="py-16 px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-8 animate-fade-in-up drop-shadow-lg">{t("calendar.gigs.upcoming")}</h2>
+        <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-8 drop-shadow-lg">{t("calendar.gigs.upcoming")}</h2>
 
         <div className="space-y-4">
           {upcomingEvents.map((gig, index) => (
             <div 
               key={gig.id} 
-              className="bg-white/95 backdrop-blur-sm rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-[250px_auto_1fr_auto] gap-6 animate-fade-in-up hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer group relative"
-              style={{ animationDelay: `${(index + 1) * 0.1}s` }}
+              className="bg-white/95 backdrop-blur-sm rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-[250px_auto_1fr_auto] gap-6 cursor-pointer group relative"
             >
               <div className="flex items-center gap-3 text-gray-700 justify-center text-center md:justify-start md:text-left">
-                <Calendar className="h-4 w-4 text-gray-500 group-hover:text-gray-700 transition-colors duration-300" />
-                <span className="font-vietnam text-sm group-hover:text-gray-900 transition-colors duration-300">{formatDate(gig.date)}</span>
-                <Clock className="h-4 w-4 text-gray-400 hidden md:inline group-hover:text-gray-600 transition-colors duration-300" />
-                <span className="font-vietnam text-sm hidden md:inline group-hover:text-gray-900 transition-colors duration-300">{gig.time}</span>
+                <Calendar className="h-4 w-4 text-gray-500" />
+                <span className="font-vietnam text-sm">{formatDate(gig.date)}</span>
+                <Clock className="h-4 w-4 text-gray-400 hidden md:inline" />
+                <span className="font-vietnam text-sm hidden md:inline">{gig.time}</span>
               </div>
               <div className="flex items-center justify-center text-center md:justify-start md:text-left">
-                <span className="font-vietnam text-xs md:text-sm bg-black text-white rounded px-3 py-1 whitespace-nowrap group-hover:bg-gray-700 group-hover:scale-105 transition-all duration-300 ease-in-out">
+                <span className="font-vietnam text-xs md:text-sm bg-black text-white rounded px-3 py-1 whitespace-nowrap">
                   {gig.title}
                 </span>
               </div>
               <div className="flex items-center gap-2 text-gray-800 min-w-0 justify-center text-center md:justify-end md:text-right">
-                <MapPin className="h-4 w-4 text-gray-500 group-hover:text-red-500 transition-colors duration-300" />
-                <span className="font-vietnam text-sm whitespace-nowrap overflow-hidden text-ellipsis group-hover:text-gray-900 transition-colors duration-300">
+                <MapPin className="h-4 w-4 text-gray-500" />
+                <span className="font-vietnam text-sm whitespace-nowrap overflow-hidden text-ellipsis">
                   {gig.city} — {gig.venue}
                 </span>
               </div>
@@ -174,7 +173,7 @@ const GigsSection = () => {
                 {gig.ticketLink && (
                   <a
                     href={gig.ticketLink}
-                    className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:underline transition-colors duration-300"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:underline"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -186,13 +185,12 @@ const GigsSection = () => {
           ))}
         </div>
 
-        <h3 className="font-playfair text-2xl font-semibold text-white mt-12 mb-6 animate-fade-in-up drop-shadow-lg" style={{ animationDelay: "0.5s" }}>{t("calendar.gigs.past")}</h3>
+        <h3 className="font-playfair text-2xl font-semibold text-white mt-12 mb-6 drop-shadow-lg">{t("calendar.gigs.past")}</h3>
         <div className="space-y-4">
           {pastEvents.map((gig, index) => (
             <div 
               key={gig.id} 
-              className="bg-white/90 backdrop-blur-sm rounded-lg shadow-md p-4 grid grid-cols-1 md:grid-cols-[250px_auto_1fr_auto] gap-6 animate-fade-in-up opacity-80 hover:opacity-100 hover:scale-102 hover:shadow-lg transition-all duration-300 ease-in-out cursor-pointer group relative"
-              style={{ animationDelay: `${0.6 + (index * 0.1)}s` }}
+              className="bg-white/90 backdrop-blur-sm rounded-lg shadow-md p-4 grid grid-cols-1 md:grid-cols-[250px_auto_1fr_auto] gap-6 opacity-80 cursor-pointer group relative"
             >
               <div className="flex items-center gap-3 text-gray-600 justify-center text-center md:justify-start md:text-left">
                 <Calendar className="h-4 w-4 text-gray-400" />
@@ -215,7 +213,7 @@ const GigsSection = () => {
                 {gig.ticketLink && (
                   <a
                     href={gig.ticketLink}
-                    className="inline-flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors duration-300"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-700"
                     target="_blank"
                     rel="noopener noreferrer"
                     title={t("calendar.gigs.tickets")}

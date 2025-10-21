@@ -7,8 +7,8 @@ import { useLanguage } from "./language-context"
 
 const ContactInfo = () => {
   const { t } = useLanguage()
-  const user = "info"
-  const domain = "peedukass"
+  const user = "peedukass"
+  const domain = "gmail"
   const tld = "com"
   const obfuscated = `${user} [at] ${domain} [dot] ${tld}`
   const contactMethods = [
