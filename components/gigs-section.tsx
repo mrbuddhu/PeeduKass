@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 
 const GigsSection = () => {
   const { t, language } = useLanguage()
+  const [isLoading, setIsLoading] = useState(true)
   const upcomingGigs = [
     {
       id: 1,
@@ -101,11 +102,25 @@ const GigsSection = () => {
   const [externalGigs, setExternalGigs] = useState<typeof upcomingGigs | null>(null)
   useEffect(() => {
     let mounted = true
+    setIsLoading(true)
     // Always load English concerts so both languages show identical data
     const load = () => fetch(`/api/content/gigs/en`, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
-      .then((data) => { if (mounted && Array.isArray(data)) setExternalGigs(data) })
-      .catch(() => {})
+      .then((data) => { 
+        if (mounted && Array.isArray(data)) {
+          setExternalGigs(data)
+        }
+        // Add a minimum loading time to show the loader
+        setTimeout(() => {
+          if (mounted) setIsLoading(false)
+        }, 1000)
+      })
+      .catch(() => {
+        // Even on error, stop loading after a delay
+        setTimeout(() => {
+          if (mounted) setIsLoading(false)
+        }, 1000)
+      })
     load()
     const handler = () => load()
     window.addEventListener("cms:content-updated", handler as EventListener)
@@ -146,7 +161,35 @@ const GigsSection = () => {
       <div className="max-w-6xl mx-auto">
         <h2 className="font-playfair text-3xl md:text-4xl font-bold text-white mb-8 drop-shadow-lg">{t("calendar.gigs.upcoming")}</h2>
 
-        <div className="space-y-4">
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center py-20">
+            {/* Musical note loader */}
+            <div className="relative mb-8">
+              <div className="flex space-x-2">
+                <div className="w-2 h-8 bg-white rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-12 bg-white rounded-full animate-pulse" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-6 bg-white rounded-full animate-pulse" style={{ animationDelay: '300ms' }}></div>
+                <div className="w-2 h-10 bg-white rounded-full animate-pulse" style={{ animationDelay: '450ms' }}></div>
+                <div className="w-2 h-8 bg-white rounded-full animate-pulse" style={{ animationDelay: '600ms' }}></div>
+              </div>
+            </div>
+            
+            {/* Loading text with typewriter effect */}
+            <div className="text-center">
+              <h3 className="font-playfair text-2xl font-bold text-white mb-2">Loading Concerts</h3>
+              <p className="font-vietnam text-white/80 text-lg">Preparing your musical journey...</p>
+            </div>
+            
+            {/* Progress dots */}
+            <div className="flex space-x-2 mt-6">
+              <div className="w-3 h-3 bg-white rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+              <div className="w-3 h-3 bg-white rounded-full animate-bounce" style={{ animationDelay: '200ms' }}></div>
+              <div className="w-3 h-3 bg-white rounded-full animate-bounce" style={{ animationDelay: '400ms' }}></div>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="space-y-4">
           {upcomingEvents.map((gig, index) => (
             <div 
               key={gig.id} 
@@ -224,7 +267,9 @@ const GigsSection = () => {
               </div>
             </div>
           ))}
-        </div>
+            </div>
+          </>
+        )}
       </div>
     </section>
   )
