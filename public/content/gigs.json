@@ -116,5 +116,15 @@
     "description": "",
     "ticketLink": "https://jazzkaar.ee/uritus/voigemast-kaarnamets-kass-3/",
     "status": "upcoming"
+  },
+  {
+    "id": "12",
+    "date": "2025-11-21",
+    "time": "21:00",
+    "venue": "Kinomaja",
+    "city": "Tallinn",
+    "title": "Miljardid",
+    "ticketLink": "",
+    "status": "upcoming"
   }
 ]
