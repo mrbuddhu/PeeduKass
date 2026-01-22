@@ -136,5 +136,15 @@
     "title": "Maarja Aarma",
     "ticketLink": "https://kultuuriaken.tartu.ee/et/syndmus/neljas-advent-tartu-joululinnas-maarja-aarma-jazztrio-ja-e-stuudio",
     "status": "upcoming"
+  },
+  {
+    "id": "",
+    "date": "2026-04-30",
+    "time": "23:00",
+    "venue": "JAZZKAAR/Fotografiska",
+    "city": "Tallinn",
+    "title": "Marten Kuningas, Anton Corbijn special",
+    "ticketLink": "https://tallinn.fotografiska.com/et/events/corbijn-sessions-marten-kuningas",
+    "status": "upcoming"
   }
 ]
