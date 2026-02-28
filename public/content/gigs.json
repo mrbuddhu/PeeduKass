@@ -156,5 +156,25 @@
     "title": "Liina Saar, Marek Talts, Lauri Räpp",
     "ticketLink": "https://piletikeskus.ee/et/e/vt9s8h",
     "status": "upcoming"
+  },
+  {
+    "id": "",
+    "date": "2026-04-28",
+    "time": "20:15",
+    "venue": "Fotografiska",
+    "city": "Tallinn",
+    "title": "Jazzkaar: Kass-Talsi-Sink-Minn",
+    "ticketLink": "https://piletikeskus.ee/et/e/309n47?affiliate=pk6od2",
+    "status": "upcoming"
+  },
+  {
+    "id": "",
+    "date": "2026-06-18",
+    "time": "21:30",
+    "venue": "Orjaku sadam",
+    "city": "Orjaku",
+    "title": "Sõru Jazz: Liina Saar, Marek Talts, Lauri Räpp",
+    "ticketLink": "https://piletikeskus.ee/et/select-ticket/6phu3g",
+    "status": "upcoming"
   }
 ]
