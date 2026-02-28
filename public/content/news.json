@@ -25,5 +25,14 @@
     "image": "/ood metsale mockup.jpeg",
     "link": "https://open.spotify.com/album/",
     "type": "news"
+  },
+  {
+    "id": "",
+    "date": "2026-02-27",
+    "title": "New record coming in April",
+    "content": "The ensemble Kass-Talsi-Sink-Minn will release its debut album in April, with the presentation concert taking place at the Jazzkaar festival. Four musicians from distinct backgrounds – Peedu Kass, Villu Talsi, Theodor Sink, and Simone Minn – unite mandolin, cello, viola, voice, and bass in a genre-crossing musical language rooted in jazz. The ten-track album brings together elements of classical music, a contemporary approach to tradition, and jazz-inflected improvisation.",
+    "image": "https://jazzkaar.ee/wp-content/uploads/2026/01/2_Gunnar_Laak-1366x1065.jpg",
+    "link": "",
+    "type": "news"
   }
 ]
