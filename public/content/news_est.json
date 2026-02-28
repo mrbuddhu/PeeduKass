@@ -1,5 +1,14 @@
 [
   {
+    "id": "",
+    "date": "2026-02-27",
+    "title": "Kass-Talsi-Sink-Minn album ilmub aprillis",
+    "content": "Ansambel Kass-Talsi-Sink-Minn annab aprillis välja oma debüütalbumi, mida esitletakse festivalil Jazzkaar. Nelja eri taustaga muusikut – Peedu Kassi, Villu Talsi, Theodor Sinki ja Simone Minni – ühendavad mandoliini, tšello, vioola, hääle ja bassi žanripiire kompava ja jazzist kantud muusikas. Kümnest loost koosneval albumil kohtuvad klassikalise muusika elemendid, tänapäevane lähenemine traditsioonidele ja jazzist kantud improvisatsioonid. ",
+    "image": "https://jazzkaar.ee/wp-content/uploads/2026/01/2_Gunnar_Laak-1366x1065.jpg",
+    "link": "",
+    "type": "news"
+  },
+  {
     "id": 1,
     "date": "2025-09-04",
     "title": "WOMEX Festivali Esinemine",
@@ -9,30 +18,12 @@
     "type": "news"
   },
   {
-    "id": 3,
-    "date": "2025-10-02",
-    "title": "Uus kava Jõulujazzi festivalil",
-    "content": "",
-    "image": "/placeholder-e024j.png",
-    "link": "https://www.instagram.com/p/DPTATrzjcaz/?utm_source=ig_web_copy_link&igsh=eDRvMDgwNGV6cDlv",
-    "type": "instagram"
-  },
-  {
     "id": 2,
     "date": "2023-06-16",
     "title": "Uus Plaat Joel Remmeliga",
     "content": "Festivali Jazzkaar 2022 avateosena kõlanud pianist Joel Remmeli ja bassist Peedu Kassi ühisteos \"Ood metsale\" ilmus vinüülil. Teose teistkordne ettekanne ja plaadi esitluskontsert toimub 16. juunil Sõru Jazzil Hiiumaal. Eesti metsale, selle väele ja hoidmise vajalikkusele pühendatud teos \"Ood metsale\" puudutas Jazzkaarel kuulajate hingi ja sai tunnustust ka rahvusvahelisest meediast, mistõttu otsustati anda kontsertsalvestus välja ka plaadina.",
     "image": "/ood metsale mockup.jpeg",
     "link": "https://www.instagram.com/reel/DGiJt3MtWfT",
-    "type": "news"
-  },
-  {
-    "id": "",
-    "date": "2026-02-27",
-    "title": "Kass-Talsi-Sink-Minn album ilmub aprillis",
-    "content": "Ansambel Kass-Talsi-Sink-Minn annab aprillis välja oma debüütalbumi, mida esitletakse festivalil Jazzkaar. Nelja eri taustaga muusikut – Peedu Kassi, Villu Talsi, Theodor Sinki ja Simone Minni – ühendavad mandoliini, tšello, vioola, hääle ja bassi žanripiire kompava ja jazzist kantud muusikas. Kümnest loost koosneval albumil kohtuvad klassikalise muusika elemendid, tänapäevane lähenemine traditsioonidele ja jazzist kantud improvisatsioonid. ",
-    "image": "https://jazzkaar.ee/wp-content/uploads/2026/01/2_Gunnar_Laak-1366x1065.jpg",
-    "link": "",
     "type": "news"
   }
 ]
