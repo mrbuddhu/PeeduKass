@@ -146,5 +146,15 @@
     "title": "Marten Kuningas, Anton Corbijn special",
     "ticketLink": "https://tallinn.fotografiska.com/et/events/corbijn-sessions-marten-kuningas",
     "status": "upcoming"
+  },
+  {
+    "id": "",
+    "date": "2026-03-09",
+    "time": "19:00",
+    "venue": "Swissotel, Esmaspäeva jazz",
+    "city": "Tallinn",
+    "title": "Liina Saar, Marek Talts, Lauri Räpp",
+    "ticketLink": "https://piletikeskus.ee/et/e/vt9s8h",
+    "status": "upcoming"
   }
 ]
