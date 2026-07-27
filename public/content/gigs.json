@@ -196,5 +196,15 @@
     "title": "Narva-Jõesuu Jazz: Dana Masters (Ireland)",
     "ticketLink": "",
     "status": "upcoming"
+  },
+  {
+    "id": "20",
+    "date": "2026-08-02",
+    "time": "16:00",
+    "venue": "Lüganuse ",
+    "city": "Lüganuse",
+    "title": "Lüganuse Jazz Harmony: Peedu Kass-Mihkel Mälgand",
+    "ticketLink": "",
+    "status": "upcoming"
   }
 ]
