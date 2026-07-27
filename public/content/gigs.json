@@ -186,5 +186,15 @@
     "title": "Viljandi Folk: ITIRA",
     "ticketLink": "",
     "status": "upcoming"
+  },
+  {
+    "id": "19",
+    "date": "2026-07-25",
+    "time": "19:00",
+    "venue": "Narva-Jõesuu park",
+    "city": "Narva-Jõesuu",
+    "title": "Narva-Jõesuu Jazz: Dana Masters (Ireland)",
+    "ticketLink": "",
+    "status": "upcoming"
   }
 ]
