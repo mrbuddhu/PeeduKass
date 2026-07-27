@@ -216,5 +216,15 @@
     "title": "Jazzliit x Triigi Filharmoonia: ITIRA",
     "ticketLink": "https://piletikeskus.ee/et/e/f51wq4",
     "status": "upcoming"
+  },
+  {
+    "id": "22",
+    "date": "2026-09-12",
+    "time": "18:30",
+    "venue": "Kultuuriklubi BAAS",
+    "city": "Rapla",
+    "title": "Rapla Särin: ITIRA",
+    "ticketLink": "tbc",
+    "status": "upcoming"
   }
 ]
