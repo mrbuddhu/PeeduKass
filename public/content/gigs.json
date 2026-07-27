@@ -176,5 +176,15 @@
     "title": "Sõru Jazz: Liina Saar, Marek Talts, Lauri Räpp",
     "ticketLink": "https://piletikeskus.ee/et/select-ticket/6phu3g",
     "status": "upcoming"
+  },
+  {
+    "id": "18",
+    "date": "2026-07-26",
+    "time": "15:30",
+    "venue": "Pärimusmuusika Ait",
+    "city": "Viljandi",
+    "title": "Viljandi Folk: ITIRA",
+    "ticketLink": "",
+    "status": "upcoming"
   }
 ]
