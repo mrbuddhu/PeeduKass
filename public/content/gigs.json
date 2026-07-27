@@ -226,5 +226,15 @@
     "title": "Rapla Särin: ITIRA",
     "ticketLink": "tbc",
     "status": "upcoming"
+  },
+  {
+    "id": "23",
+    "date": "2026-10-23",
+    "time": "19:00",
+    "venue": "Viimsi Artium",
+    "city": "Viimsi",
+    "title": "VÕIGEMAST-KAARNAMETS-KASS",
+    "ticketLink": "https://www.piletitasku.ee/et/event/9907",
+    "status": "upcoming"
   }
 ]
