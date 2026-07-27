@@ -25,5 +25,14 @@
     "image": "/ood metsale mockup.jpeg",
     "link": "https://open.spotify.com/album/",
     "type": "news"
+  },
+  {
+    "id": "4",
+    "date": "2026-07-02",
+    "title": "Press Reviews of the ITIRA Album Release Concert",
+    "content": "The release concert for the debut album “New Chapter” by the ensemble ITIRA took place on 28 April 2026 on the Fotografiska Tallinn stage as part of the Jazzkaar Festival. ITIRA — featuring musicians Peedu Kass, Villu Talsi, Theodor Sink and Simone Minn — brings together four distinct musical worlds into a unified form of expression: poetic and dynamic improvisation meets elements of classical music and folk-inspired harmonies, creating a sound that is fresh and contemporary. The album release concert at Jazzkaar was attended by international media representatives, resulting in several positive reviews.\"A quartet led by bassist Peedu Kass moved between polka and folk music and the music of English Elizabethan composers such as Thomas Tallis and John Taverner giving them a unique twist. A fascinating programe with an effective lineup, including Villu Talsi on mandolin, Theodor Sink on cello and Simone Minn on viola, the second to be heard during my time there.\"\n\nOliver Weindling, UK Jazz News https://ukjazznews.com/jazzkaar-festival-2026/\n\n\"A welcome contrast awaited back at Fotografiska, which also hosted a striking exhibition by celebrated photographer Anton Corbijn. There, a chamber ensemble featuring Peedu Kass on double bass, Villu Talsi on mandolin, Theodor Sink on cello and Simone Minn on viola delivered a refined and genre-defying performance. Blending elements of classical chamber music with jazz improvisation, the quartet created a sound both sophisticated and deeply accessible.\"\n\nPascal Dorban, Jazz Journal https://jazzjournal.co.uk/2026/05/13/jazzkaar-festival-escapes-jazz-but-still-compels/\n\n\"Fast schien es, als liessen sich die Wettergötter durch die Klänge des Festivals gnädig stimmen. Nach leichtem Schneefall an der Eröffnung (u. a. mit Bill Frisell) waren dem Festival bereits am dritten Tag wunderbares Wetter und frühlingshafte Temperaturen beschert. Das passte prächtig zum Geschehen auf der Bühne. Hier waren ­Kneebody, die Supergroup um Ben Wendel und Nate Wood (gleichzeitig an E-Bass und Schlagzeug!) zu erleben, die ihre Musik fern der Heimat als politisches Statement wirken liess. Ihr stilistisch offenes Konzert wurde im Anschluss durch das einheimische, folkige Quartett Kass-Talsi-Sink-Minn kontrastiert. Die Besetzung aus Bratsche, Mandoline, Kontrabass und Elektronik erinnerte auf moderne Weise an die ­Geografie, in der dieses eindrückliche ­ Festival stattfindet.\"\n\nJazz'n'More",
+    "image": "https://i.postimg.cc/PxxQLxfw/ITIRA-plaat-foto-Rene-Jakobson.jpg",
+    "link": "",
+    "type": "news"
   }
 ]
