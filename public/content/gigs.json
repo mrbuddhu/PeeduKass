@@ -120,5 +120,75 @@
     "title": "Võigemast/Kaarnamets/Kass",
     "ticketLink": "https://www.piletitasku.ee/et/event/9907",
     "status": "upcoming"
+  },
+  {
+    "id": "",
+    "date": "2026-09-10",
+    "time": "18:00",
+    "venue": "Rapla kirik",
+    "city": "Rapla",
+    "title": "Pärdi päevad \"Miserere\", Tõnu Kaljuste",
+    "ticketLink": "https://sviby.com/et/s/pardi-paevad-2026",
+    "status": "upcoming"
+  },
+  {
+    "id": "",
+    "date": "2026-09-11",
+    "time": "19:00",
+    "venue": "Jaani kirik",
+    "city": "Tallinn",
+    "title": "Pärdi päevad \"Miserere\", Tõnu Kaljuste",
+    "ticketLink": "https://sviby.com/et/s/pardi-paevad-2026",
+    "status": "upcoming"
+  },
+  {
+    "id": "",
+    "date": "2026-10-09",
+    "time": "19:00",
+    "venue": "Põlva jazziklubi",
+    "city": "Põlva",
+    "title": "Liina Tralla, Lauri Räpp, Peedu Kass, Marek Talts",
+    "ticketLink": "https://sviby.com/et/o/jazzliit",
+    "status": "upcoming"
+  },
+  {
+    "id": "",
+    "date": "2026-10-16",
+    "time": "20:00",
+    "venue": "Philly Joe's",
+    "city": "Tallinn",
+    "title": "Liina Tralla, Lauri Räpp, Peedu Kass, Marek Talts",
+    "ticketLink": "https://sviby.com/et/o/jazzliit",
+    "status": "upcoming"
+  },
+  {
+    "id": "",
+    "date": "2026-11-10",
+    "time": "19:00",
+    "venue": "Haapsalu kultuurikeskus",
+    "city": "Haapsalu",
+    "title": "Liina Tralla, Lauri Räpp, Peedu Kass, Marek Talts",
+    "ticketLink": "https://sviby.com/et/o/jazzliit",
+    "status": "upcoming"
+  },
+  {
+    "id": "",
+    "date": "2026-11-13",
+    "time": "21:30",
+    "venue": "Pärnu Endla jazziklubi",
+    "city": "Pärnu",
+    "title": "Liina Tralla, Lauri Räpp, Peedu Kass, Marek Talts",
+    "ticketLink": "https://sviby.com/et/o/jazzliit",
+    "status": "upcoming"
+  },
+  {
+    "id": "",
+    "date": "2026-11-06",
+    "time": "",
+    "venue": "Granada Jazz Festival",
+    "city": "Granada, ESP",
+    "title": "Dana Masters (IE/US)",
+    "ticketLink": "",
+    "status": "upcoming"
   }
 ]
