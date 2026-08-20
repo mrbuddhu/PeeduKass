@@ -1,27 +1,5 @@
 [
   {
-    "id": 1,
-    "date": "2025-09-15",
-    "time": "19:00",
-    "venue": "Folk Music Center",
-    "city": "Viljandi, EE",
-    "title": "Kass/Talsi/Sink/Minn",
-    "description": "Trio Kass–Talsi–Minn with Theodor Sink.",
-    "ticketLink": "",
-    "status": "upcoming"
-  },
-  {
-    "id": 2,
-    "date": "2025-09-19",
-    "time": "19:00",
-    "venue": "Salme Kultuurikeskus",
-    "city": "Tallinn, EE",
-    "title": "Miljardid",
-    "description": "Miljardid in concert",
-    "ticketLink": "",
-    "status": "upcoming"
-  },
-  {
     "id": 3,
     "date": "2025-10-25",
     "time": "21:45",
@@ -31,80 +9,6 @@
     "description": "WOMEX showcase performance.",
     "ticketLink": "https://www.womex.com/virtual/piranha_arts_1/event/kass_talsi_minn",
     "status": "upcoming"
-  },
-  {
-    "id": 4,
-    "date": "2025-11-27",
-    "time": "19:00",
-    "venue": "Haapsalu Kultuurikeskus",
-    "city": "Haapsalu, EE",
-    "title": "Võigemast/Kaarnamets/Kass",
-    "description": "JÕULUJAZZ concert",
-    "ticketLink": "",
-    "status": "upcoming"
-  },
-  {
-    "id": 5,
-    "date": "2025-11-29",
-    "time": "19:00",
-    "venue": "Von Krahl",
-    "city": "Tallinn, EE",
-    "title": "Raivo Tafenau & Lauri Saatpalu",
-    "description": "JÕULUJAZZ at Von Krahl",
-    "ticketLink": "",
-    "status": "upcoming"
-  },
-  {
-    "id": 6,
-    "date": "2025-11-30",
-    "time": "19:00",
-    "venue": "JÕULUJAZZ",
-    "city": "Jõgeva, EE",
-    "title": "Maarja Aarma",
-    "description": "JÕULUJAZZ in Jõgeva",
-    "ticketLink": "",
-    "status": "upcoming"
-  },
-  {
-    "id": 7,
-    "date": "2025-12-02",
-    "time": "19:00",
-    "venue": "Kumu auditoorium",
-    "city": "Tallinn, EE",
-    "title": "Maarja Aarma",
-    "description": "JÕULUJAZZ at Kumu auditorium",
-    "ticketLink": "",
-    "status": "upcoming"
-  },
-  {
-    "id": 8,
-    "date": "2025-12-09",
-    "time": "19:00",
-    "venue": "Kumu auditoorium",
-    "city": "Tallinn, EE",
-    "title": "Võigemast/Kaarnamets/Kass",
-    "description": "JÕULUJAZZ at Kumu auditorium",
-    "ticketLink": "",
-    "status": "upcoming"
-  },
-  {
-    "id": "9",
-    "date": "2025-10-10",
-    "time": "20:00",
-    "title": "Egert Milder Trio",
-    "city": "Kiili, EE",
-    "venue": "Kiili rahvamaja",
-    "link": ""
-  },
-  {
-    "id": "11",
-    "date": "2025-11-20",
-    "time": "19:00",
-    "title": "Kass/Talsi/Minn",
-    "city": "Tallinn, EE",
-    "venue": "Estonia kontserdisaal",
-    "link": "",
-    "ticketLink": "https://concert.ee/kontsert/kute/"
   },
   {
     "id": "10",
@@ -128,16 +32,6 @@
     "status": "upcoming"
   },
   {
-    "id": "13",
-    "date": "2025-12-21",
-    "time": "18:00",
-    "venue": "Raekoja plats",
-    "city": "Tartu",
-    "title": "Maarja Aarma",
-    "ticketLink": "https://kultuuriaken.tartu.ee/et/syndmus/neljas-advent-tartu-joululinnas-maarja-aarma-jazztrio-ja-e-stuudio",
-    "status": "upcoming"
-  },
-  {
     "id": "14",
     "date": "2026-04-30",
     "time": "23:00",
@@ -148,22 +42,12 @@
     "status": "upcoming"
   },
   {
-    "id": "15",
-    "date": "2026-03-09",
-    "time": "19:00",
-    "venue": "Swissotel, Esmaspäeva jazz",
-    "city": "Tallinn",
-    "title": "Liina Saar, Marek Talts, Lauri Räpp",
-    "ticketLink": "https://piletikeskus.ee/et/e/vt9s8h",
-    "status": "upcoming"
-  },
-  {
     "id": "16",
     "date": "2026-04-28",
     "time": "20:15",
     "venue": "Fotografiska",
     "city": "Tallinn",
-    "title": "Jazzkaar: Kass-Talsi-Sink-Minn",
+    "title": "Jazzkaar: ITIRA",
     "ticketLink": "https://piletikeskus.ee/et/e/309n47?affiliate=pk6od2",
     "status": "upcoming"
   },
@@ -233,7 +117,7 @@
     "time": "19:00",
     "venue": "Viimsi Artium",
     "city": "Viimsi",
-    "title": "VÕIGEMAST-KAARNAMETS-KASS",
+    "title": "Võigemast/Kaarnamets/Kass",
     "ticketLink": "https://www.piletitasku.ee/et/event/9907",
     "status": "upcoming"
   }
