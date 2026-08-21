@@ -8,7 +8,7 @@
     "title": "Kass/Talsi/Minn — WOMEX Showcase",
     "description": "WOMEX showcase performance.",
     "ticketLink": "https://www.womex.com/virtual/piranha_arts_1/event/kass_talsi_minn",
-    "status": "upcoming"
+    "status": "past"
   },
   {
     "id": "2",
@@ -19,7 +19,7 @@
     "title": "Võigemast/Kaarnamets/Kass",
     "description": "",
     "ticketLink": "https://jazzkaar.ee/uritus/voigemast-kaarnamets-kass-3/",
-    "status": "upcoming"
+    "status": "past"
   },
   {
     "id": "3",
@@ -29,7 +29,7 @@
     "city": "Tallinn",
     "title": "Miljardid",
     "ticketLink": "",
-    "status": "upcoming"
+    "status": "past"
   },
   {
     "id": "4",
@@ -39,7 +39,7 @@
     "city": "Tallinn",
     "title": "Marten Kuningas, Anton Corbijn special",
     "ticketLink": "https://tallinn.fotografiska.com/et/events/corbijn-sessions-marten-kuningas",
-    "status": "upcoming"
+    "status": "past"
   },
   {
     "id": "5",
@@ -49,7 +49,7 @@
     "city": "Tallinn",
     "title": "Jazzkaar: ITIRA",
     "ticketLink": "https://piletikeskus.ee/et/e/309n47?affiliate=pk6od2",
-    "status": "upcoming"
+    "status": "past"
   },
   {
     "id": "6",
@@ -59,7 +59,7 @@
     "city": "Orjaku",
     "title": "Sõru Jazz: Liina Saar, Marek Talts, Lauri Räpp",
     "ticketLink": "https://piletikeskus.ee/et/select-ticket/6phu3g",
-    "status": "upcoming"
+    "status": "past"
   },
   {
     "id": "7",
@@ -69,7 +69,7 @@
     "city": "Viljandi",
     "title": "Viljandi Folk: ITIRA",
     "ticketLink": "",
-    "status": "upcoming"
+    "status": "past"
   },
   {
     "id": "8",
@@ -79,7 +79,7 @@
     "city": "Narva-Jõesuu",
     "title": "Narva-Jõesuu Jazz: Dana Masters (Ireland)",
     "ticketLink": "",
-    "status": "upcoming"
+    "status": "past"
   },
   {
     "id": "9",
@@ -89,7 +89,7 @@
     "city": "Lüganuse",
     "title": "Lüganuse Jazz Harmony: Peedu Kass-Mihkel Mälgand",
     "ticketLink": "https://fienta.com/et/luganuse-jazz-harmony-2026",
-    "status": "upcoming"
+    "status": "past"
   },
   {
     "id": "10",
@@ -99,7 +99,7 @@
     "city": "Triigi, Saaremaa",
     "title": "Jazzliit x Triigi Filharmoonia: ITIRA",
     "ticketLink": "https://piletikeskus.ee/et/e/f51wq4",
-    "status": "upcoming"
+    "status": "past"
   },
   {
     "id": "11",
@@ -108,7 +108,7 @@
     "venue": "Kultuuriklubi BAAS",
     "city": "Rapla",
     "title": "Rapla Särin: ITIRA",
-    "ticketLink": "tbc",
+    "ticketLink": "https://piletikeskus.ee/en/e/ljy3by",
     "status": "upcoming"
   },
   {
