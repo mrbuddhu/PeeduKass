@@ -190,5 +190,15 @@
     "title": "Dana Masters (IE/US)",
     "ticketLink": "",
     "status": "upcoming"
+  },
+  {
+    "id": "20",
+    "date": "2026-10-15",
+    "time": "19:00",
+    "venue": "Saku valla kultuurikeskus",
+    "city": "Saku",
+    "title": "ITIRA",
+    "ticketLink": "https://www.sakuvallakalender.ee/kalender/ansambel-itira/",
+    "status": "upcoming"
   }
 ]
