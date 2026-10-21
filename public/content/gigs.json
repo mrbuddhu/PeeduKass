@@ -206,8 +206,8 @@
     "date": "2026-12-31",
     "time": "",
     "venue": "Test",
-    "city": "",
-    "title": "",
+    "city": "Test",
+    "title": "TEST",
     "ticketLink": "",
     "status": "upcoming"
   }
