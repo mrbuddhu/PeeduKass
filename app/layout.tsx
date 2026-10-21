@@ -98,6 +98,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfairDisplay.variable} ${beVietnam.variable}`}>
+      <link rel="author" href="https://www.sanganakhq.com/" />
       <body className="font-vietnam bg-white text-black antialiased">
         <LanguageProvider>
           <Suspense fallback={<div>Loading...</div>}>
