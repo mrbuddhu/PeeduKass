@@ -86,6 +86,12 @@ const Footer = () => {
         <div className="border-t border-gray-200 pt-6">
           <div className="text-center lg:text-left">
             <p className="font-vietnam text-xs text-gray-500">© {new Date().getFullYear()} Peedu Kass • {t("footer.rights")}</p>
+            <p className="font-vietnam text-[10px] text-gray-400 hidden">
+              Crafted with ❤️{" "}
+              <Link href="https://www.sanganakhq.com/" className="hover:underline">
+                @SanganakHQ
+              </Link>
+            </p>
           </div>
         </div>
       </div>
