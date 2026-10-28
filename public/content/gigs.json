@@ -188,7 +188,7 @@
     "venue": "Granada Jazz Festival",
     "city": "Granada, ESP",
     "title": "Dana Masters (IE/US)",
-    "ticketLink": "",
+    "ticketLink": "https://www.jazzengranada.es/festival-2026/dana-masters/",
     "status": "upcoming"
   },
   {
@@ -209,6 +209,56 @@
     "city": "Tartu",
     "title": "Helgi Sallo 85 Tänukontsert",
     "ticketLink": "https://www.piletilevi.ee/series/TBUOKPWENE/helgi-sallo-85-tanukontsert",
+    "status": "upcoming"
+  },
+  {
+    "id": "22",
+    "date": "2026-11-12",
+    "time": "19:00",
+    "venue": "Alexela kontserdimaja",
+    "city": "Tallinn",
+    "title": "Helgi Sallo 85 Tänukontsert",
+    "ticketLink": "https://www.piletilevi.ee/series/TBUOKPWENE/helgi-sallo-85-tanukontsert",
+    "status": "upcoming"
+  },
+  {
+    "id": "23",
+    "date": "2026-11-21",
+    "time": "19:00",
+    "venue": "Kuressaare kultuurikeskus",
+    "city": "Kuressaare",
+    "title": "Võigemast/Kaarnamets/Kass",
+    "ticketLink": "https://www.kultuurivara.ee/event/jazzkontsert-voigemast-kaarnamets-kass/",
+    "status": "upcoming"
+  },
+  {
+    "id": "24",
+    "date": "2026-12-11",
+    "time": "19:00",
+    "venue": "Kumu auditoorium",
+    "city": "Tallinn",
+    "title": "Jõulujazz: Jana Kütt",
+    "ticketLink": "https://sviby.com/et/e/fl3lr4",
+    "status": "upcoming"
+  },
+  {
+    "id": "25",
+    "date": "2026-11-20",
+    "time": "20:00",
+    "venue": "Chin Chin",
+    "city": "Tallinn",
+    "title": "Võigemast/Kaarnamets/Kass",
+    "ticketLink": "https://www.piletitasku.ee/en/event/10541",
+    "status": "upcoming"
+  },
+  {
+    "id": "26",
+    "date": "2026-12-08",
+    "time": "19:00",
+    "venue": "Rakvere teater",
+    "city": "Rakvere",
+    "title": "Liina Tralla, Lauri Räpp, Peedu Kass, Marek Talts",
+    "ticketLink": "https://www.rakvereteater.ee/rt-muusika-jazziohtu-elust-armastusega-liina-tralla-lauri-rapp-peedu-kass-marek-talts-0",
     "status": "upcoming"
   }
 ]
