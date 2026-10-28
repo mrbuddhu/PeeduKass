@@ -260,5 +260,15 @@
     "title": "Liina Tralla, Lauri Räpp, Peedu Kass, Marek Talts",
     "ticketLink": "https://www.rakvereteater.ee/rt-muusika-jazziohtu-elust-armastusega-liina-tralla-lauri-rapp-peedu-kass-marek-talts-0",
     "status": "upcoming"
+  },
+  {
+    "id": "27",
+    "date": "2027-01-28",
+    "time": "19:00",
+    "venue": "Vanemuise kontserdimaja",
+    "city": "Tartu",
+    "title": "Võigemast/Kaarnamets/Kass",
+    "ticketLink": "https://www.piletilevi.ee/piletid/CGNZ7UWWRN/voigemast-kaarnamets-kass",
+    "status": "upcoming"
   }
 ]
